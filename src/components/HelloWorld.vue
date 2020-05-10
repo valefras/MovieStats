@@ -1,24 +1,10 @@
 <template>
     <div>
-        <form class="login" @submit.prevent="login">
-            <h1>Sign in</h1>
-            <label>User name</label>
-            <input
-                required
-                v-model="username"
-                type="text"
-                placeholder="Snoopy"
-            />
-            <label>Password</label>
-            <input
-                required
-                v-model="password"
-                type="password"
-                placeholder="Password"
-            />
-            <hr />
-            <button type="submit">Login</button>
-        </form>
+        <button type="button" @click="createToken">create token</button>
+        <button type="button" @click="redirect">redirect</button>
+        <button type="button" @click="createSession">create session</button>
+        <button type="button" @click="loadProfileData">load</button>
+        <p v-if="data">{{ data }}</p>
     </div>
 </template>
 
@@ -28,20 +14,60 @@ export default {
     name: 'HelloWorld',
     data() {
         return {
-            username: '',
-            password: '',
+            requestToken: '',
+            sessionID: '',
+            data: '',
         }
     },
-    created() {
-        axios
-            .get()
-            .then(function(response) {})
-            .catch(function(error) {
-                console.log(error)
-            })
-    },
     methods: {
-        login() {},
+        createToken() {
+            axios
+                .get(
+                    'https://api.themoviedb.org/3/authentication/token/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf'
+                )
+                .then(response => {
+                    console.log(response.data)
+                    this.requestToken = response.data.request_token
+                    sessionStorage.setItem('token', this.requestToken)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+        },
+        redirect() {
+            window.location.href =
+                'https://www.themoviedb.org/authenticate/' +
+                this.requestToken +
+                '?redirect_to=http://localhost:8080/#/'
+        },
+        createSession() {
+            axios
+                .post(
+                    'https://api.themoviedb.org/3/authentication/session/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&request_token=' +
+                        sessionStorage.getItem('token')
+                )
+                .then(response => {
+                    console.log(response)
+                    this.sessionID = response.data.session_id
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+        },
+        loadProfileData() {
+            axios
+                .get(
+                    'https://api.themoviedb.org/3/account?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&session_id=' +
+                        this.sessionID
+                )
+                .then(response => {
+                    console.log(response.data)
+                    this.data = response.data
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+        },
     },
 }
 </script>
