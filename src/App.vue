@@ -4,10 +4,20 @@
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link>
         </div>
-        <router-view />
+        <router-view :id="id" :api_key="api_key" />
     </div>
 </template>
-
+<script>
+export default {
+    name: 'app',
+    data() {
+        return {
+            id: 9274488,
+            api_key: '1de39ba8ae7e4330c0da7c4c9cb0adbf',
+        }
+    },
+}
+</script>
 <style>
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;

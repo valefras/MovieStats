@@ -3,20 +3,17 @@
         <button type="button" @click="createToken">create token</button>
         <button type="button" @click="redirect">redirect</button>
         <button type="button" @click="createSession">create session</button>
-        <button type="button" @click="loadProfileData">load</button>
-        <p v-if="data">{{ data }}</p>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-    name: 'HelloWorld',
+    name: 'session',
     data() {
         return {
             requestToken: '',
             sessionID: '',
-            data: '',
         }
     },
     methods: {
@@ -49,20 +46,8 @@ export default {
                 .then(response => {
                     console.log(response)
                     this.sessionID = response.data.session_id
-                })
-                .catch(function(error) {
-                    console.log(error)
-                })
-        },
-        loadProfileData() {
-            axios
-                .get(
-                    'https://api.themoviedb.org/3/account?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&session_id=' +
-                        this.sessionID
-                )
-                .then(response => {
-                    console.log(response.data)
-                    this.data = response.data
+                    sessionStorage.setItem('session_id', this.sessionID)
+                    this.$emit('load')
                 })
                 .catch(function(error) {
                     console.log(error)
