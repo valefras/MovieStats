@@ -3,6 +3,7 @@
         <button type="button" @click="createToken">create token</button>
         <button type="button" @click="redirect">redirect</button>
         <button type="button" @click="createSession">create session</button>
+        <button type="button" @click="$emit('call')">call</button>
     </div>
 </template>
 
@@ -47,7 +48,6 @@ export default {
                     console.log(response)
                     this.sessionID = response.data.session_id
                     sessionStorage.setItem('session_id', this.sessionID)
-                    this.$emit('load')
                 })
                 .catch(function(error) {
                     console.log(error)

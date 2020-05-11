@@ -1,7 +1,7 @@
 <template>
     <div class="home">
-        <session v-on:load="sessionLoaded" />
-        <graph1 :id="id" v-if="isLoaded" :api_key="api_key" />
+        <session v-on:call="call" />
+        <graph1 :id="id" :api_key="api_key" v-if="show" />
     </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     },
     data() {
         return {
-            isLoaded: false,
+            show: false,
         }
     },
     props: {
@@ -26,8 +26,8 @@ export default {
         api_key: String,
     },
     methods: {
-        sessionLoaded() {
-            this.isLoaded = true
+        call() {
+            this.show = true
         },
     },
 }
