@@ -1,20 +1,21 @@
 <template>
     <div class="home">
+        <h1>My Film Stats</h1>
         <session v-on:call="call" />
-        <graph1 :id="id" :api_key="api_key" v-if="show" />
+        <getdata :id="id" :api_key="api_key" v-if="show" v-on:data="data" />
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import session from '@/components/create_session.vue'
-import graph1 from '../components/graph1'
+import getdata from '../components/get_data.vue'
 
 export default {
     name: 'Home',
     components: {
         session,
-        graph1,
+        getdata,
     },
     data() {
         return {
@@ -28,6 +29,9 @@ export default {
     methods: {
         call() {
             this.show = true
+        },
+        data(data) {
+            this.$emit('data', data)
         },
     },
 }

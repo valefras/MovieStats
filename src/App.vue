@@ -1,10 +1,6 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
-        <router-view :id="id" :api_key="api_key" />
+        <router-view :id="id" :api_key="api_key" v-on:data="film_data" />
     </div>
 </template>
 <script>
@@ -14,7 +10,13 @@ export default {
         return {
             id: 9274488,
             api_key: '1de39ba8ae7e4330c0da7c4c9cb0adbf',
+            filmdata: null,
         }
+    },
+    methods: {
+        film_data(data) {
+            this.filmdata = data
+        },
     },
 }
 </script>

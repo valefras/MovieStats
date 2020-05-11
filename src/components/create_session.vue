@@ -3,7 +3,7 @@
         <button type="button" @click="createToken">create token</button>
         <button type="button" @click="redirect">redirect</button>
         <button type="button" @click="createSession">create session</button>
-        <button type="button" @click="$emit('call')">call</button>
+        <button type="button" @click="$emit('call')">retrieve films</button>
     </div>
 </template>
 

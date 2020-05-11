@@ -1,16 +1,22 @@
 <template>
-    <p>{{ data.length }}</p>
+    <div>
+        <p>{{ success }}</p>
+        <router-link to="">
+            <button type="button">create stats</button>
+        </router-link>
+    </div>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-    name: 'graph1',
+    name: 'getdata',
     data() {
         return {
             data: [],
             page_num: null,
             calls: [],
+            success: '',
         }
     },
     props: {
@@ -39,14 +45,10 @@ export default {
                             '&session_id=' +
                             sessionStorage.getItem('session_id')
                     )
-
                     this.calls.push(call)
                 }
-                console.log(this.calls)
                 axios.all(this.calls).then(
                     axios.spread((...responses) => {
-                        console.log(responses.length)
-                        console.log(responses[9].data.results.length)
                         for (var x = 0; x < responses.length; x++) {
                             for (
                                 var i = 0;
@@ -100,6 +102,8 @@ export default {
             .catch(function(error) {
                 console.log(error)
             })
+        this.success = 'Your films have been succesfully retrieved'
+        this.$emit('data', this.data)
     },
 }
 </script>
