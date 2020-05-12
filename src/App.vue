@@ -26,24 +26,13 @@ export default {
 }
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'DM Mono', monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
-}
-
-#nav {
-    padding: 30px;
-}
-
-#nav a {
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-    color: #42b983;
+    color: #f0f5f9;
+    background-color: #1e2022;
 }
 </style>

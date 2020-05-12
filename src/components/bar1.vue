@@ -31,14 +31,22 @@ export default {
             var data = {
                 value: 0,
                 title: i.toString(),
+                count: 0,
             }
             this.data.push(data)
         }
         for (var x = 0; x < this.filmdata.length; x++) {
             for (var y = 0; y < this.data.length; y++) {
                 if (this.filmdata[x].date == this.data[y].title) {
-                    this.data[y].value = this.data[y].value + 1
+                    this.data[y].count = this.data[y].count + 1
+                    this.data[y].value =
+                        this.data[y].value + this.filmdata[x].rating
                 }
+            }
+        }
+        for (var z = 0; z < this.data.length; z++) {
+            if (this.data[z].count != 0) {
+                this.data[z].value = this.data[z].value / this.data[z].count / 2
             }
         }
     },

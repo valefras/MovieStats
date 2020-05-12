@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Bars from 'vuebars'
+
+Vue.use(Bars)
 
 Vue.use(VueAxios, axios)
 

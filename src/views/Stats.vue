@@ -1,62 +1,34 @@
 <template>
     <div>
-        <bar-chart :chartdata="chartData" :options="chartOptions" />
-        <p>{{ chartData }}</p>
+        <h1>My Stats</h1>
+        <h3>{{ filmdata.length }} films</h3>
+        <h3>{{ lang.length }} languages</h3>
+        <bar :filmdata="filmdata" />
+        <bar1 :filmdata="filmdata" />
     </div>
 </template>
 
 <script>
-import BarChart from '../components/bar.vue'
+import bar from '../components/bar.vue'
+import bar1 from '../components/bar1.vue'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
     },
-    components: {
-        BarChart,
-    },
-    data() {
+    components: { bar, bar1 },
+    date() {
         return {
-            chartData: {
-                datasets: {
-                    fill: true,
-                    backgroundColor: 'red',
-                    label: 'Bar Dataset',
-                    data: [],
-                },
-                labels: [],
-            },
-            chartOptions: {
-                barPercentage: 1,
-                scales: {
-                    xAxes: [
-                        {
-                            ticks: {
-                                autoSkip: false,
-                            },
-                        },
-                    ],
-                },
-            },
+            lang: [],
         }
     },
-
-    created() {
-        for (var x = 1940; x <= 2020; x++) {
-            this.chartData.labels.push(x.toString())
-            this.chartData.datasets.data.push(0)
-        }
+    /* created() {
         for (var i = 0; i < this.filmdata.length; i++) {
-            var year = this.filmdata[i].date
-            var index = year - 1940
-            for (var y = 0; y < this.chartData.labels.length; y++) {
-                if (index == y) {
-                    this.chartData.datasets.data[index] =
-                        this.chartData.datasets.data[index] + 1
-                }
+            if (this.lang.includes(this.filmdata[i].language)) {
+                this.lang.push(this.filmdata[i].language)
             }
         }
-    },
+    },*/
 }
 </script>
 
