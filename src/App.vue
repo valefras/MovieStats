@@ -1,6 +1,11 @@
 <template>
     <div id="app">
-        <router-view :id="id" :api_key="api_key" v-on:data="film_data" />
+        <router-view
+            :id="id"
+            :api_key="api_key"
+            v-on:data="film_data"
+            :filmdata="filmdata"
+        />
     </div>
 </template>
 <script>

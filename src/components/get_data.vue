@@ -1,7 +1,7 @@
 <template>
     <div>
         <p>{{ success }}</p>
-        <router-link to="">
+        <router-link to="Stats">
             <button type="button">create stats</button>
         </router-link>
     </div>
