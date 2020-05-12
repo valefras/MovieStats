@@ -1,10 +1,7 @@
 <template>
     <div>
-        <bar-chart
-            v-if="chartData.datasets.data"
-            :chartdata="chartData"
-            :options="chartOptions"
-        />
+        <bar-chart :chartdata="chartData" :options="chartOptions" />
+        <p>{{ chartData }}</p>
     </div>
 </template>
 
@@ -22,14 +19,15 @@ export default {
         return {
             chartData: {
                 datasets: {
+                    fill: true,
+                    backgroundColor: 'red',
+                    label: 'Bar Dataset',
                     data: [],
                 },
                 labels: [],
             },
             chartOptions: {
-                barPercentage: 'flex',
-                responsive: true,
-                scaleShowValues: true,
+                barPercentage: 1,
                 scales: {
                     xAxes: [
                         {
@@ -38,20 +36,14 @@ export default {
                             },
                         },
                     ],
-                    yAxes: [
-                        {
-                            ticks: {
-                                stepSize: 1,
-                            },
-                        },
-                    ],
                 },
             },
         }
     },
+
     created() {
         for (var x = 1940; x <= 2020; x++) {
-            this.chartData.labels.push(x)
+            this.chartData.labels.push(x.toString())
             this.chartData.datasets.data.push(0)
         }
         for (var i = 0; i < this.filmdata.length; i++) {
