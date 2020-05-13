@@ -4,7 +4,7 @@
 export default {
     name: 'container',
     props: {
-        decades: Object,
+        topfour: Object,
     },
 }
 </script>

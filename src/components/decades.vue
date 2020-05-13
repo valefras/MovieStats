@@ -1,3 +1,13 @@
+<template>
+    <div>
+        <h3>Top decades</h3>
+        <ul>
+            <li v-for="(decade, name) in topfour" :key="name">
+                {{ name }}: {{ decade.average }}
+            </li>
+        </ul>
+    </div>
+</template>
 <script>
 /*import container from '../components/filmcontainer.vue'*/
 export default {
@@ -18,9 +28,11 @@ export default {
                 2010: { films: [], average: 0 },
                 2020: { films: [], average: 0 },
             },
+            sorted: [],
+            topfour: {},
         }
     },
-    /*   components: { container },*/
+    /*    components: { container },*/
     created() {
         for (var i = 0; i < this.filmdata.length; i++) {
             if (this.filmdata[i].date >= 1940 && this.filmdata[i].date < 1950) {
@@ -122,6 +134,22 @@ export default {
                 this.decades[x].films.length /
                 2
             ).toFixed(2)
+        }
+        for (var z = 1940; z < 2020; z += 10) {
+            if (this.decades[z].films.length >= 16)
+                this.sorted.push(this.decades[z].average)
+        }
+        this.sorted.sort(function(a, b) {
+            return b - a
+        })
+        if (this.sorted.length >= 4) {
+            for (var a = 0; a < 4; a++) {
+                for (var k = 1940; k < 2020; k += 10) {
+                    if (this.decades[k].average == this.sorted[a]) {
+                        this.topfour[a] = this.decades[k]
+                    }
+                }
+            }
         }
     },
 }
