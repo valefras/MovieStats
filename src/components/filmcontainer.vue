@@ -3,6 +3,9 @@
 <script>
 export default {
     name: 'container',
+    props: {
+        decades: Object,
+    },
 }
 </script>
 
