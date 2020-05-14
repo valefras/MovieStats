@@ -7,7 +7,7 @@
         <bar :filmdata="filmdata" />
         <h3>My average rating (by release year)</h3>
         <bar1 :filmdata="filmdata" />
-        <h3>My favourite decades</h3>
+        <h3>My top 5 decades</h3>
         <decades :filmdata="filmdata" />
     </div>
 </template>

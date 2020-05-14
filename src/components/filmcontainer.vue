@@ -7,27 +7,26 @@
                 <p>average: {{ decade.average }}/5</p>
             </div>
             <div v-for="index in 16" :key="index">
-                <img
-                    :src="decade.films[index - 1][1]"
-                    class="poster"
-                    @mouseover="hover = true"
-                    @mouseleave="hover = false"
-                    :class="{ hover: hover }"
-                />
+                <card :film="decade.films[index - 1]" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import card from '../components/card.vue'
 export default {
     name: 'container',
     props: {
         decade: Object,
     },
+    components: {
+        card,
+    },
     data() {
         return {
             hover: false,
+            currentlyhovering: null,
         }
     },
     created() {
@@ -44,19 +43,12 @@ export default {
     display: grid;
     align-items: center;
     grid-template-columns: 20% 10% 10% 10% 10% 10% 10% 10% 10%;
-    max-width: 65%;
+    max-width: 70%;
 }
 .bigcontainer {
     margin: 25px 0 0 0;
 }
-.poster {
-    height: 125px;
-    margin: 5px 0 5px 0;
-    transition: height 0.5s;
-}
-.poster.hover {
-    height: 175px;
-}
+
 .title {
     grid-row-start: 1;
     grid-row-end: span 2;

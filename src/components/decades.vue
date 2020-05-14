@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(decade, name) in topfour" :key="name">
+        <div v-for="(decade, name) in top" :key="name">
             <container :decade="decade" />
         </div>
     </div>
@@ -26,7 +26,7 @@ export default {
                 2020: { films: [], average: 0, decade: 2020 },
             },
             sorted: [],
-            topfour: {},
+            top: {},
         }
     },
     components: { container },
@@ -139,11 +139,11 @@ export default {
         this.sorted.sort(function(a, b) {
             return b - a
         })
-        if (this.sorted.length >= 4) {
-            for (var a = 0; a < 4; a++) {
+        if (this.sorted.length >= 5) {
+            for (var a = 0; a < 5; a++) {
                 for (var k = 1940; k <= 2020; k += 10) {
                     if (this.decades[k].average == this.sorted[a]) {
-                        this.topfour[a] = this.decades[k]
+                        this.top[a] = this.decades[k]
                     }
                 }
             }
