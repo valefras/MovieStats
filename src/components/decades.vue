@@ -1,15 +1,12 @@
 <template>
     <div>
-        <h3>Top decades</h3>
-        <ul>
-            <li v-for="(decade, name) in topfour" :key="name">
-                {{ name }}: {{ decade.average }}
-            </li>
-        </ul>
+        <div v-for="(decade, name) in topfour" :key="name">
+            <container :decade="decade" />
+        </div>
     </div>
 </template>
 <script>
-/*import container from '../components/filmcontainer.vue'*/
+import container from '../components/filmcontainer.vue'
 export default {
     name: 'decades',
     props: {
@@ -18,21 +15,21 @@ export default {
     data() {
         return {
             decades: {
-                1940: { films: [], average: 0 },
-                1950: { films: [], average: 0 },
-                1960: { films: [], average: 0 },
-                1970: { films: [], average: 0 },
-                1980: { films: [], average: 0 },
-                1990: { films: [], average: 0 },
-                2000: { films: [], average: 0 },
-                2010: { films: [], average: 0 },
-                2020: { films: [], average: 0 },
+                1940: { films: [], average: 0, decade: 1940 },
+                1950: { films: [], average: 0, decade: 1950 },
+                1960: { films: [], average: 0, decade: 1960 },
+                1970: { films: [], average: 0, decade: 1970 },
+                1980: { films: [], average: 0, decade: 1980 },
+                1990: { films: [], average: 0, decade: 1990 },
+                2000: { films: [], average: 0, decade: 2000 },
+                2010: { films: [], average: 0, decade: 2010 },
+                2020: { films: [], average: 0, decade: 2020 },
             },
             sorted: [],
             topfour: {},
         }
     },
-    /*    components: { container },*/
+    components: { container },
     created() {
         for (var i = 0; i < this.filmdata.length; i++) {
             if (this.filmdata[i].date >= 1940 && this.filmdata[i].date < 1950) {
@@ -144,7 +141,7 @@ export default {
         })
         if (this.sorted.length >= 4) {
             for (var a = 0; a < 4; a++) {
-                for (var k = 1940; k < 2020; k += 10) {
+                for (var k = 1940; k <= 2020; k += 10) {
                     if (this.decades[k].average == this.sorted[a]) {
                         this.topfour[a] = this.decades[k]
                     }

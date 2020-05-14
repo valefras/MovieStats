@@ -1,10 +1,13 @@
 <template>
     <div>
         <h1>My Stats</h1>
-        <h3>{{ filmdata.length }} films</h3>
+        <h2>{{ filmdata.length }} films</h2>
         <!--     <h3>{{ lang.length }} languages</h3> -->
+        <h3>Films watched (by release year)</h3>
         <bar :filmdata="filmdata" />
+        <h3>My average rating (by release year)</h3>
         <bar1 :filmdata="filmdata" />
+        <h3>My favourite decades</h3>
         <decades :filmdata="filmdata" />
     </div>
 </template>
