@@ -4,8 +4,10 @@
             :src="film[1]"
             class="poster"
             @mouseover="hover = true"
-            @mouseleave="hover = false"
+            @mouseout="hover = false"
             :class="{ hover: hover }"
+            v-tippy="{ followCursor: true, delay: [300, 0] }"
+            :content="tooltipContent"
         />
     </div>
 </template>
@@ -19,7 +21,11 @@ export default {
     data() {
         return {
             hover: false,
+            tooltipContent: '',
         }
+    },
+    created() {
+        this.tooltipContent = this.film[0] + ' - Rating: ' + this.film[2] / 2
     },
 }
 </script>

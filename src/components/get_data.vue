@@ -102,8 +102,8 @@ export default {
             .catch(function(error) {
                 console.log(error)
             })
-        this.success = 'Your films have been succesfully retrieved'
         this.$emit('data', this.data)
+        this.success = 'Your films have been succesfully retrieved'
     },
 }
 </script>
