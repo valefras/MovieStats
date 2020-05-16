@@ -2,7 +2,7 @@
     <div class="bigcontainer">
         <div class="container">
             <div class="title">
-                <h3>{{ decade.decade }}s</h3>
+                <h2>{{ decade.decade }}s</h2>
                 <p>{{ decade.films.length }} films</p>
                 <p>average: {{ decade.average }}/5</p>
             </div>
