@@ -26,7 +26,7 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap');
 #app {
     font-family: 'DM Mono', monospace;
     -webkit-font-smoothing: antialiased;

@@ -37,6 +37,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['1940'].films.push(arr)
             } else if (
@@ -47,6 +48,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['1950'].films.push(arr1)
             } else if (
@@ -57,6 +59,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['1960'].films.push(arr2)
             } else if (
@@ -67,6 +70,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['1970'].films.push(arr3)
             } else if (
@@ -77,6 +81,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['1980'].films.push(arr4)
             } else if (
@@ -87,6 +92,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['1990'].films.push(arr5)
             } else if (
@@ -97,6 +103,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['2000'].films.push(arr6)
             } else if (
@@ -107,6 +114,7 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['2010'].films.push(arr7)
             } else if (
@@ -117,11 +125,12 @@ export default {
                     this.filmdata[i].title,
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
+                    this.filmdata[i].id,
                 ]
                 this.decades['2020'].films.push(arr8)
             }
         }
-        for (var x = 1950; x <= 2020; x += 10) {
+        for (var x = 1940; x <= 2020; x += 10) {
             for (var y = 0; y < this.decades[x].films.length; y++) {
                 this.decades[x].average =
                     this.decades[x].average + this.decades[x].films[y][2]

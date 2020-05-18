@@ -75,6 +75,7 @@ export default {
                                             .vote_average,
                                     popularity:
                                         responses[x].data.results[i].popularity,
+                                    id: responses[x].data.results[i].id,
                                 })
                             }
                         }
@@ -96,6 +97,7 @@ export default {
                         genre_id: response.data.results[y].genre_ids,
                         vote_average: response.data.results[y].vote_average,
                         popularity: response.data.results[y].popularity,
+                        id: response.data.results[y].id,
                     })
                 }
             })
