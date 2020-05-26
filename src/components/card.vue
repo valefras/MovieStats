@@ -3,7 +3,7 @@
         :href="link"
         target="_blank"
         @mouseover="hover = true"
-        @mouseout="hover = false"
+        @mouseleave="hover = false"
     >
         <div class="wrap" :class="{ hover: hover }">
             <img :src="film[1]" class="poster" />

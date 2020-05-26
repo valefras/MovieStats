@@ -5,11 +5,6 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Bars from 'vuebars'
-import VueTippy, { TippyComponent } from 'vue-tippy'
-
-Vue.component('tippy', TippyComponent)
-
-Vue.use(VueTippy)
 
 Vue.use(Bars)
 
