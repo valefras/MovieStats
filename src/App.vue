@@ -4,6 +4,7 @@
             :id="id"
             :api_key="api_key"
             v-on:data="film_data"
+            v-on:genres="genres_data"
             :filmdata="filmdata"
         />
     </div>
@@ -16,11 +17,15 @@ export default {
             id: 9274488,
             api_key: '1de39ba8ae7e4330c0da7c4c9cb0adbf',
             filmdata: null,
+            genres: null,
         }
     },
     methods: {
         film_data(data) {
             this.filmdata = data
+        },
+        genres_data(data) {
+            this.genres = data
         },
     },
 }

@@ -2,7 +2,13 @@
     <div class="home">
         <h1>My Film Stats</h1>
         <session v-on:call="call" />
-        <getdata :id="id" :api_key="api_key" v-if="show" v-on:data="data" />
+        <getdata
+            :id="id"
+            :api_key="api_key"
+            v-if="show"
+            v-on:data="data"
+            v-on:genres="genres"
+        />
     </div>
 </template>
 
@@ -32,6 +38,9 @@ export default {
         },
         data(data) {
             this.$emit('data', data)
+        },
+        genres(data) {
+            this.$emit('genres', data)
         },
     },
 }
