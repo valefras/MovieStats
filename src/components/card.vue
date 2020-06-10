@@ -10,7 +10,7 @@
             <transition name="fade">
                 <p class="caption" v-if="hover">
                     {{ film[0] }}<br />
-                    Rating: {{ this.film[2] / 2 }}/5
+                    Rating: {{ this.film[2] }}/5
                 </p>
             </transition>
         </div>
@@ -31,7 +31,7 @@ export default {
         }
     },
     created() {
-        this.tooltipContent = this.film[0] + ' - Rating: ' + this.film[2] / 2
+        this.tooltipContent = this.film[0] + ' - Rating: ' + this.film[2]
     },
 }
 </script>

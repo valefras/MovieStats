@@ -136,9 +136,7 @@ export default {
                     this.decades[x].average + this.decades[x].films[y][2]
             }
             this.decades[x].average = (
-                this.decades[x].average /
-                this.decades[x].films.length /
-                2
+                this.decades[x].average / this.decades[x].films.length
             ).toFixed(2)
         }
         for (var z = 1940; z < 2020; z += 10) {

@@ -2,10 +2,10 @@
     <bars
         :data="data"
         :gradient="['#f9ed69', '#f08a5d']"
-        :barWidth="10"
         :growDuration="1"
         :height="300"
-        :width="1100"
+        :barWidth="70"
+        :width="800"
     >
     </bars>
 </template>
@@ -27,26 +27,19 @@ export default {
         }
     },
     created() {
-        for (var i = 1940; i <= 2020; i++) {
+        for (var i = 0.5; i <= 5; i += 0.5) {
             var data = {
                 value: 0,
                 title: i.toString(),
-                count: 0,
             }
             this.data.push(data)
         }
+
         for (var x = 0; x < this.filmdata.length; x++) {
             for (var y = 0; y < this.data.length; y++) {
-                if (this.filmdata[x].date == this.data[y].title) {
-                    this.data[y].count = this.data[y].count + 1
-                    this.data[y].value =
-                        this.data[y].value + this.filmdata[x].rating
+                if (this.filmdata[x].rating == this.data[y].title) {
+                    this.data[y].value = this.data[y].value + 1
                 }
-            }
-        }
-        for (var z = 0; z < this.data.length; z++) {
-            if (this.data[z].count != 0) {
-                this.data[z].value = this.data[z].value / this.data[z].count
             }
         }
     },

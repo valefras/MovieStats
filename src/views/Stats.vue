@@ -7,6 +7,8 @@
         <bar :filmdata="filmdata" />
         <h3>My average rating (by release year)</h3>
         <bar1 :filmdata="filmdata" />
+        <bar2 :filmdata="filmdata" />
+
         <h3>My top 5 decades</h3>
         <decades :filmdata="filmdata" />
     </div>
@@ -16,12 +18,13 @@
 import bar from '../components/bar.vue'
 import bar1 from '../components/bar1.vue'
 import decades from '../components/decades.vue'
+import bar2 from '../components/bar2'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
     },
-    components: { bar, bar1, decades },
+    components: { bar, bar1, bar2, decades },
     /*   date() {
         return {
             lang: [],

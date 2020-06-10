@@ -78,7 +78,8 @@ export default {
                                             responses[x].data.results[i]
                                                 .poster_path,
                                         rating:
-                                            responses[x].data.results[i].rating,
+                                            responses[x].data.results[i]
+                                                .rating / 2,
                                         language:
                                             responses[x].data.results[i]
                                                 .original_language,
@@ -108,7 +109,7 @@ export default {
                             poster:
                                 'https://image.tmdb.org/t/p/w500' +
                                 response.data.results[y].poster_path,
-                            rating: response.data.results[y].rating,
+                            rating: response.data.results[y].rating / 2,
                             language:
                                 response.data.results[y].original_language,
                             genre_id: response.data.results[y].genre_ids,
