@@ -5,7 +5,7 @@
         :growDuration="1"
         :height="300"
         :barWidth="70"
-        :width="800"
+        :width="1000"
     >
     </bars>
 </template>

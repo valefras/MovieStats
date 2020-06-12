@@ -147,7 +147,7 @@ export default {
             return b - a
         })
         if (this.sorted.length >= 5) {
-            for (var a = 0; a < 5; a++) {
+            for (var a = 0; a < 10; a++) {
                 for (var k = 1940; k <= 2020; k += 10) {
                     if (this.decades[k].average == this.sorted[a]) {
                         this.top[a] = this.decades[k]
