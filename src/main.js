@@ -5,6 +5,9 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Bars from 'vuebars'
+import StarRating from 'vue-star-rating'
+
+Vue.use(StarRating)
 
 Vue.use(Bars)
 

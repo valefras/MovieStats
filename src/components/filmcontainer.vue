@@ -2,9 +2,13 @@
     <div class="bigcontainer">
         <div class="container">
             <div class="title">
-                <h2>{{ decade.decade }}s</h2>
+                <router-link to="Decade">
+                    <h2 @click="$emit('decade', decade.decade)">
+                        {{ decade.decade }}s
+                    </h2>
+                </router-link>
                 <p>{{ decade.films.length }} films</p>
-                <p>average: {{ decade.average }}/5</p>
+                <p>Average: {{ decade.average }}/5</p>
             </div>
             <div v-for="index in 16" :key="index">
                 <card :film="decade.films[index - 1]" />

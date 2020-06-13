@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(decade, name) in top" :key="name">
-            <container :decade="decade" />
+            <container :decade="decade" v-on:decade="decade_data" />
         </div>
     </div>
 </template>
@@ -38,6 +38,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['1940'].films.push(arr)
             } else if (
@@ -49,6 +50,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['1950'].films.push(arr1)
             } else if (
@@ -60,6 +62,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['1960'].films.push(arr2)
             } else if (
@@ -71,6 +74,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['1970'].films.push(arr3)
             } else if (
@@ -82,6 +86,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['1980'].films.push(arr4)
             } else if (
@@ -93,6 +98,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['1990'].films.push(arr5)
             } else if (
@@ -104,6 +110,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['2000'].films.push(arr6)
             } else if (
@@ -115,6 +122,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['2010'].films.push(arr7)
             } else if (
@@ -126,6 +134,7 @@ export default {
                     this.filmdata[i].poster,
                     this.filmdata[i].rating,
                     this.filmdata[i].id,
+                    this.filmdata[i].date,
                 ]
                 this.decades['2020'].films.push(arr8)
             }
@@ -155,6 +164,15 @@ export default {
                 }
             }
         }
+    },
+    methods: {
+        decade_data(y) {
+            for (var i = 1940; i < 2020; i += 10) {
+                if (y == i) {
+                    this.$emit('decade', this.decades[i])
+                }
+            }
+        },
     },
 }
 </script>

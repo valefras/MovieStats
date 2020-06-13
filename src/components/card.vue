@@ -10,7 +10,7 @@
             <transition name="fade">
                 <p class="caption" v-if="hover">
                     {{ film[0] }}<br />
-                    Rating: {{ this.film[2] }}/5
+                    ({{ this.film[4] }})
                 </p>
             </transition>
         </div>

@@ -4,8 +4,8 @@
         :gradient="['#f9ed69', '#f08a5d']"
         :growDuration="1"
         :height="300"
-        :barWidth="70"
-        :width="1000"
+        :barWidth="20"
+        :width="500"
     >
     </bars>
 </template>

@@ -6,6 +6,8 @@
             v-on:data="film_data"
             v-on:genres="genres_data"
             :filmdata="filmdata"
+            v-on:decade="decade_data"
+            :decade="decade"
         />
     </div>
 </template>
@@ -18,6 +20,7 @@ export default {
             api_key: '1de39ba8ae7e4330c0da7c4c9cb0adbf',
             filmdata: null,
             genres: null,
+            decade: null,
         }
     },
     methods: {
@@ -27,6 +30,9 @@ export default {
         genres_data(data) {
             this.genres = data
         },
+        decade_data(data) {
+            this.decade = data
+        },
     },
 }
 </script>
@@ -34,8 +40,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap');
 #app {
     font-family: 'DM Mono', monospace;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #f0f5f9;
     background-color: #1e2022;

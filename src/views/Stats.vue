@@ -7,9 +7,10 @@
         <bar :filmdata="filmdata" />
         <h3>Your average rating (by release year)</h3>
         <bar1 :filmdata="filmdata" />
+        <h3>Your ratings</h3>
         <bar2 :filmdata="filmdata" />
         <h3>Your favourite decades</h3>
-        <decades :filmdata="filmdata" />
+        <decades :filmdata="filmdata" v-on:decade="data" />
     </div>
 </template>
 
@@ -24,6 +25,17 @@ export default {
         filmdata: Array,
     },
     components: { bar, bar1, bar2, decades },
+    data() {
+        return {
+            decade: null,
+        }
+    },
+    methods: {
+        data(data) {
+            this.decade = data
+            this.$emit('decade', this.decade)
+        },
+    },
     /*   date() {
         return {
             lang: [],
