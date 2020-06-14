@@ -44,4 +44,8 @@ export default {
     color: #f0f5f9;
     background-color: #1e2022;
 }
+a {
+    text-decoration: none;
+    color: #f0f5f9;
+}
 </style>

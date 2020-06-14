@@ -124,7 +124,6 @@ export default {
                 console.log(error)
             })
             .then(this.$emit('data', this.data))
-            .then(this.$emit('genres', this.genres))
             .then((this.success = 'Your films have been succesfully retrieved'))
     },
 }
