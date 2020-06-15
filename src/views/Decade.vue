@@ -17,7 +17,8 @@
                     inactive-color="#000000"
                     :padding="1"
                     border-color="#949494"
-                    style="display: block"
+                    style="margin-bottom: 8px;"
+                    :inline="true"
                 />
             </div>
         </div>
@@ -49,8 +50,5 @@ export default {
     align-items: center;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     max-width: 80%;
-}
-star-rating {
-    display: block;
 }
 </style>

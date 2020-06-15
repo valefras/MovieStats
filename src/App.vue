@@ -42,7 +42,6 @@ export default {
     font-family: 'DM Mono', monospace;
     text-align: center;
     color: #f0f5f9;
-    background-color: #1e2022;
 }
 a {
     text-decoration: none;

@@ -48,7 +48,7 @@ export default {
     data() {
         return {
             decade: null,
-            tabs: true,
+            tabs: false,
         }
     },
     methods: {
