@@ -5,7 +5,13 @@
                 <h2>{{ decade.decade }}s</h2>
                 <p>{{ decade.films.length }} films</p>
                 <p>Average: {{ decade.average }}/5</p>
-                <router-link to="Decade">
+                <router-link
+                    :to="{
+                        name: 'Decade',
+                        path: '/decade/:year',
+                        params: { year: decade.decade + 's' },
+                    }"
+                >
                     <p @click="$emit('decade', decade.decade)">See all</p>
                 </router-link>
             </div>

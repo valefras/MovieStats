@@ -2,7 +2,7 @@
     <bars
         :data="data"
         :gradient="['#f9ed69', '#f08a5d']"
-        :growDuration="1"
+        :growDuration="0.6"
         :height="300"
         :barWidth="20"
         :width="500"

@@ -3,7 +3,7 @@
         :data="data"
         :gradient="['#f9ed69', '#f08a5d']"
         :barWidth="10"
-        :growDuration="1"
+        :growDuration="0.6"
         :height="300"
         :width="1100"
     >

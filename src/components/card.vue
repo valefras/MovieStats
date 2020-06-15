@@ -1,10 +1,5 @@
 <template>
-    <a
-        :href="link"
-        target="_blank"
-        @mouseover="hover = true"
-        @mouseleave="hover = false"
-    >
+    <a :href="link" target="_blank" @mouseover="hover = true" @mouseleave="hover = false">
         <div class="wrap" :class="{ hover: hover }">
             <img :src="film[1]" class="poster" />
             <transition name="fade">

@@ -3,10 +3,32 @@
         <h1>Your Stats</h1>
         <h2>{{ filmdata.length }} films</h2>
         <!--     <h3>{{ lang.length }} languages</h3> -->
-        <h3>Films watched (by release year)</h3>
-        <bar :filmdata="filmdata" />
-        <h3>Your average rating (by release year)</h3>
-        <bar1 :filmdata="filmdata" />
+        <div class="bars">
+            <p
+                @click="tabs = false"
+                style="display:inline; margin-bottom: 0;
+    margin-top: 0; justify-self: end"
+            >
+                <router-link to="/stats">
+                    <p :class="{ active: !tabs }">Films watched (by release year)</p>
+                </router-link>
+            </p>
+
+            <div class="vl"></div>
+            <p
+                @click="tabs = true"
+                style="display:inline; margin-bottom: 0;
+    margin-top: 0; justify-self: start"
+            >
+                <router-link to="/stats/ratings"
+                    ><p :class="{ active: tabs }">
+                        Your average rating (by release year)
+                    </p>
+                </router-link>
+            </p>
+            <router-view class="chart" :filmdata="filmdata" />
+        </div>
+
         <h3>Your ratings</h3>
         <bar2 :filmdata="filmdata" />
         <h3>Your favourite decades</h3>
@@ -15,8 +37,6 @@
 </template>
 
 <script>
-import bar from '../components/bar.vue'
-import bar1 from '../components/bar1.vue'
 import decades from '../components/decades.vue'
 import bar2 from '../components/bar2'
 export default {
@@ -24,10 +44,11 @@ export default {
     props: {
         filmdata: Array,
     },
-    components: { bar, bar1, bar2, decades },
+    components: { bar2, decades },
     data() {
         return {
             decade: null,
+            tabs: true,
         }
     },
     methods: {
@@ -41,14 +62,28 @@ export default {
             lang: [],
         }
     },*/
-    /* created() {
-        for (var i = 0; i < this.filmdata.length; i++) {
-            if (this.lang.includes(this.filmdata[i].language)) {
-                this.lang.push(this.filmdata[i].language)
-            }
-        }
-    },*/
 }
 </script>
 
-<style></style>
+<style>
+.active {
+    color: #f9ed69;
+}
+.bars {
+    margin: auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 5% auto;
+    max-width: 80%;
+}
+.chart {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    justify-self: center;
+}
+.vl {
+    border-left: 1px solid #f0f5f9;
+    height: 20px;
+    justify-self: center;
+}
+</style>

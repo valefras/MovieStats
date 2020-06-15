@@ -3,7 +3,7 @@
         :data="data"
         :gradient="['#f9ed69', '#f08a5d']"
         :barWidth="10"
-        :growDuration="1"
+        :growDuration="0.6"
         :height="300"
         :width="1100"
     >
@@ -39,8 +39,7 @@ export default {
             for (var y = 0; y < this.data.length; y++) {
                 if (this.filmdata[x].date == this.data[y].title) {
                     this.data[y].count = this.data[y].count + 1
-                    this.data[y].value =
-                        this.data[y].value + this.filmdata[x].rating
+                    this.data[y].value = this.data[y].value + this.filmdata[x].rating
                 }
             }
         }
