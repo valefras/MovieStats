@@ -15,15 +15,15 @@ export default {
     data() {
         return {
             decades: {
-                1940: { films: [], average: 0, decade: 1940 },
-                1950: { films: [], average: 0, decade: 1950 },
-                1960: { films: [], average: 0, decade: 1960 },
-                1970: { films: [], average: 0, decade: 1970 },
-                1980: { films: [], average: 0, decade: 1980 },
-                1990: { films: [], average: 0, decade: 1990 },
-                2000: { films: [], average: 0, decade: 2000 },
-                2010: { films: [], average: 0, decade: 2010 },
-                2020: { films: [], average: 0, decade: 2020 },
+                1940: { films: [], average: 0, decade: 1940, sorted: false },
+                1950: { films: [], average: 0, decade: 1950, sorted: false },
+                1960: { films: [], average: 0, decade: 1960, sorted: false },
+                1970: { films: [], average: 0, decade: 1970, sorted: false },
+                1980: { films: [], average: 0, decade: 1980, sorted: false },
+                1990: { films: [], average: 0, decade: 1990, sorted: false },
+                2000: { films: [], average: 0, decade: 2000, sorted: false },
+                2010: { films: [], average: 0, decade: 2010, sorted: false },
+                2020: { films: [], average: 0, decade: 2020, sorted: false },
             },
             sorted: [],
             top: {},
@@ -130,8 +130,10 @@ export default {
         if (this.sorted.length >= 5) {
             for (var a = 0; a < 10; a++) {
                 for (var k = 1940; k <= 2020; k += 10) {
-                    if (this.decades[k].average == this.sorted[a]) {
+                    if (this.decades[k].average == this.sorted[a] && !this.decades[k].sorted) {
                         this.top[a] = this.decades[k]
+                        this.decades[k].sorted = true
+                        break
                     }
                 }
             }
