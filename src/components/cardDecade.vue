@@ -1,11 +1,11 @@
 <template>
     <a :href="link" target="_blank" @mouseover="hover = true" @mouseleave="hover = false">
         <div class="wrap" :class="{ hover: hover }">
-            <img :src="film.poster" class="poster" />
+            <img :src="film[1]" class="poster" />
             <transition name="fade">
                 <p class="caption" v-if="hover">
-                    {{ film.title }}<br />
-                    ({{ film.date }})
+                    {{ film[0] }}<br />
+                    ({{ this.film[4] }})
                 </p>
             </transition>
         </div>
@@ -14,14 +14,14 @@
 
 <script>
 export default {
-    name: 'card',
+    name: 'cardDecade',
     props: {
-        film: Object,
+        film: Array,
     },
     data() {
         return {
             hover: false,
-            link: 'https://www.themoviedb.org/movie/' + this.film.id,
+            link: 'https://www.themoviedb.org/movie/' + this.film[3],
         }
     },
 }

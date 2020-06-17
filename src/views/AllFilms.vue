@@ -1,12 +1,11 @@
 <template>
     <div>
-        <h1>{{ decade.decade }}s</h1>
-        <p>{{ decade.films.length }} films</p>
+        <h1>All films</h1>
         <div class="box">
-            <div v-for="index in decade.films.length" :key="index">
-                <cardDecade :film="decade.films[index - 1]" />
+            <div v-for="index in filmdata.length" :key="index">
+                <card :film="filmdata[index - 1]" />
                 <star-rating
-                    :rating="decade.films[index - 1][2]"
+                    :rating="filmdata[index - 1].rating"
                     :increment="0.5"
                     :read-only="true"
                     :star-size="16"
@@ -27,15 +26,18 @@
 
 <script>
 import StarRating from 'vue-star-rating'
-import cardDecade from '../components/cardDecade.vue'
+import card from '../components/card.vue'
 export default {
     name: 'Decade',
     props: {
-        decade: Object,
+        filmdata: Array,
     },
     components: {
-        cardDecade,
+        card,
         StarRating,
+    },
+    created() {
+        this.filmdata.sort((a, b) => (a.rating > b.rating ? -1 : 1))
     },
 }
 </script>

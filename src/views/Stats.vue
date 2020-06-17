@@ -2,12 +2,14 @@
     <div>
         <h1>Your Stats</h1>
         <h2>{{ filmdata.length }} films</h2>
+        <router-link to="/all">
+            <p>See all</p>
+        </router-link>
         <!--     <h3>{{ lang.length }} languages</h3> -->
         <div class="bars">
             <p
                 @click="tabs = false"
-                style="display:inline; margin-bottom: 0;
-    margin-top: 0; justify-self: end"
+                style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end"
             >
                 <router-link to="/stats">
                     <p :class="{ active: !tabs }">Films watched (by release year)</p>
@@ -17,8 +19,7 @@
             <div class="vl"></div>
             <p
                 @click="tabs = true"
-                style="display:inline; margin-bottom: 0;
-    margin-top: 0; justify-self: start"
+                style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start"
             >
                 <router-link to="/stats/ratings"
                     ><p :class="{ active: tabs }">

@@ -5,6 +5,7 @@ import Stats from '../views/Stats.vue'
 import Decade from '../views/Decade.vue'
 import bar1 from '../components/bar1.vue'
 import bar from '../components/bar.vue'
+import AllFilms from '../views/AllFilms'
 
 Vue.use(VueRouter)
 
@@ -20,14 +21,10 @@ const routes = [
         component: Stats,
         children: [
             {
-                // UserProfile will be rendered inside User's <router-view>
-                // when /user/:id/profile is matched
                 path: '',
                 component: bar,
             },
             {
-                // UserPosts will be rendered inside User's <router-view>
-                // when /user/:id/posts is matched
                 path: 'ratings',
                 component: bar1,
             },
@@ -37,6 +34,11 @@ const routes = [
         path: '/decade/:year',
         name: 'Decade',
         component: Decade,
+    },
+    {
+        path: '/all',
+        name: 'All',
+        component: AllFilms,
     },
 ]
 
