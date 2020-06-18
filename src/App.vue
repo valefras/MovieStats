@@ -8,6 +8,7 @@
             :filmdata="filmdata"
             v-on:decade="decade_data"
             :decade="decade"
+            :genres="genres"
         />
     </div>
 </template>

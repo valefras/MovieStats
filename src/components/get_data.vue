@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             data: [],
-            genres: null,
+            genres: [],
             page_num: null,
             calls: [],
             success: '',
@@ -42,8 +42,14 @@ export default {
                 axios.spread((...responses) => {
                     const response = responses[0]
                     const genres = responses[1]
-                    console.log(genres.data.genres)
-                    this.genres = genres.data.genres
+                    for (let i = 0; i < genres.data.genres.length; i++) {
+                        let genre = {
+                            id: genres.data.genres[i].id,
+                            name: genres.data.genres[i].name,
+                        }
+                        this.genres.push(genre)
+                    }
+                    console.log(this.genres)
                     for (var i = 2; i <= response.data.total_pages; i++) {
                         var call = axios.get(
                             'https://api.themoviedb.org/3/account/' +
@@ -97,7 +103,7 @@ export default {
             .catch(function(error) {
                 console.log(error)
             })
-            .then(this.$emit('data', this.data))
+            .then(this.$emit('data', this.data), this.$emit('genres', this.genres))
             .then((this.success = 'Your films have been succesfully retrieved'))
     },
 }

@@ -32,6 +32,8 @@
 
         <h3>Your ratings</h3>
         <bar2 :filmdata="filmdata" />
+        <h3>Your favourite genres</h3>
+        <bar3 :filmdata="filmdata" :genres="genres" />
         <h3>Your favourite decades</h3>
         <decades :filmdata="filmdata" v-on:decade="data" />
     </div>
@@ -40,12 +42,14 @@
 <script>
 import decades from '../components/decades.vue'
 import bar2 from '../components/bar2'
+import bar3 from '../components/bar3'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
+        genres: Array,
     },
-    components: { bar2, decades },
+    components: { bar2, decades, bar3 },
     data() {
         return {
             decade: null,
