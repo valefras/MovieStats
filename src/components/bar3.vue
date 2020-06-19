@@ -5,10 +5,10 @@
         :gradient="['#f9ed69', '#f08a5d']"
         :barWidth="20"
         :growDuration="0.6"
-        :height="600"
+        :height="500"
         :width="500"
-        viewBox="0 0 500 650"
-        :padding="0"
+        :padding="-2"
+        viewBox="0 0 500 550"
     />
 </template>
 
