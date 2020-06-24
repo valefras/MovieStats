@@ -103,8 +103,9 @@ export default {
             .catch(function(error) {
                 console.log(error)
             })
-            .then(this.$emit('data', this.data), this.$emit('genres', this.genres))
-            .then((this.success = 'Your films have been succesfully retrieved'))
+        this.$emit('data', this.data)
+        this.$emit('genres', this.genres)
+        this.success = 'Your films have been succesfully retrieved'
     },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Your Stats</h1>
-        <h2>{{ filmdata.length }} films</h2>
+        <h2>{{ storedFilms.length }} films</h2>
         <router-link to="/all">
             <p>See all</p>
         </router-link>
@@ -27,15 +27,15 @@
                     </p>
                 </router-link>
             </p>
-            <router-view class="chart" :filmdata="filmdata" />
+            <router-view class="chart" :filmdata="storedFilms" />
         </div>
 
         <h3>Your ratings</h3>
-        <bar2 :filmdata="filmdata" />
+        <bar2 :filmdata="storedFilms" />
         <h3>Your favourite genres</h3>
-        <bar3 :filmdata="filmdata" :genres="genres" />
+        <bar3 :filmdata="storedFilms" :genres="storedGenres" />
         <h3>Your favourite decades</h3>
-        <decades :filmdata="filmdata" v-on:decade="data" />
+        <decades :filmdata="storedFilms" v-on:decade="data" />
     </div>
 </template>
 
@@ -54,6 +54,8 @@ export default {
         return {
             decade: null,
             tabs: false,
+            storedFilms: null,
+            storedGenres: null,
         }
     },
     methods: {
@@ -61,6 +63,22 @@ export default {
             this.decade = data
             this.$emit('decade', this.decade)
         },
+    },
+    created() {
+        if (this.filmdata && sessionStorage.getItem('filmdata')) {
+            if (JSON.parse(sessionStorage.getItem('filmdata')).length != this.filmdata.length) {
+                sessionStorage.setItem('filmdata', JSON.stringify(this.filmdata))
+                sessionStorage.setItem('genres', JSON.stringify(this.genres))
+            }
+        } else if (this.filmdata && !sessionStorage.getItem('filmdata')) {
+            this.storedFilms = this.filmdata
+            this.storedGenres = this.genres
+            sessionStorage.setItem('filmdata', JSON.stringify(this.filmdata))
+            sessionStorage.setItem('genres', JSON.stringify(this.genres))
+        } else if (!this.filmdata && sessionStorage.getItem('filmdata')) {
+            this.storedFilms = JSON.parse(sessionStorage.getItem('filmdata'))
+            this.storedGenres = JSON.parse(sessionStorage.getItem('genres'))
+        }
     },
     /*   date() {
         return {

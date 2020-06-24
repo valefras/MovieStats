@@ -29,12 +29,17 @@ import StarRating from 'vue-star-rating'
 import card from '../components/card.vue'
 export default {
     name: 'Decade',
-    props: {
+    /* props: {
         filmdata: Array,
-    },
+    },*/
     components: {
         card,
         StarRating,
+    },
+    data() {
+        return {
+            filmdata: JSON.parse(sessionStorage.getItem('filmdata')),
+        }
     },
     created() {
         this.filmdata.sort((a, b) => (a.rating > b.rating ? -1 : 1))
