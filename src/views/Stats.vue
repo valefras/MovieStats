@@ -65,19 +65,21 @@ export default {
         },
     },
     created() {
-        if (this.filmdata && sessionStorage.getItem('filmdata')) {
-            if (JSON.parse(sessionStorage.getItem('filmdata')).length != this.filmdata.length) {
-                sessionStorage.setItem('filmdata', JSON.stringify(this.filmdata))
-                sessionStorage.setItem('genres', JSON.stringify(this.genres))
+        if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {
+            if (JSON.parse(localStorage.getItem('filmdata')).length != this.filmdata.length) {
+                localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
+                localStorage.setItem('genres', JSON.stringify(this.genres))
             }
-        } else if (this.filmdata && !sessionStorage.getItem('filmdata')) {
             this.storedFilms = this.filmdata
             this.storedGenres = this.genres
-            sessionStorage.setItem('filmdata', JSON.stringify(this.filmdata))
-            sessionStorage.setItem('genres', JSON.stringify(this.genres))
-        } else if (!this.filmdata && sessionStorage.getItem('filmdata')) {
-            this.storedFilms = JSON.parse(sessionStorage.getItem('filmdata'))
-            this.storedGenres = JSON.parse(sessionStorage.getItem('genres'))
+        } else if (this.filmdata && !localStorage.getItem('filmdata')) {
+            this.storedFilms = this.filmdata
+            this.storedGenres = this.genres
+            localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
+            localStorage.setItem('genres', JSON.stringify(this.genres))
+        } else {
+            this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
+            this.storedGenres = JSON.parse(localStorage.getItem('genres'))
         }
     },
     /*   date() {
