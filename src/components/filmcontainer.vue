@@ -8,7 +8,7 @@
                 <router-link
                     :to="{
                         name: 'Decade',
-                        path: '/decade/:year',
+                        path: '/:year',
                         params: { year: decade.decade + 's' },
                     }"
                 >

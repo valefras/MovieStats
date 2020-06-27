@@ -43,8 +43,9 @@ export default {
     },
     data() {
         return {
-            filmdata: JSON.parse(sessionStorage.getItem('filmdata')),
+            filmdata: JSON.parse(localStorage.getItem('filmdata')),
             show: false,
+            selected: '',
         }
     },
     created() {

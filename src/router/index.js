@@ -31,14 +31,14 @@ const routes = [
         ],
     },
     {
-        path: '/decade/:year',
-        name: 'Decade',
-        component: Decade,
-    },
-    {
         path: '/all',
         name: 'All',
         component: AllFilms,
+    },
+    {
+        path: '/:year',
+        name: 'Decade',
+        component: Decade,
     },
 ]
 
