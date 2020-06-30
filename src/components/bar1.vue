@@ -45,7 +45,7 @@ export default {
         }
         for (var z = 0; z < this.data.length; z++) {
             if (this.data[z].count != 0) {
-                this.data[z].value = this.data[z].value / this.data[z].count
+                this.data[z].value = parseFloat((this.data[z].value / this.data[z].count).toFixed(2))
             }
         }
     },

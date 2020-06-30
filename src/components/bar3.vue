@@ -60,7 +60,7 @@ export default {
         computeData() {
             for (let i = 0; i < this.data.length; i++) {
                 if (this.data[i].num >= 10) {
-                    let avg = this.data[i].rtg / this.data[i].num
+                    let avg = parseFloat((this.data[i].rtg / this.data[i].num).toFixed(2))
                     this.data[i].value = avg
                 }
             }

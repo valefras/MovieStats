@@ -81,6 +81,11 @@ export default {
             this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
             this.storedGenres = JSON.parse(localStorage.getItem('genres'))
         }
+        if (this.$route.path == '/stats') {
+            this.tabs = false
+        } else if (this.$route.path == '/stats/ratings') {
+            this.tabs = true
+        }
     },
     /*   date() {
         return {
