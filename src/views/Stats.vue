@@ -5,7 +5,6 @@
         <router-link to="/all">
             <p>See all</p>
         </router-link>
-        <!--     <h3>{{ lang.length }} languages</h3> -->
         <div class="bars">
             <p
                 @click="tabs = false"
@@ -29,13 +28,13 @@
             </p>
             <router-view class="chart" :filmdata="storedFilms" />
         </div>
-
         <h3>Your ratings</h3>
         <bar2 :filmdata="storedFilms" />
         <h3>Your favourite genres</h3>
         <bar3 :filmdata="storedFilms" :genres="storedGenres" />
         <h3>Your favourite decades</h3>
         <decades :filmdata="storedFilms" v-on:decade="data" />
+        <h3>Your favourite actors</h3>
     </div>
 </template>
 
@@ -87,11 +86,6 @@ export default {
             this.tabs = true
         }
     },
-    /*   date() {
-        return {
-            lang: [],
-        }
-    },*/
 }
 </script>
 
