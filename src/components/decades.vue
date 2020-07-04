@@ -1,8 +1,15 @@
 <template>
     <div>
-        <div v-for="(decade, name) in top" :key="name">
-            <container :decade="decade" v-on:decade="decade_data" />
+        <div v-for="decade in 3" :key="top[decade].decade">
+            <container :decade="top[decade - 1]" v-on:decade="decade_data" />
         </div>
+        <div v-if="show">
+            <div v-for="decade in sorted.length - 3" :key="top[decade].decade">
+                <container :decade="top[decade + 2]" v-on:decade="decade_data" />
+            </div>
+        </div>
+        <h3 @click="seeMore()" v-if="!show && sorted.length > 3" style="display:inline">Show more</h3>
+        <h3 @click="seeLess()" v-if="show" style="display:inline">Hide</h3>
     </div>
 </template>
 <script>
@@ -27,6 +34,7 @@ export default {
             },
             sorted: [],
             top: {},
+            show: false,
         }
     },
     components: { container },
@@ -146,6 +154,12 @@ export default {
                     this.$emit('decade', this.decades[i])
                 }
             }
+        },
+        seeMore() {
+            this.show = true
+        },
+        seeLess() {
+            this.show = false
         },
     },
 }

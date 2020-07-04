@@ -49,7 +49,7 @@ export default {
         }
     },
     created() {
-        this.filmdata.sort((a, b) => (a.rating > b.rating ? -1 : 1))
+        this.filmdata.sort((a, b) => (a.date > b.date ? -1 : 1))
     },
 }
 </script>
