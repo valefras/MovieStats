@@ -145,11 +145,13 @@ export default {
                                         response.data.credits.crew[i].job == 'Original Music Composer' ||
                                         response.data.credits.crew[i].job == 'Director' ||
                                         response.data.credits.crew[i].job == 'Director of Photography' ||
-                                        response.data.credits.crew[i].job == 'Screenplay'
+                                        response.data.credits.crew[i].job == 'Screenplay' ||
+                                        response.data.credits.crew[i].job == 'Writer'
                                     ) {
                                         crew.push(response.data.credits.crew[i])
                                     }
                                 }
+
                                 this.data[i].crew = crew
                                 this.data[i].collection = response.data.belongs_to_collection
                                 this.data[i].runtime = response.data.runtime
