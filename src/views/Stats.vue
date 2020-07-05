@@ -3,8 +3,9 @@
         <h1>Your Stats</h1>
         <h2>{{ storedFilms.length }} films</h2>
         <router-link to="/all">
-            <p>See all</p>
+            <button class="btn">See all</button>
         </router-link>
+
         <div class="bars">
             <p
                 @click="tabs = false"
@@ -28,13 +29,19 @@
             </p>
             <router-view class="chart" :filmdata="storedFilms" />
         </div>
+
         <h3>Your ratings</h3>
         <bar2 :filmdata="storedFilms" />
+
         <h3>Your favourite genres</h3>
         <bar3 :filmdata="storedFilms" :genres="storedGenres" />
+
         <h3>Your favourite decades</h3>
         <decades :filmdata="storedFilms" v-on:decade="data" />
+
         <people :storedFilms="storedFilms" />
+
+        <collections :collections="collections" />
     </div>
 </template>
 
@@ -43,19 +50,21 @@ import decades from '../components/decades.vue'
 import bar2 from '../components/bar2'
 import bar3 from '../components/bar3'
 import people from '../components/people'
+import collections from '../components/collections'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { bar2, decades, bar3, people },
+    components: { bar2, decades, bar3, people, collections },
     data() {
         return {
             decade: null,
             tabs: false,
             storedFilms: null,
             storedGenres: null,
+            collections: [],
         }
     },
     methods: {
@@ -88,6 +97,11 @@ export default {
             this.tabs = false
         } else if (this.$route.path == '/stats/ratings') {
             this.tabs = true
+        }
+        for (let i = 0; i < this.storedFilms.length; i++) {
+            if (this.storedFilms[i].collection) {
+                this.collections.push(this.storedFilms[i])
+            }
         }
     },
 }

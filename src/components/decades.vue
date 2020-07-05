@@ -8,8 +8,13 @@
                 <container :decade="top[decade + 2]" v-on:decade="decade_data" />
             </div>
         </div>
-        <h3 @click="seeMore()" v-if="!show && sorted.length > 3" style="display:inline">Show more</h3>
-        <h3 @click="seeLess()" v-if="show" style="display:inline">Hide</h3>
+
+        <button class="btn" @click="seeMore()" v-if="!show && sorted.length > 3">
+            Show more
+        </button>
+        <button @click="seeLess()" v-if="show" class="btn">
+            Hide
+        </button>
     </div>
 </template>
 <script>

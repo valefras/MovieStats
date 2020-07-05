@@ -66,18 +66,6 @@
                     <p>{{ crewNum.photography[pho - 1][0] }}: {{ crewNum.photography[pho - 1][1] }}</p>
                 </div>
             </div>
-            <!-- <h3>Your favourite writers</h3>
-            <div v-for="wri in crew.screenwriters" :key="wri[0]">
-                <p>{{ wri[0] }}: {{ wri[1] }}</p>
-            </div>
-            <h3>Your favourite composers</h3>
-            <div v-for="com in crew.composers" :key="com[0]">
-                <p>{{ com[0] }}: {{ com[1] }}</p>
-            </div>
-            <h3>Your favourite directors of photograhy</h3>
-            <div v-for="pho in crew.photography" :key="pho[0]">
-                <p>{{ pho[0] }}: {{ pho[1] }}</p>
-            </div> -->
         </div>
     </div>
 </template>
@@ -198,7 +186,6 @@ export default {
             }
         },
         order(mode) {
-            //directors
             var z
             switch (mode) {
                 case 'directors':

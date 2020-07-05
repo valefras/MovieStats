@@ -48,4 +48,18 @@ a {
     text-decoration: none;
     color: #f0f5f9;
 }
+.btn {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 17px;
+    cursor: pointer;
+    display: inline-block;
+    color: #f0f5f9;
+    font-family: 'DM Mono', monospace;
+}
+
+.btn:hover {
+    background: #444;
+}
 </style>
