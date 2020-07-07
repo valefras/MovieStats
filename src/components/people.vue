@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h3 @click="rating = true" style="display:inline" v-if="!rating">Sort by number of films</h3>
-        <h3 @click="rating = false" style="display:inline" v-if="rating">Sort by your average rating</h3>
+        <button @click="rating = true" v-if="!rating" class="btn">Sort by number of films</button>
+        <button @click="rating = false" v-if="rating" class="btn">Sort by your average rating</button>
 
         <div class="peopleContainer" v-if="!rating">
             <div>
@@ -192,7 +192,7 @@ export default {
                     z = 4
                     break
                 case 'screenwriters':
-                    z = 2
+                    z = 3
                     break
                 case 'composers':
                     z = 3

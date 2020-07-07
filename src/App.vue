@@ -44,6 +44,9 @@ export default {
     text-align: center;
     color: #f0f5f9;
 }
+h1 {
+    margin-bottom: 0;
+}
 a {
     text-decoration: none;
     color: #f0f5f9;
@@ -51,7 +54,7 @@ a {
 .btn {
     border: none;
     background-color: inherit;
-    padding: 14px 28px;
+    padding: 12px 14px;
     font-size: 17px;
     cursor: pointer;
     display: inline-block;

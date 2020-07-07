@@ -1,9 +1,5 @@
 <template>
-    <div>
-        <div v-for="coll in collections" :key="coll.title">
-            <p>{{ coll.title }}, {{ coll.collection.name }}</p>
-        </div>
-    </div>
+    <div></div>
 </template>
 
 <script>

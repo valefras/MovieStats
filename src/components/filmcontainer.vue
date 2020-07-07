@@ -8,11 +8,11 @@
                 <router-link
                     :to="{
                         name: 'Decade',
-                        path: '/:year',
-                        params: { year: decade.decade + 's' },
+                        path: '/:year/:page',
+                        params: { year: decade.decade + 's', page: 1 },
                     }"
                 >
-                    <p @click="$emit('decade', decade.decade)">See all</p>
+                    <button class="btn" @click="$emit('decade', decade.decade)">See all</button>
                 </router-link>
             </div>
             <div v-for="index in 16" :key="index">

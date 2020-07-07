@@ -2,7 +2,13 @@
     <div>
         <h1>Your Stats</h1>
         <h2>{{ storedFilms.length }} films</h2>
-        <router-link to="/all">
+        <router-link
+            :to="{
+                name: 'All',
+                path: 'all/:page',
+                params: { page: 1 },
+            }"
+        >
             <button class="btn">See all</button>
         </router-link>
 
@@ -12,7 +18,7 @@
                 style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end"
             >
                 <router-link to="/stats">
-                    <p :class="{ active: !tabs }">Films watched (by release year)</p>
+                    <p :class="{ active: !tabs }">Films (by release year)</p>
                 </router-link>
             </p>
 
@@ -23,22 +29,23 @@
             >
                 <router-link to="/stats/ratings"
                     ><p :class="{ active: tabs }">
-                        Your average rating (by release year)
+                        Average rating (by release year)
                     </p>
                 </router-link>
             </p>
             <router-view class="chart" :filmdata="storedFilms" />
         </div>
 
-        <h3>Your ratings</h3>
+        <h2>Ratings</h2>
         <bar2 :filmdata="storedFilms" />
 
-        <h3>Your favourite genres</h3>
+        <h2>Genres</h2>
         <bar3 :filmdata="storedFilms" :genres="storedGenres" />
 
-        <h3>Your favourite decades</h3>
+        <h2>Decades</h2>
         <decades :filmdata="storedFilms" v-on:decade="data" />
 
+        <h2>People</h2>
         <people :storedFilms="storedFilms" />
 
         <collections :collections="collections" />
