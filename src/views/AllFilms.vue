@@ -63,8 +63,7 @@ export default {
     created() {
         this.filmdata.sort((a, b) => (a.date > b.date ? -1 : 1))
         this.pageNum = Math.ceil(this.filmdata.length / this.numPerPage) - 1
-        console.log(this.$route)
-        if (this.filmdata.length > this.pageNum) {
+        if (this.filmdata.length > this.numPerPage) {
             this.currentPage()
         }
     },

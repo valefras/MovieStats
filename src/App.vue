@@ -9,6 +9,8 @@
             v-on:decade="decade_data"
             :decade="decade"
             :genres="genres"
+            v-on:person="person_data"
+            :person="person"
         />
     </div>
 </template>
@@ -22,6 +24,7 @@ export default {
             filmdata: null,
             genres: null,
             decade: null,
+            person: null,
         }
     },
     methods: {
@@ -33,6 +36,9 @@ export default {
         },
         decade_data(data) {
             this.decade = data
+        },
+        person_data(data) {
+            this.person = data
         },
     },
 }
@@ -55,6 +61,9 @@ p {
 a {
     text-decoration: none;
     color: #f0f5f9;
+}
+a p:hover {
+    text-decoration: underline;
 }
 .cnt {
     text-align: center;

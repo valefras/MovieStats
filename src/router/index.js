@@ -6,6 +6,7 @@ import Decade from '../views/Decade.vue'
 import bar1 from '../components/bar1.vue'
 import bar from '../components/bar.vue'
 import AllFilms from '../views/AllFilms'
+import Person from '../views/Person'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
         path: '/:year/:page',
         name: 'Decade',
         component: Decade,
+    },
+    {
+        path: '/:name/:page',
+        name: 'Person',
+        component: Person,
     },
 ]
 

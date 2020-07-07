@@ -40,7 +40,7 @@
         <decades :filmdata="storedFilms" v-on:decade="data" />
 
         <h2>People</h2>
-        <people :storedFilms="storedFilms" />
+        <people :storedFilms="storedFilms" v-on:person="person_data" />
 
         <collections :collections="collections" />
     </div>
@@ -66,12 +66,17 @@ export default {
             storedFilms: null,
             storedGenres: null,
             collections: [],
+            person: null,
         }
     },
     methods: {
         data(data) {
             this.decade = data
             this.$emit('decade', this.decade)
+        },
+        person_data(data) {
+            this.person = data
+            this.$emit('person', this.person)
         },
         save() {
             if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {

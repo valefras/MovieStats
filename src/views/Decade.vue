@@ -67,11 +67,12 @@ export default {
     },
     created() {
         this.decade.films.sort((a, b) => (a.rating > b.rating ? -1 : 1))
-
-        if (this.decade.films.length > this.pageNum) {
-            this.currentPage()
-        }
         this.pageNum = Math.ceil(this.decade.films.length / this.numPerPage) - 1
+        if (this.decade.films.length > this.numPerPage) {
+            this.currentPage()
+        } else {
+            this.current = this.decade.films
+        }
     },
     methods: {
         currentPage() {
