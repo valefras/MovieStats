@@ -50,6 +50,7 @@ export default {
     background: rgb(0, 0, 0); /* fallback color */
     background: rgba(0, 0, 0, 0.7);
     width: 100%;
+    display: block;
 }
 .fade-enter-active,
 .fade-leave-active {

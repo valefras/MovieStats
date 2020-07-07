@@ -41,15 +41,23 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap');
 #app {
     font-family: 'DM Mono', monospace;
-    text-align: center;
     color: #f0f5f9;
 }
-h1 {
+h1,
+h2 {
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+p {
     margin-bottom: 0;
+    margin-top: 0;
 }
 a {
     text-decoration: none;
     color: #f0f5f9;
+}
+.cnt {
+    text-align: center;
 }
 .btn {
     border: none;
@@ -64,5 +72,12 @@ a {
 
 .btn:hover {
     background: #444;
+}
+.pagination-nav {
+    margin: auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 10% 80% 10%;
+    max-width: 80%;
 }
 </style>

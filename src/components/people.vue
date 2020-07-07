@@ -5,31 +5,31 @@
 
         <div class="peopleContainer" v-if="!rating">
             <div>
-                <h3>Your favourite actors</h3>
+                <h3>Actors</h3>
                 <div v-for="actor in 10" :key="actorsRating[actor - 1][0]">
                     <p>{{ actorsRating[actor - 1][0] }}: {{ actorsRating[actor - 1][2] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite directors</h3>
+                <h3>Directors</h3>
                 <div v-for="dir in 10" :key="crew.directors[dir - 1][0]">
                     <p>{{ crew.directors[dir - 1][0] }}: {{ crew.directors[dir - 1][2] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite writers</h3>
+                <h3>Writers</h3>
                 <div v-for="wri in 10" :key="crew.screenwriters[wri - 1][0]">
                     <p>{{ crew.screenwriters[wri - 1][0] }}: {{ crew.screenwriters[wri - 1][2] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite composers</h3>
+                <h3>Composers</h3>
                 <div v-for="com in 10" :key="crew.composers[com - 1][0]">
                     <p>{{ crew.composers[com - 1][0] }}: {{ crew.composers[com - 1][2] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite directors of photograhy</h3>
+                <h3>Directors of photograhy</h3>
                 <div v-for="pho in 10" :key="crew.photography[pho - 1][0]">
                     <p>{{ crew.photography[pho - 1][0] }}: {{ crew.photography[pho - 1][2] }}</p>
                 </div>
@@ -37,31 +37,31 @@
         </div>
         <div class="peopleContainer" v-else>
             <div>
-                <h3>Your favourite actors</h3>
+                <h3>Actors</h3>
                 <div v-for="actor in 10" :key="actorsNum[actor - 1][0]">
                     <p>{{ actorsNum[actor - 1][0] }}: {{ actorsNum[actor - 1][1] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite directors</h3>
+                <h3>Directors</h3>
                 <div v-for="dir in 10" :key="crew.directors[dir - 1][0]">
                     <p>{{ crewNum.directors[dir - 1][0] }}: {{ crewNum.directors[dir - 1][1] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite writers</h3>
+                <h3>Writers</h3>
                 <div v-for="wri in 10" :key="crewNum.screenwriters[wri - 1][0]">
                     <p>{{ crewNum.screenwriters[wri - 1][0] }}: {{ crewNum.screenwriters[wri - 1][1] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite composers</h3>
+                <h3>Composers</h3>
                 <div v-for="com in 10" :key="crewNum.composers[com - 1][0]">
                     <p>{{ crewNum.composers[com - 1][0] }}: {{ crewNum.composers[com - 1][1] }}</p>
                 </div>
             </div>
             <div>
-                <h3>Your favourite directors of photograhy</h3>
+                <h3>Directors of photograhy</h3>
                 <div v-for="pho in 10" :key="crewNum.photography[pho - 1][0]">
                     <p>{{ crewNum.photography[pho - 1][0] }}: {{ crewNum.photography[pho - 1][1] }}</p>
                 </div>
@@ -251,8 +251,9 @@ export default {
 .peopleContainer {
     margin: auto;
     display: grid;
-    align-items: center;
-    grid-template-columns: auto auto auto;
+    align-items: left;
+    grid-template-columns: auto auto auto auto;
     max-width: 80%;
+    text-align: left;
 }
 </style>

@@ -46,91 +46,91 @@ export default {
     created() {
         for (var i = 0; i < this.filmdata.length; i++) {
             if (this.filmdata[i].date >= 1940 && this.filmdata[i].date < 1950) {
-                var arr = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['1940'].films.push(arr)
+                var obj = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['1940'].films.push(obj)
             } else if (this.filmdata[i].date >= 1950 && this.filmdata[i].date < 1960) {
-                var arr1 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['1950'].films.push(arr1)
+                var obj1 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['1950'].films.push(obj1)
             } else if (this.filmdata[i].date >= 1960 && this.filmdata[i].date < 1970) {
-                var arr2 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['1960'].films.push(arr2)
+                var obj2 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['1960'].films.push(obj2)
             } else if (this.filmdata[i].date >= 1970 && this.filmdata[i].date < 1980) {
-                var arr3 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['1970'].films.push(arr3)
+                var obj3 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['1970'].films.push(obj3)
             } else if (this.filmdata[i].date >= 1980 && this.filmdata[i].date < 1990) {
-                var arr4 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['1980'].films.push(arr4)
+                var obj4 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['1980'].films.push(obj4)
             } else if (this.filmdata[i].date >= 1990 && this.filmdata[i].date < 2000) {
-                var arr5 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['1990'].films.push(arr5)
+                var obj5 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['1990'].films.push(obj5)
             } else if (this.filmdata[i].date >= 2000 && this.filmdata[i].date < 2010) {
-                var arr6 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['2000'].films.push(arr6)
+                var obj6 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['2000'].films.push(obj6)
             } else if (this.filmdata[i].date >= 2010 && this.filmdata[i].date < 2020) {
-                var arr7 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['2010'].films.push(arr7)
+                var obj7 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['2010'].films.push(obj7)
             } else if (this.filmdata[i].date >= 2020 && this.filmdata[i].date < 2030) {
-                var arr8 = [
-                    this.filmdata[i].title,
-                    this.filmdata[i].poster,
-                    this.filmdata[i].rating,
-                    this.filmdata[i].id,
-                    this.filmdata[i].date,
-                ]
-                this.decades['2020'].films.push(arr8)
+                var obj8 = {
+                    title: this.filmdata[i].title,
+                    poster: this.filmdata[i].poster,
+                    rating: this.filmdata[i].rating,
+                    id: this.filmdata[i].id,
+                    date: this.filmdata[i].date,
+                }
+                this.decades['2020'].films.push(obj8)
             }
         }
         for (var x = 1940; x <= 2020; x += 10) {
             for (var y = 0; y < this.decades[x].films.length; y++) {
-                this.decades[x].average = this.decades[x].average + this.decades[x].films[y][2]
+                this.decades[x].average = this.decades[x].average + this.decades[x].films[y].rating
             }
             this.decades[x].average = (this.decades[x].average / this.decades[x].films.length).toFixed(2)
         }

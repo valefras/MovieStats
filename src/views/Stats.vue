@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cnt">
         <h1>Your Stats</h1>
         <h2>{{ storedFilms.length }} films</h2>
         <router-link
@@ -13,20 +13,14 @@
         </router-link>
 
         <div class="bars">
-            <p
-                @click="tabs = false"
-                style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end"
-            >
+            <p @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
                 <router-link to="/stats">
                     <p :class="{ active: !tabs }">Films (by release year)</p>
                 </router-link>
             </p>
 
             <div class="vl"></div>
-            <p
-                @click="tabs = true"
-                style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start"
-            >
+            <p @click="tabs = true" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start">
                 <router-link to="/stats/ratings"
                     ><p :class="{ active: tabs }">
                         Average rating (by release year)
@@ -122,7 +116,7 @@ export default {
     margin: auto;
     display: grid;
     align-items: center;
-    grid-template-columns: auto 5% auto;
+    grid-template-columns: 48% 4% 48%;
     max-width: 80%;
 }
 .chart {

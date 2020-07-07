@@ -16,21 +16,21 @@
                 </router-link>
             </div>
             <div v-for="index in 16" :key="index">
-                <cardDecade :film="decade.films[index - 1]" />
+                <card :film="decade.films[index - 1]" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import cardDecade from '../components/cardDecade.vue'
+import card from '../components/card.vue'
 export default {
     name: 'container',
     props: {
         decade: Object,
     },
     components: {
-        cardDecade,
+        card,
     },
     data() {
         return {
@@ -40,7 +40,7 @@ export default {
     },
     created() {
         this.decade.films.sort(function(a, b) {
-            return b[2] - a[2]
+            return b.rating - a.rating
         })
     },
 }

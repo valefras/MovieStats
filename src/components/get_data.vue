@@ -92,9 +92,7 @@ export default {
                             .finally(() => {
                                 this.getDetails()
                                     .then(() => this.$emit('data', this.data))
-                                    .finally(
-                                        () => (this.success = 'Your films have been succesfully retrieved')
-                                    )
+                                    .finally(() => (this.success = 'Your films have been succesfully retrieved'))
                                 this.$emit('genres', this.genres)
                             })
                         this.page_num = response.data.total_pages
@@ -102,8 +100,7 @@ export default {
                             this.data.push({
                                 title: response.data.results[y].title,
                                 date: response.data.results[y].release_date.substr(0, 4),
-                                poster:
-                                    'https://image.tmdb.org/t/p/w500' + response.data.results[y].poster_path,
+                                poster: 'https://image.tmdb.org/t/p/w500' + response.data.results[y].poster_path,
                                 rating: response.data.results[y].rating / 2,
                                 language: response.data.results[y].original_language,
                                 genre_id: response.data.results[y].genre_ids,
