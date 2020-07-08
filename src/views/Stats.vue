@@ -50,6 +50,8 @@
         <h2>People</h2>
         <people :storedFilms="storedFilms" v-on:person="person_data" />
 
+        <chartjs :storedFilms="storedFilms" />
+
         <collections :collections="collections" />
     </div>
 </template>
@@ -60,13 +62,14 @@ import bar2 from '../components/bar2'
 import bar3 from '../components/bar3'
 import people from '../components/people'
 import collections from '../components/collections'
+import chartjs from '../components/chartjs'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { bar2, decades, bar3, people, collections },
+    components: { bar2, decades, bar3, people, collections, chartjs },
     data() {
         return {
             decade: null,
