@@ -44,9 +44,9 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 #app {
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: #f0f5f9;
 }
 h1,
@@ -62,9 +62,7 @@ a {
     text-decoration: none;
     color: #f0f5f9;
 }
-a p:hover {
-    text-decoration: underline;
-}
+
 .cnt {
     text-align: center;
 }
@@ -76,7 +74,7 @@ a p:hover {
     cursor: pointer;
     display: inline-block;
     color: #f0f5f9;
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .btn:hover {
@@ -88,5 +86,14 @@ a p:hover {
     align-items: center;
     grid-template-columns: 10% 80% 10%;
     max-width: 80%;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em auto;
+    padding: 0;
+    width: 80%;
 }
 </style>

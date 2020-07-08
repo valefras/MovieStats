@@ -22,7 +22,7 @@
                     v-if="decade.films.length > pageNum && page >= 1"
                     style="float: left"
                 >
-                    Prev
+                    Previous
                 </button>
             </router-link>
             <span></span>

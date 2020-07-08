@@ -317,7 +317,7 @@ export default {
             var z
             switch (mode) {
                 case 'directors':
-                    z = 4
+                    z = 3
                     break
                 case 'screenwriters':
                     z = 2
@@ -395,5 +395,8 @@ export default {
     grid-template-columns: auto auto auto auto;
     max-width: 80%;
     text-align: left;
+}
+.peopleContainer a p:hover {
+    text-decoration: underline;
 }
 </style>

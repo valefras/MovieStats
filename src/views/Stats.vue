@@ -30,14 +30,22 @@
             <router-view class="chart" :filmdata="storedFilms" />
         </div>
 
+        <hr />
+
         <h2>Ratings</h2>
         <bar2 :filmdata="storedFilms" />
+
+        <hr />
 
         <h2>Genres</h2>
         <bar3 :filmdata="storedFilms" :genres="storedGenres" />
 
+        <hr />
+
         <h2>Decades</h2>
         <decades :filmdata="storedFilms" v-on:decade="data" />
+
+        <hr />
 
         <h2>People</h2>
         <people :storedFilms="storedFilms" v-on:person="person_data" />

@@ -16,7 +16,7 @@
                 }"
             >
                 <button class="btn" @click="page--" v-if="filmdata.length > pageNum && page >= 1" style="float: left">
-                    Prev
+                    Previous
                 </button>
             </router-link>
             <span></span>
