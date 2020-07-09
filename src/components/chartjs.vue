@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Bar from './pieChart.js'
+import Bar from './barChart.js'
 
 export default {
     components: {
@@ -21,6 +21,10 @@ export default {
     created() {
         this.options = {
             responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false,
+            },
             scales: {
                 xAxes: [
                     {

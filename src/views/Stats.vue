@@ -38,8 +38,16 @@
         <hr />
 
         <h2>Genres</h2>
-        <bar3 :filmdata="storedFilms" :genres="storedGenres" />
+        <div
+            style="margin: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    max-width: 80%;"
+        >
+            <bar3 :filmdata="storedFilms" :genres="storedGenres" />
 
+            <genreChart :storedFilms="storedFilms" :genres="storedGenres" />
+        </div>
         <hr />
 
         <h2>Decades</h2>
@@ -63,13 +71,14 @@ import bar3 from '../components/bar3'
 import people from '../components/people'
 import collections from '../components/collections'
 import chartjs from '../components/chartjs'
+import genreChart from '../components/genreChart'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { bar2, decades, bar3, people, collections, chartjs },
+    components: { bar2, decades, bar3, people, collections, chartjs, genreChart },
     data() {
         return {
             decade: null,
