@@ -7,7 +7,7 @@
         :growDuration="0.6"
         :height="500"
         :width="500"
-        :padding="-4"
+        :padding="0"
         viewBox="0 0 500 550"
     />
 </template>

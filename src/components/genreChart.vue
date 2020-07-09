@@ -1,6 +1,6 @@
 <template>
     <div class="small">
-        <Pie :chartdata="chartdata" :options="options"></Pie>
+        <Pie :chartdata="chartdata" :options="options" :width="450" :height="450"></Pie>
     </div>
 </template>
 
