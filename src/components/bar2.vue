@@ -1,12 +1,5 @@
 <template>
-    <bars
-        :data="data"
-        :gradient="['#f9ed69', '#f08a5d']"
-        :growDuration="0.6"
-        :barWidth="20"
-        :height="200"
-        :width="400"
-    >
+    <bars :data="data" :gradient="['#f9ed69', '#f08a5d']" :growDuration="0.6" :barWidth="20" :height="200" :width="400">
     </bars>
 </template>
 

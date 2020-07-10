@@ -13,67 +13,71 @@
         </router-link>
 
         <div class="bars">
-            <p @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
-                <router-link to="/stats">
-                    <p :class="{ active: !tabs }">Number of films (by release year)</p>
-                </router-link>
-            </p>
-
+            <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
+                <p :class="{ active: !tabs }">Number of films (by release year)</p>
+            </div>
             <div class="vl"></div>
-            <p @click="tabs = true" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start">
-                <router-link to="/stats/ratings"
-                    ><p :class="{ active: tabs }">
-                        Average rating (by release year)
-                    </p>
-                </router-link>
-            </p>
-            <router-view class="chart" :filmdata="storedFilms" />
+            <div @click="tabs = true" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start">
+                <p :class="{ active: tabs }">
+                    Average rating (by release year)
+                </p>
+            </div>
+            <bar :filmdata="storedFilms" v-if="!tabs" class="chart" />
+            <bar1 :filmdata="storedFilms" v-else class="chart" />
         </div>
 
         <hr />
 
-        <h2>Ratings</h2>
+        <h2 class="sectitle">Ratings</h2>
+        <br />
         <bar2 :filmdata="storedFilms" />
 
         <hr />
 
-        <h2>Genres</h2>
+        <h2 class="sectitle">Genres</h2>
+        <br />
         <div class="genresCharts">
             <h4>Average rating</h4>
-            <h4>Number of films</h4>
-
             <bar3 :filmdata="storedFilms" :genres="storedGenres" />
-
-            <genreChart :storedFilms="storedFilms" :genres="storedGenres" />
         </div>
         <hr />
 
-        <h2>Decades</h2>
+        <h2 class="sectitle">Decades</h2>
+        <br />
+
         <decades :filmdata="storedFilms" v-on:decade="data" />
 
         <hr />
 
-        <h2>People</h2>
+        <h2 class="sectitle">People</h2>
+        <br />
         <people :storedFilms="storedFilms" v-on:person="person_data" />
 
+        <hr />
+
+        <h2 class="sectitle">Words in taglines</h2>
+        <br />
+        <amchartprova :storedFilms="storedFilms" />
         <collections :collections="collections" />
     </div>
 </template>
 
 <script>
 import decades from '../components/decades.vue'
+import bar from '../components/bar'
+import bar1 from '../components/bar1'
 import bar2 from '../components/bar2'
 import bar3 from '../components/bar3'
 import people from '../components/people'
 import collections from '../components/collections'
-import genreChart from '../components/genreChart'
+import amchartprova from '../components/amchartprova'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { bar2, decades, bar3, people, collections, genreChart },
+    components: { bar, bar1, bar2, decades, bar3, people, collections, amchartprova },
     data() {
         return {
             decade: null,
@@ -137,7 +141,6 @@ export default {
     display: grid;
     align-items: center;
     grid-template-columns: 48% 4% 48%;
-    max-width: 80%;
 }
 .chart {
     grid-column-start: 1;
@@ -153,6 +156,5 @@ export default {
     margin: auto;
     display: grid;
     grid-template-columns: 50% 50%;
-    max-width: 80%;
 }
 </style>

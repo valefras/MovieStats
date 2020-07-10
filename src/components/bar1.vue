@@ -6,6 +6,7 @@
         :growDuration="0.6"
         :height="300"
         :width="1100"
+        :labelData="labelData"
     >
     </bars>
 </template>
@@ -24,28 +25,33 @@ export default {
     data() {
         return {
             data: [],
+            labelData: [],
         }
     },
     created() {
+        var values = []
         for (var i = 1940; i <= 2020; i++) {
             var data = {
                 value: 0,
-                title: i.toString(),
                 count: 0,
             }
-            this.data.push(data)
+            values.push(data)
+            this.data.push(0)
+            this.labelData.push(i.toString())
         }
+
         for (var x = 0; x < this.filmdata.length; x++) {
-            for (var y = 0; y < this.data.length; y++) {
-                if (this.filmdata[x].date == this.data[y].title) {
-                    this.data[y].count = this.data[y].count + 1
-                    this.data[y].value = this.data[y].value + this.filmdata[x].rating
+            for (var y = 0; y < this.labelData.length; y++) {
+                if (this.filmdata[x].date == this.labelData[y]) {
+                    values[y].count++
+                    values[y].value += this.filmdata[x].rating
                 }
             }
         }
-        for (var z = 0; z < this.data.length; z++) {
-            if (this.data[z].count != 0) {
-                this.data[z].value = parseFloat((this.data[z].value / this.data[z].count).toFixed(2))
+
+        for (var z = 0; z < values.length; z++) {
+            if (values[z].count != 0) {
+                this.data[z] = parseFloat((values[z].value / values[z].count).toFixed(2))
             }
         }
     },

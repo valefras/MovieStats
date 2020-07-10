@@ -393,8 +393,11 @@ export default {
     display: grid;
     align-items: left;
     grid-template-columns: auto auto auto auto;
-    max-width: 80%;
     text-align: left;
+}
+.peopleContainer a p,
+.peopleContainer h3 {
+    padding-left: 5%;
 }
 .peopleContainer a p:hover {
     text-decoration: underline;

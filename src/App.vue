@@ -48,11 +48,16 @@ export default {
 #app {
     font-family: 'IBM Plex Sans', sans-serif;
     color: #f0f5f9;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 h1,
 h2 {
     margin-bottom: 6px;
-    margin-top: 6px;
+    margin-top: 2px;
+}
+.sectitle {
+    float: left;
 }
 p {
     margin-bottom: 0;
@@ -85,7 +90,6 @@ a {
     display: grid;
     align-items: center;
     grid-template-columns: 10% 80% 10%;
-    max-width: 80%;
 }
 hr {
     display: block;
@@ -94,6 +98,5 @@ hr {
     border-top: 1px solid #ccc;
     margin: 1em auto;
     padding: 0;
-    width: 80%;
 }
 </style>

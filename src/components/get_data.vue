@@ -36,10 +36,21 @@ export default {
         api_key: String,
     },
     created() {
-        this.getData()
+        this.getInitial().then(
+            () => {
+                this.$emit('data', this.data)
+                this.$emit('genres', this.genres)
+            }
+            //.then(() => {
+            //         this.getDetails().then(() => {
+            //             this.success = 'bruhhh'
+            //         })
+            //     })
+            //
+        )
     },
     methods: {
-        getData() {
+        async getInitial() {
             axios
                 .all([this.callMovies, this.callGenres])
                 .then(
@@ -89,12 +100,62 @@ export default {
                                     }
                                 })
                             )
-                            .finally(() => {
-                                this.getDetails()
-                                    .then(() => this.$emit('data', this.data))
-                                    .finally(() => (this.success = 'Your films have been succesfully retrieved'))
-                                this.$emit('genres', this.genres)
+                            .catch(function(error) {
+                                console.log(error)
                             })
+                            .then(() => {
+                                for (let i = 0; i < this.data.length; i++) {
+                                    // var data = this.data[i]
+                                    axios
+                                        .get(
+                                            'https://api.themoviedb.org/3/movie/' +
+                                                this.data[i].id +
+                                                '?api_key=' +
+                                                this.api_key +
+                                                '&append_to_response=credits'
+                                        )
+                                        .then(response => {
+                                            for (let x = 0; x < this.data.length; x++) {
+                                                if (this.data[x].id == response.data.id) {
+                                                    let cast = []
+                                                    for (let i = 0; i < 15; i++) {
+                                                        if (response.data.credits.cast[i]) {
+                                                            cast.push(response.data.credits.cast[i])
+                                                        }
+                                                    }
+                                                    this.data[x].cast = cast
+                                                    let crew = []
+                                                    for (let i = 0; i < response.data.credits.crew.length; i++) {
+                                                        if (
+                                                            response.data.credits.crew[i].job ==
+                                                                'Original Music Composer' ||
+                                                            response.data.credits.crew[i].job == 'Director' ||
+                                                            response.data.credits.crew[i].job ==
+                                                                'Director of Photography' ||
+                                                            response.data.credits.crew[i].job == 'Screenplay' ||
+                                                            response.data.credits.crew[i].job == 'Writer'
+                                                        ) {
+                                                            crew.push(response.data.credits.crew[i])
+                                                        }
+                                                    }
+
+                                                    this.data[x].crew = crew
+                                                    this.data[x].collection = response.data.belongs_to_collection
+                                                    this.data[x].runtime = response.data.runtime
+                                                    this.data[x].tagline = response.data.tagline
+                                                    break
+                                                }
+                                            }
+                                        })
+                                }
+                            })
+
+                        // .then(() => {
+                        //     this.getDetails().then(() => {
+                        //
+                        //     })
+                        //
+                        // })
                         this.page_num = response.data.total_pages
                         for (var y = 0; y <= 20; y++) {
                             this.data.push({
@@ -115,50 +176,10 @@ export default {
                     console.log(error)
                 })
         },
-        async getDetails() {
-            for (var i = 0; i < this.data.length; i++) {
-                // var data = this.data[i]
-                axios
-                    .get(
-                        'https://api.themoviedb.org/3/movie/' +
-                            this.data[i].id +
-                            '?api_key=' +
-                            this.api_key +
-                            '&append_to_response=credits'
-                    )
-                    .then(response => {
-                        for (let i = 0; i < this.data.length; i++) {
-                            if (this.data[i].id == response.data.id) {
-                                let cast = []
-                                for (let i = 0; i < 15; i++) {
-                                    if (response.data.credits.cast[i]) {
-                                        cast.push(response.data.credits.cast[i])
-                                    }
-                                }
-                                this.data[i].cast = cast
-                                let crew = []
-                                for (let i = 0; i < response.data.credits.crew.length; i++) {
-                                    if (
-                                        response.data.credits.crew[i].job == 'Original Music Composer' ||
-                                        response.data.credits.crew[i].job == 'Director' ||
-                                        response.data.credits.crew[i].job == 'Director of Photography' ||
-                                        response.data.credits.crew[i].job == 'Screenplay' ||
-                                        response.data.credits.crew[i].job == 'Writer'
-                                    ) {
-                                        crew.push(response.data.credits.crew[i])
-                                    }
-                                }
-
-                                this.data[i].crew = crew
-                                this.data[i].collection = response.data.belongs_to_collection
-                                this.data[i].runtime = response.data.runtime
-                                this.data[i].tagline = response.data.tagline
-                                break
-                            }
-                        }
-                    })
-            }
-        },
+        // getRest() {
+        //     console.log('1')
+        // },
+        // async getDetails() {},
     },
 }
 </script>

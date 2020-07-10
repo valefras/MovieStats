@@ -52,7 +52,6 @@ export default {
     display: grid;
     align-items: center;
     grid-template-columns: 20% 10% 10% 10% 10% 10% 10% 10% 10%;
-    max-width: 80%;
 }
 .bigcontainer {
     margin: 25px 0 0 0;

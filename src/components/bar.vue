@@ -6,6 +6,7 @@
         :growDuration="0.6"
         :height="300"
         :width="1100"
+        :labelData="labelData"
     >
     </bars>
 </template>
@@ -24,20 +25,18 @@ export default {
     data() {
         return {
             data: [],
+            labelData: [],
         }
     },
     created() {
         for (var i = 1940; i <= 2020; i++) {
-            var data = {
-                value: 0,
-                title: i.toString(),
-            }
-            this.data.push(data)
+            this.data.push(0)
+            this.labelData.push(i.toString())
         }
         for (var x = 0; x < this.filmdata.length; x++) {
             for (var y = 0; y < this.data.length; y++) {
-                if (this.filmdata[x].date == this.data[y].title) {
-                    this.data[y].value = this.data[y].value + 1
+                if (this.filmdata[x].date == this.labelData[y]) {
+                    this.data[y]++
                 }
             }
         }

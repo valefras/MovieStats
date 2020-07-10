@@ -52,7 +52,6 @@ export default {
     display: grid;
     align-items: center;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-    max-width: 80%;
 }
 .fade-enter-active,
 .fade-leave-active {

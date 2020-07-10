@@ -3,8 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Stats from '../views/Stats.vue'
 import Decade from '../views/Decade.vue'
-import bar1 from '../components/bar1.vue'
-import bar from '../components/bar.vue'
 import AllFilms from '../views/AllFilms'
 import Person from '../views/Person'
 
@@ -20,16 +18,6 @@ const routes = [
         path: '/stats',
         name: 'Stats',
         component: Stats,
-        children: [
-            {
-                path: '',
-                component: bar,
-            },
-            {
-                path: 'ratings',
-                component: bar1,
-            },
-        ],
     },
     {
         path: '/all/:page',
