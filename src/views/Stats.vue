@@ -22,8 +22,8 @@
                     Average rating (by release year)
                 </p>
             </div>
-            <bar :filmdata="storedFilms" v-if="!tabs" class="chart" />
-            <bar1 :filmdata="storedFilms" v-else class="chart" />
+            <bar :filmdata="storedFilms" v-show="!tabs" class="chart" />
+            <bar1 :filmdata="storedFilms" v-show="tabs" class="chart" />
         </div>
 
         <hr />
@@ -37,8 +37,14 @@
         <h2 class="sectitle">Genres</h2>
         <br />
         <div class="genresCharts">
-            <h4>Average rating</h4>
-            <bar3 :filmdata="storedFilms" :genres="storedGenres" />
+            <div>
+                <h4>Average rating</h4>
+                <bar3 :filmdata="storedFilms" :genres="storedGenres" />
+            </div>
+            <div>
+                <h4>Number of films</h4>
+                <genresPieChart :filmdata="storedFilms" :genres="storedGenres" />
+            </div>
         </div>
         <hr />
 
@@ -55,9 +61,20 @@
 
         <hr />
 
-        <h2 class="sectitle">Words in taglines</h2>
+        <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
+
         <br />
-        <amchartprova :storedFilms="storedFilms" />
+        <wordCloud :storedFilms="storedFilms" />
+        <div class="expl">
+            <p>
+                *Taglines are catchy, enticing short phrases used by marketers and film studios to advertise and sell a
+                movie, and to sum up the plot, tone or themes of a film.
+            </p>
+            <p>
+                "For three men the Civil War wasn't hell. It was practice." - The Good, the Bad and the Ugly (1966)
+            </p>
+        </div>
+
         <collections :collections="collections" />
     </div>
 </template>
@@ -70,14 +87,15 @@ import bar2 from '../components/bar2'
 import bar3 from '../components/bar3'
 import people from '../components/people'
 import collections from '../components/collections'
-import amchartprova from '../components/amchartprova'
+import wordCloud from '../components/wordCloud'
+import genresPieChart from '../components/genresPieChart'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { bar, bar1, bar2, decades, bar3, people, collections, amchartprova },
+    components: { bar, bar1, bar2, decades, bar3, people, collections, wordCloud, genresPieChart },
     data() {
         return {
             decade: null,
@@ -156,5 +174,9 @@ export default {
     margin: auto;
     display: grid;
     grid-template-columns: 50% 50%;
+}
+.expl {
+    text-align: right;
+    font-size: 70%;
 }
 </style>

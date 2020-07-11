@@ -9,6 +9,7 @@
         :width="500"
         :padding="0"
         viewBox="0 0 500 550"
+        :labelData="labelData"
     />
 </template>
 
@@ -27,13 +28,14 @@ export default {
     data() {
         return {
             data: [],
+            labelData: [],
+            dataToCompute: [],
         }
     },
     created() {
         this.createArray()
         this.fillData()
         this.computeData()
-        this.sort()
     },
     methods: {
         createArray() {
@@ -43,7 +45,7 @@ export default {
                     num: 0,
                     title: this.genres[i].name,
                 }
-                this.data.push(data)
+                this.dataToCompute.push(data)
             }
         },
         fillData() {
@@ -51,32 +53,36 @@ export default {
                 for (var y = 0; y < this.filmdata[x].genre_id.length; y++) {
                     for (var z = 0; z < this.genres.length; z++)
                         if (this.filmdata[x].genre_id[y] == this.genres[z].id) {
-                            this.data[z].num += 1
-                            this.data[z].rtg += this.filmdata[x].rating
+                            this.dataToCompute[z].num++
+                            this.dataToCompute[z].rtg += this.filmdata[x].rating
                         }
                 }
             }
         },
         computeData() {
-            for (let i = 0; i < this.data.length; i++) {
-                if (this.data[i].num >= 10) {
-                    let avg = parseFloat((this.data[i].rtg / this.data[i].num).toFixed(2))
-                    this.data[i].value = avg
+            for (let i = 0; i < this.dataToCompute.length; i++) {
+                if (this.dataToCompute[i].num >= 10) {
+                    let avg = parseFloat((this.dataToCompute[i].rtg / this.dataToCompute[i].num).toFixed(2))
+                    this.dataToCompute[i].avg = avg
                 }
             }
             function checkNum(genre) {
                 return genre.num >= 10
             }
-            this.data = this.data.filter(checkNum)
+            this.dataToCompute = this.dataToCompute.filter(checkNum)
+
+            this.dataToCompute.sort((a, b) => (a.avg > b.avg ? -1 : 1))
+
+            for (let i = 0; i < this.dataToCompute.length; i++) {
+                this.data.push(this.dataToCompute[i].avg)
+                this.labelData.push(this.dataToCompute[i].title)
+            }
             /*            for (let i = 0; i < 19; i++) {
                 if (this.data[i].num < 10) {
                     this.data.splice(i, 1)
                 }
             }
             console.log(this.data)*/
-        },
-        sort() {
-            this.data.sort((a, b) => (a.value > b.value ? -1 : 1))
         },
     },
 }

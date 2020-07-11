@@ -1,5 +1,5 @@
 <template>
-    <a :href="link" target="_blank" @mouseover="hover = true" @mouseleave="hover = false">
+    <div @mouseover="hover = true" @mouseleave="hover = false">
         <div class="wrap" :class="{ hover: hover }">
             <img :src="film.poster" class="poster" />
             <transition name="fade">
@@ -9,7 +9,7 @@
                 </p>
             </transition>
         </div>
-    </a>
+    </div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             hover: false,
-            link: 'https://www.themoviedb.org/movie/' + this.film.id,
+            // link: 'https://www.themoviedb.org/movie/' + this.film.id,
         }
     },
 }

@@ -29,7 +29,7 @@ export default {
                 }
                 //console.log(this.storedFilms[i].tagline)
             }
-            console.log(this.storedFilms.length)
+            // console.log(this.storedFilms.length)
             //this.words = w.match(/\b(\w+)\b/g)
             //console.log(this.words)
         },
@@ -45,7 +45,7 @@ export default {
             series.maxCount = 200
             series.minWordLength = 3
             series.angles = [0]
-            series.randomness = 0.4
+            series.randomness = 0.2
             series.excludeWords = [
                 'the',
                 'of',
