@@ -20,9 +20,7 @@ export default {
     methods: {
         createToken() {
             axios
-                .get(
-                    'https://api.themoviedb.org/3/authentication/token/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf'
-                )
+                .get('https://api.themoviedb.org/3/authentication/token/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf')
                 .then(response => {
                     console.log(response.data)
                     this.requestToken = response.data.request_token
@@ -34,9 +32,7 @@ export default {
         },
         redirect() {
             window.location.href =
-                'https://www.themoviedb.org/authenticate/' +
-                this.requestToken +
-                '?redirect_to=http://localhost:8080/#/'
+                'https://www.themoviedb.org/authenticate/' + this.requestToken + '?redirect_to=http://localhost:8080/#/'
         },
         createSession() {
             axios

@@ -45,7 +45,7 @@ export default {
             series.maxCount = 200
             series.minWordLength = 3
             series.angles = [0]
-            series.randomness = 0.2
+            series.randomness = 0.4
             series.excludeWords = [
                 'the',
                 'of',
@@ -162,6 +162,6 @@ export default {
 
 <style>
 .hello {
-    height: 500px;
+    height: 600px;
 }
 </style>

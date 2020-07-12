@@ -62,19 +62,28 @@ export default {
         this.compute().then(() => {
             let chart = am4core.create(this.$refs.chartdiv, am4charts.PieChart)
 
-            chart.innerRadius = am4core.percent(40)
+            //chart.innerRadius = am4core.percent(30)
 
             chart.data = this.data
 
             let pieSeries = chart.series.push(new am4charts.PieSeries())
+            pieSeries.tooltip.autoTextColor = false
+            pieSeries.tooltip.label.fill = am4core.color('#f0f5f9')
+            pieSeries.tooltip.label.fontSize = '90%'
+
+            pieSeries.tooltip.getFillFromObject = false
+            pieSeries.tooltip.background.fill = am4core.color('#2d3234')
+            pieSeries.tooltip.background.stroke = am4core.color('#2d3234')
 
             pieSeries.labels.template.disabled = true
             pieSeries.ticks.template.disabled = true
-            pieSeries.slices.template.tooltipText = '{category}: {value.value}'
+            pieSeries.slices.template.tooltipText = '{category}: {value.value} films'
             pieSeries.slices.template.propertyFields.fill = 'color'
 
             pieSeries.dataFields.value = 'number'
             pieSeries.dataFields.category = 'genre'
+
+            this.chart = chart
         })
     },
     beforeDestroy() {

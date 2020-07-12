@@ -22,24 +22,26 @@
                     Average rating (by release year)
                 </p>
             </div>
-            <bar :filmdata="storedFilms" v-show="!tabs" class="chart" />
-            <bar1 :filmdata="storedFilms" v-show="tabs" class="chart" />
+            <!-- <bar :filmdata="storedFilms" v-show="!tabs" class="chart" /> -->
+            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
+            <barChart1 :filmdata="storedFilms" v-else class="chart" />
         </div>
 
         <hr />
 
-        <h2 class="sectitle">Ratings</h2>
+        <!-- <h2 class="sectitle">Ratings</h2>
         <br />
         <bar2 :filmdata="storedFilms" />
 
-        <hr />
+        <hr /> -->
 
         <h2 class="sectitle">Genres</h2>
         <br />
         <div class="genresCharts">
             <div>
                 <h4>Average rating</h4>
-                <bar3 :filmdata="storedFilms" :genres="storedGenres" />
+                <!-- <bar3 :filmdata="storedFilms" :genres="storedGenres" /> -->
+                <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
             </div>
             <div>
                 <h4>Number of films</h4>
@@ -81,21 +83,24 @@
 
 <script>
 import decades from '../components/decades.vue'
-import bar from '../components/bar'
-import bar1 from '../components/bar1'
-import bar2 from '../components/bar2'
-import bar3 from '../components/bar3'
+//import bar from '../components/bar'
+import barChart from '../components/barChart'
+
+import barChart1 from '../components/barChart1'
+//import bar2 from '../components/bar2'
+//import bar3 from '../components/bar3'
 import people from '../components/people'
 import collections from '../components/collections'
 import wordCloud from '../components/wordCloud'
 import genresPieChart from '../components/genresPieChart'
+import barChart3 from '../components/barChart3'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { bar, bar1, bar2, decades, bar3, people, collections, wordCloud, genresPieChart },
+    components: { barChart, barChart1, decades, people, collections, wordCloud, genresPieChart, barChart3 },
     data() {
         return {
             decade: null,
