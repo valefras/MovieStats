@@ -115,6 +115,14 @@ export default {
             //series.labels.template.disabled = true
             // series.ticks.template.disabled = true
 
+            series.columns.template.events.on(
+                'hit',
+                function(ev) {
+                    console.log(ev.target.dataItem.categoryY)
+                },
+                this
+            )
+
             this.chart = chart
         })
     },

@@ -141,11 +141,7 @@ export default {
     },
     created() {
         this.save()
-        if (this.$route.path == '/stats') {
-            this.tabs = false
-        } else if (this.$route.path == '/stats/ratings') {
-            this.tabs = true
-        }
+
         for (let i = 0; i < this.storedFilms.length; i++) {
             if (this.storedFilms[i].collection) {
                 this.collections.push(this.storedFilms[i])

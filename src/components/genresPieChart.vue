@@ -82,6 +82,16 @@ export default {
 
             pieSeries.dataFields.value = 'number'
             pieSeries.dataFields.category = 'genre'
+            let as = pieSeries.slices.template.states.getKey('active')
+            as.properties.shiftRadius = 0
+
+            pieSeries.slices.template.events.on(
+                'hit',
+                function(ev) {
+                    console.log(ev.target.dataItem.category)
+                },
+                this
+            )
 
             this.chart = chart
         })
@@ -96,6 +106,6 @@ export default {
 
 <style scoped>
 .hello {
-    width: 100%;
+    height: 500px;
 }
 </style>

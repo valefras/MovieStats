@@ -44,9 +44,9 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 #app {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
     color: #f0f5f9;
     padding-left: 10%;
     padding-right: 10%;
@@ -79,7 +79,7 @@ a {
     cursor: pointer;
     display: inline-block;
     color: #f0f5f9;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Jost', sans-serif;
 }
 
 .btn:hover {

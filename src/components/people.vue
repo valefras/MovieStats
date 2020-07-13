@@ -397,7 +397,7 @@ export default {
 }
 .peopleContainer a p,
 .peopleContainer h3 {
-    padding-left: 5%;
+    padding-left: 10%;
 }
 .peopleContainer a p:hover {
     text-decoration: underline;

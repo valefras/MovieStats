@@ -42,6 +42,7 @@
 
 <script>
 import cardGrid from '../components/cardGrid'
+
 export default {
     name: 'Decade',
     /* props: {

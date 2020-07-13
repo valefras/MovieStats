@@ -43,7 +43,6 @@ export default {
                     this.data[z].average = parseFloat((values[z].value / values[z].count).toFixed(2))
                 }
             }
-            console.log(this.data)
         },
     },
     mounted() {
@@ -105,6 +104,14 @@ export default {
             categoryAxis.renderer.labels.template.rotation = 270
             categoryAxis.renderer.labels.template.verticalCenter = 'middle'
             categoryAxis.renderer.labels.template.horizontalCenter = 'left'
+
+            series.columns.template.events.on(
+                'hit',
+                function(ev) {
+                    console.log(ev.target.dataItem.categoryX)
+                },
+                this
+            )
 
             //series.labels.template.disabled = true
             // series.ticks.template.disabled = true
