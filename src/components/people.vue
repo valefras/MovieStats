@@ -248,7 +248,7 @@ export default {
 
             var i = 0
             while (i < new_arr1.length) {
-                if (new_arr1[i][1] <= 4) {
+                if (new_arr1[i][1] <= 3) {
                     new_arr1.splice(i, 1)
                     new_arr.splice(i, 1)
                 } else {
@@ -317,7 +317,7 @@ export default {
             var z
             switch (mode) {
                 case 'directors':
-                    z = 3
+                    z = 2
                     break
                 case 'screenwriters':
                     z = 2
@@ -326,7 +326,7 @@ export default {
                     z = 2
                     break
                 case 'photography':
-                    z = 2
+                    z = 1
                     break
             }
 

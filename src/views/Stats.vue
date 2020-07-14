@@ -1,7 +1,8 @@
 <template>
     <div class="cnt">
         <h1>Your Stats</h1>
-        <h2>{{ storedFilms.length }} films</h2>
+        <p>{{ storedFilms.length }} films</p>
+        <p>{{ timeConvert(hours) }}</p>
         <router-link
             :to="{
                 name: 'All',
@@ -109,6 +110,7 @@ export default {
             storedGenres: null,
             collections: [],
             person: null,
+            hours: 0,
         }
     },
     methods: {
@@ -138,11 +140,20 @@ export default {
                 this.storedGenres = JSON.parse(localStorage.getItem('genres'))
             }
         },
+        timeConvert(n) {
+            var num = n
+            var hours = num / 60
+            var rhours = Math.floor(hours)
+            var minutes = (hours - rhours) * 60
+            var rminutes = Math.round(minutes)
+            return rhours + ' hours and ' + rminutes + ' minutes'
+        },
     },
     created() {
         this.save()
 
         for (let i = 0; i < this.storedFilms.length; i++) {
+            this.hours += this.storedFilms[i].runtime
             if (this.storedFilms[i].collection) {
                 this.collections.push(this.storedFilms[i])
             }

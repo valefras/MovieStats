@@ -1,9 +1,11 @@
 <template>
     <div>
-        <p>{{ success }}</p>
-        <router-link to="Stats">
-            <button type="button">create stats</button>
-        </router-link>
+        <div class="loader cnt" v-if="success == ''"></div>
+        <div v-else>
+            <router-link to="Stats">
+                <button type="button" class="btn ctn">Take a look at your very personal film stats!</button>
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -146,6 +148,7 @@ export default {
                                                     break
                                                 }
                                             }
+                                            this.success = 'data succesfully retrieved'
                                         })
                                 }
                             })
@@ -184,4 +187,22 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>

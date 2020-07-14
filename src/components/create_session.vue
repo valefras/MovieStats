@@ -1,9 +1,13 @@
 <template>
     <div>
-        <button type="button" @click="createToken">create token</button>
-        <button type="button" @click="redirect">redirect</button>
-        <button type="button" @click="createSession">create session</button>
-        <button type="button" @click="$emit('call')">Update films</button>
+        <button type="button" class="btn cnt" @click="createToken" v-if="!authorized">
+            Authorize on TMDB
+        </button>
+        <!-- <button type="button" @click="redirect">redirect</button> -->
+        <!-- <button type="button" @click="createSession">create session</button> -->
+        <button type="button" class="btn cnt" @click="createSession" v-if="!updated">
+            Update films
+        </button>
     </div>
 </template>
 
@@ -15,6 +19,14 @@ export default {
         return {
             requestToken: '',
             sessionID: '',
+            authorized: false,
+            updated: true,
+        }
+    },
+    created() {
+        if (sessionStorage.getItem('token')) {
+            this.authorized = true
+            this.updated = false
         }
     },
     methods: {
@@ -25,16 +37,16 @@ export default {
                     console.log(response.data)
                     this.requestToken = response.data.request_token
                     sessionStorage.setItem('token', this.requestToken)
+                    window.location.href =
+                        'https://www.themoviedb.org/authenticate/' +
+                        this.requestToken +
+                        '?redirect_to=http://localhost:8080/#/'
                 })
                 .catch(function(error) {
                     console.log(error)
                 })
         },
-        redirect() {
-            window.location.href =
-                'https://www.themoviedb.org/authenticate/' + this.requestToken + '?redirect_to=http://localhost:8080/#/'
-        },
-        createSession() {
+        async createSession() {
             axios
                 .post(
                     'https://api.themoviedb.org/3/authentication/session/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&request_token=' +
@@ -48,7 +60,14 @@ export default {
                 .catch(function(error) {
                     console.log(error)
                 })
+                .then(() => {
+                    this.$emit('call')
+                    this.updated = true
+                })
         },
+        // redirect() {
+
+        //},
     },
 }
 </script>
