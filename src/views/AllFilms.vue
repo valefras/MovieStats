@@ -5,7 +5,7 @@
                 Home
             </button>
         </router-link>
-        <h1>{{ param }}</h1>
+        <h1 :class="{ leone: leone, kubrick: kubrick }">{{ param }}</h1>
         <cardGrid :current="current" />
         <div v-if="data_to_display.length > numPerPage" class="pagination-nav">
             <router-link
@@ -69,21 +69,23 @@ export default {
             regexYear: /(^[0-9]+$)/,
             regexDecade: /(?<!\d)(?!0000)\d{4}(?!\d)(\D$)/,
             data_to_display: [],
+            leone: false,
+            kubrick: false,
             //regexPeople: /\(([^)]+)\)/,
         }
     },
     created() {
         this.param = this.$route.params.mode
 
-        console.log(this.regexDecade.test(this.param))
-        console.log(this.regexYear.test(this.param))
+        // console.log(this.regexDecade.test(this.param))
+        // console.log(this.regexYear.test(this.param))
         if (this.regexYear.test(this.param)) {
             for (let i = 0; i < this.filmdata.length; i++) {
                 if (this.filmdata[i].date == this.param) {
                     this.data_to_display.push(this.filmdata[i])
                 }
             }
-            this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
+            this.data_to_display.sort((a, b) => (a.rating > b.rating ? -1 : 1))
         } else if (this.regexDecade.test(this.param)) {
             var dec = this.param.slice(0, -1)
             for (let i = 0; i < this.filmdata.length; i++) {
@@ -130,8 +132,9 @@ export default {
                     mode = 'cast'
                     break
             }
-            console.log(name)
+            //console.log(name)
             this.person_data(mode, name)
+            this.data_to_display.sort((a, b) => (a.rating > b.rating ? -1 : 1))
         }
 
         this.pageNum = Math.ceil(this.data_to_display.length / this.numPerPage) - 1
@@ -166,6 +169,11 @@ export default {
                 }
                 this.data_to_display = [...new Set(this.data_to_display)]
             }
+            if (person == 'Stanley Kubrick') {
+                this.kubrick = true
+            } else if (person == 'Sergio Leone') {
+                this.leone = true
+            }
         },
     },
     watch: {
@@ -177,4 +185,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.leone {
+    font-family: 'Eastwood', sans-serif;
+    font-size: 40;
+}
+.kubrick {
+    font-family: 'Futura Extra Bold', sans-serif;
+    font-size: 40;
+}
+</style>

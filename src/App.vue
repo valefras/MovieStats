@@ -6,12 +6,7 @@
             v-on:data="film_data"
             v-on:genres="genres_data"
             :filmdata="filmdata"
-            v-on:decade="decade_data"
-            :decade="decade"
             :genres="genres"
-            v-on:specific_data="specific_data"
-            :person="person"
-            :mode="mode"
         />
     </div>
 </template>
@@ -25,8 +20,6 @@ export default {
             filmdata: null,
             genres: null,
             decade: null,
-            //person: null,
-            mode: null,
         }
     },
     methods: {
@@ -36,16 +29,18 @@ export default {
         genres_data(data) {
             this.genres = data
         },
-        decade_data(data) {
-            this.decade = data
-        },
-        specific_data(mode) {
-            this.mode = mode
-        },
     },
 }
 </script>
 <style>
+@font-face {
+    font-family: 'Eastwood';
+    src: url('./assets/Eastwood.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Futura Extra Bold';
+    src: url('./assets/Futura Extra Bold.otf') format('opentype');
+}
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 #app {
     font-family: 'Jost', sans-serif;

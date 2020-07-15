@@ -24,7 +24,7 @@
                 </p>
             </div>
             <!-- <bar :filmdata="storedFilms" v-show="!tabs" class="chart" /> -->
-            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" v-on:specific_data="specific_data" />
+            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
             <barChart1 :filmdata="storedFilms" v-else class="chart" />
         </div>
 
@@ -54,13 +54,13 @@
         <h2 class="sectitle">Decades</h2>
         <br />
 
-        <decades :filmdata="storedFilms" v-on:decade="data" />
+        <decades :filmdata="storedFilms" />
 
         <hr />
 
         <h2 class="sectitle">People</h2>
         <br />
-        <people :storedFilms="storedFilms" v-on:specific_data="specific_data" />
+        <people :storedFilms="storedFilms" />
 
         <hr />
 
@@ -86,7 +86,6 @@
 import decades from '../components/decades.vue'
 //import bar from '../components/bar'
 import barChart from '../components/barChart'
-
 import barChart1 from '../components/barChart1'
 //import bar2 from '../components/bar2'
 //import bar3 from '../components/bar3'
@@ -109,19 +108,10 @@ export default {
             storedFilms: null,
             storedGenres: null,
             collections: [],
-            mode: null,
             hours: 0,
         }
     },
     methods: {
-        data(data) {
-            this.decade = data
-            this.$emit('decade', this.decade)
-        },
-        specific_data(data) {
-            this.mode = data
-            this.$emit('specific_data', this.mode)
-        },
         save() {
             if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {
                 if (JSON.parse(localStorage.getItem('filmdata')).length != this.filmdata.length) {
