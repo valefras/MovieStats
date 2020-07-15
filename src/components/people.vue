@@ -6,90 +6,67 @@
         <div class="peopleContainer" v-if="!rating">
             <div>
                 <h3>Actors</h3>
-                <div v-for="actor in 10" :key="actorsRating[actor - 1][0]">
+                <div v-for="actor in actorsRating.length" :key="actorsRating[actor - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: actorsRating[actor - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: actorsRating[actor - 1][0] + ' (Cast)', page: 1 },
                         }"
                     >
-                        <p @click="person_data('cast', actorsRating[actor - 1][0]).then($emit('person', data_to_sent))">
-                            {{ actorsRating[actor - 1][0] }}: {{ actorsRating[actor - 1][2] }}
-                        </p>
+                        <p>{{ actorsRating[actor - 1][0] }}: {{ actorsRating[actor - 1][2] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Directors</h3>
-                <div v-for="dir in 10" :key="crew.directors[dir - 1][0]">
+                <div v-for="dir in crew.directors.length" :key="crew.directors[dir - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crew.directors[dir - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crew.directors[dir - 1][0] + ' (Director)', page: 1 },
                         }"
                     >
-                        <p @click="person_data('crew', crew.directors[dir - 1][0]).then($emit('person', data_to_sent))">
-                            {{ crew.directors[dir - 1][0] }}: {{ crew.directors[dir - 1][2] }}
-                        </p>
+                        <p>{{ crew.directors[dir - 1][0] }}: {{ crew.directors[dir - 1][2] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Writers</h3>
-                <div v-for="wri in 10" :key="crew.screenwriters[wri - 1][0]">
+                <div v-for="wri in crew.screenwriters.length" :key="crew.screenwriters[wri - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crew.screenwriters[wri - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crew.screenwriters[wri - 1][0] + ' (Writer)', page: 1 },
                         }"
                     >
-                        <p
-                            @click="
-                                person_data('crew', crew.screenwriters[wri - 1][0]).then($emit('person', data_to_sent))
-                            "
-                        >
-                            {{ crew.screenwriters[wri - 1][0] }}: {{ crew.screenwriters[wri - 1][2] }}
-                        </p>
+                        <p>{{ crew.screenwriters[wri - 1][0] }}: {{ crew.screenwriters[wri - 1][2] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Composers</h3>
 
-                <div v-for="com in 10" :key="crew.composers[com - 1][0]">
+                <div v-for="com in crew.composers.length" :key="crew.composers[com - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crew.composers[com - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crew.composers[com - 1][0] + ' (Composer)', page: 1 },
                         }"
                     >
-                        <p @click="person_data('crew', crew.composers[com - 1][0]).then($emit('person', data_to_sent))">
-                            {{ crew.composers[com - 1][0] }}: {{ crew.composers[com - 1][2] }}
-                        </p>
+                        <p>{{ crew.composers[com - 1][0] }}: {{ crew.composers[com - 1][2] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Directors of photograhy</h3>
-                <div v-for="pho in 10" :key="crew.photography[pho - 1][0]">
+                <div v-for="pho in crew.photography.length" :key="crew.photography[pho - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crew.photography[pho - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crew.photography[pho - 1][0] + ' (Director of photography)', page: 1 },
                         }"
                     >
-                        <p
-                            @click="
-                                person_data('crew', crew.photography[pho - 1][0]).then($emit('person', data_to_sent))
-                            "
-                        >
-                            {{ crew.photography[pho - 1][0] }}: {{ crew.photography[pho - 1][2] }}
-                        </p>
+                        <p>{{ crew.photography[pho - 1][0] }}: {{ crew.photography[pho - 1][2] }}</p>
                     </router-link>
                 </div>
             </div>
@@ -97,99 +74,66 @@
         <div class="peopleContainer" v-else>
             <div>
                 <h3>Actors</h3>
-                <div v-for="actor in 10" :key="actorsNum[actor - 1][0]">
+                <div v-for="actor in actorsNum.length" :key="actorsNum[actor - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: actorsNum[actor - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: actorsNum[actor - 1][0] + ' (Cast)', page: 1 },
                         }"
                     >
-                        <p @click="person_data('cast', actorsNum[actor - 1][0]).then($emit('person', data_to_sent))">
-                            {{ actorsNum[actor - 1][0] }}: {{ actorsNum[actor - 1][1] }}
-                        </p>
+                        <p>{{ actorsNum[actor - 1][0] }}: {{ actorsNum[actor - 1][1] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Directors</h3>
-                <div v-for="dir in 10" :key="crew.directors[dir - 1][0]">
+                <div v-for="dir in crewNum.directors.length" :key="crewNum.directors[dir - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crewNum.directors[dir - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crewNum.directors[dir - 1][0] + ' (Director)', page: 1 },
                         }"
                     >
-                        <p
-                            @click="
-                                person_data('crew', crewNum.directors[dir - 1][0]).then($emit('person', data_to_sent))
-                            "
-                        >
-                            {{ crewNum.directors[dir - 1][0] }}: {{ crewNum.directors[dir - 1][1] }}
-                        </p>
+                        <p>{{ crewNum.directors[dir - 1][0] }}: {{ crewNum.directors[dir - 1][1] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Writers</h3>
-                <div v-for="wri in 10" :key="crewNum.screenwriters[wri - 1][0]">
+                <div v-for="wri in crewNum.screenwriters.length" :key="crewNum.screenwriters[wri - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crewNum.screenwriters[wri - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crewNum.screenwriters[wri - 1][0] + ' (Writer)', page: 1 },
                         }"
                     >
-                        <p
-                            @click="
-                                person_data('crew', crewNum.screenwriters[wri - 1][0]).then(
-                                    $emit('person', data_to_sent)
-                                )
-                            "
-                        >
-                            {{ crewNum.screenwriters[wri - 1][0] }}: {{ crewNum.screenwriters[wri - 1][1] }}
-                        </p>
+                        <p>{{ crewNum.screenwriters[wri - 1][0] }}: {{ crewNum.screenwriters[wri - 1][1] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Composers</h3>
-                <div v-for="com in 10" :key="crewNum.composers[com - 1][0]">
+                <div v-for="com in crewNum.composers.length" :key="crewNum.composers[com - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crewNum.composers[com - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crewNum.composers[com - 1][0] + ' (Composer)', page: 1 },
                         }"
                     >
-                        <p
-                            @click="
-                                person_data('crew', crewNum.composers[com - 1][0]).then($emit('person', data_to_sent))
-                            "
-                        >
-                            {{ crewNum.composers[com - 1][0] }}: {{ crewNum.composers[com - 1][1] }}
-                        </p>
+                        <p>{{ crewNum.composers[com - 1][0] }}: {{ crewNum.composers[com - 1][1] }}</p>
                     </router-link>
                 </div>
             </div>
             <div>
                 <h3>Directors of photograhy</h3>
-                <div v-for="pho in 10" :key="crewNum.photography[pho - 1][0]">
+                <div v-for="pho in crewNum.photography.length" :key="crewNum.photography[pho - 1][0]">
                     <router-link
                         :to="{
-                            name: 'Person',
-                            path: '/:name/:page',
-                            params: { name: crewNum.photography[pho - 1][0], page: 1 },
+                            name: 'All',
+                            params: { mode: crewNum.photography[pho - 1][0] + ' (Director of photography)', page: 1 },
                         }"
                     >
-                        <p
-                            @click="
-                                person_data('crew', crewNum.photography[pho - 1][0]).then($emit('person', data_to_sent))
-                            "
-                        >
-                            {{ crewNum.photography[pho - 1][0] }}: {{ crewNum.photography[pho - 1][1] }}
-                        </p>
+                        <p>{{ crewNum.photography[pho - 1][0] }}: {{ crewNum.photography[pho - 1][1] }}</p>
                     </router-link>
                 </div>
             </div>
@@ -215,12 +159,11 @@ export default {
     },
     created() {
         this.organizeCast()
-        this.organizeCrew().then(
-            () => this.order('directors'),
-            this.order('screenwriters'),
-            this.order('composers'),
-            this.order('photography')
-        )
+        this.organizeCrew()
+        this.order('directors')
+        this.order('screenwriters')
+        this.order('composers')
+        this.order('photography')
     },
     methods: {
         organizeCast() {
@@ -248,7 +191,7 @@ export default {
 
             var i = 0
             while (i < new_arr1.length) {
-                if (new_arr1[i][1] <= 3) {
+                if (new_arr1[i][1] <= 4) {
                     new_arr1.splice(i, 1)
                     new_arr.splice(i, 1)
                 } else {
@@ -273,8 +216,20 @@ export default {
             this.actorsRating = array.sort(function(a, b) {
                 return b[2] - a[2]
             })
+
+            if (this.actorsNum.length >= 10) {
+                this.actorsNum = this.actorsNum.slice(0, 10)
+            } else {
+                this.actorsNum = this.actorsNum.slice(0, this.actorsNum.length)
+            }
+
+            if (this.actorsRating.length >= 10) {
+                this.actorsRating = this.actorsRating.slice(0, 10)
+            } else {
+                this.actorsRating = this.actorsRating.slice(0, this.actorsRating.length)
+            }
         },
-        async organizeCrew() {
+        organizeCrew() {
             this.crew = { directors: [], composers: [], screenwriters: [], photography: [] }
             for (let i = 0; i < this.storedFilms.length; i++) {
                 for (let x = 0; x < this.storedFilms[i].crew.length; x++) {
@@ -317,16 +272,16 @@ export default {
             var z
             switch (mode) {
                 case 'directors':
-                    z = 2
+                    z = 3
                     break
                 case 'screenwriters':
-                    z = 2
+                    z = 3
                     break
                 case 'composers':
                     z = 2
                     break
                 case 'photography':
-                    z = 1
+                    z = 2
                     break
             }
 
@@ -370,18 +325,18 @@ export default {
             this.crew[mode] = array.sort(function(a, b) {
                 return b[2] - a[2]
             })
-        },
-        async person_data(mode, person) {
-            this.data_to_sent.name = person
-            this.data_to_sent.films = []
-            for (let i = 0; i < this.storedFilms.length; i++) {
-                for (let x = 0; x < this.storedFilms[i][mode].length; x++) {
-                    if (this.storedFilms[i][mode][x].name == person) {
-                        this.data_to_sent.films.push(this.storedFilms[i])
-                    }
-                }
+
+            if (this.crewNum[mode].length >= 10) {
+                this.crewNum[mode] = this.crewNum[mode].slice(0, 10)
+            } else {
+                this.crewNum[mode] = this.crewNum[mode].slice(0, this.crewNum[mode].length)
             }
-            this.data_to_sent.films = [...new Set(this.data_to_sent.films)]
+
+            if (this.crew[mode].length >= 10) {
+                this.crew[mode] = this.crew[mode].slice(0, 10)
+            } else {
+                this.crew[mode] = this.crew[mode].slice(0, this.crew[mode].length)
+            }
         },
     },
 }

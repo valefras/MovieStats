@@ -7,9 +7,9 @@
                 <p>Average: {{ decade.average }}/5</p>
                 <router-link
                     :to="{
-                        name: 'Decade',
-                        path: '/:year/:page',
-                        params: { year: decade.decade + 's', page: 1 },
+                        name: 'All',
+                        path: '/:mode/:page',
+                        params: { mode: decade.decade + 's', page: 1 },
                     }"
                 >
                     <button class="btn" @click="$emit('decade', decade.decade)">See all</button>

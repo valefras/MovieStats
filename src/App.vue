@@ -9,8 +9,9 @@
             v-on:decade="decade_data"
             :decade="decade"
             :genres="genres"
-            v-on:person="person_data"
+            v-on:specific_data="specific_data"
             :person="person"
+            :mode="mode"
         />
     </div>
 </template>
@@ -24,7 +25,8 @@ export default {
             filmdata: null,
             genres: null,
             decade: null,
-            person: null,
+            //person: null,
+            mode: null,
         }
     },
     methods: {
@@ -37,8 +39,8 @@ export default {
         decade_data(data) {
             this.decade = data
         },
-        person_data(data) {
-            this.person = data
+        specific_data(mode) {
+            this.mode = mode
         },
     },
 }

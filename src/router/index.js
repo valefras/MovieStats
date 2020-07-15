@@ -20,7 +20,7 @@ const routes = [
         component: Stats,
     },
     {
-        path: '/all/:page',
+        path: '/:mode/:page',
         name: 'All',
         component: AllFilms,
     },

@@ -89,6 +89,7 @@ export default {
                 'hit',
                 function(ev) {
                     console.log(ev.target.dataItem.category)
+                    this.$router.replace({ name: 'All', params: { mode: ev.target.dataItem.category, page: 1 } })
                 },
                 this
             )

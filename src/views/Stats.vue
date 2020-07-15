@@ -6,8 +6,8 @@
         <router-link
             :to="{
                 name: 'All',
-                path: 'all/:page',
-                params: { page: 1 },
+                path: '/:mode/:page',
+                params: { mode: 'all', page: 1 },
             }"
         >
             <button class="btn">See all</button>
@@ -24,7 +24,7 @@
                 </p>
             </div>
             <!-- <bar :filmdata="storedFilms" v-show="!tabs" class="chart" /> -->
-            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
+            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" v-on:specific_data="specific_data" />
             <barChart1 :filmdata="storedFilms" v-else class="chart" />
         </div>
 
@@ -60,7 +60,7 @@
 
         <h2 class="sectitle">People</h2>
         <br />
-        <people :storedFilms="storedFilms" v-on:person="person_data" />
+        <people :storedFilms="storedFilms" v-on:specific_data="specific_data" />
 
         <hr />
 
@@ -109,7 +109,7 @@ export default {
             storedFilms: null,
             storedGenres: null,
             collections: [],
-            person: null,
+            mode: null,
             hours: 0,
         }
     },
@@ -118,9 +118,9 @@ export default {
             this.decade = data
             this.$emit('decade', this.decade)
         },
-        person_data(data) {
-            this.person = data
-            this.$emit('person', this.person)
+        specific_data(data) {
+            this.mode = data
+            this.$emit('specific_data', this.mode)
         },
         save() {
             if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {

@@ -94,6 +94,8 @@ export default {
             'hit',
             function(ev) {
                 console.log(ev.target.dataItem.categoryX)
+                //this.$emit('specific_data', { mode: 'year', data: ev.target.dataItem.categoryX })
+                this.$router.replace({ name: 'All', params: { mode: ev.target.dataItem.categoryX, page: 1 } })
             },
             this
         )

@@ -39,3 +39,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+.home {
+    margin: 0 auto;
+}
+</style>
