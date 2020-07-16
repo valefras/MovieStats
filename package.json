@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "@amcharts/amcharts4": "^4.9.30",
+        "@amcharts/amcharts4-geodata": "^4.1.16",
         "axios": "^0.19.2",
         "core-js": "^3.6.4",
         "vue": "^2.6.11",

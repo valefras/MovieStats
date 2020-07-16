@@ -67,7 +67,8 @@
         <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
 
         <br />
-        <wordCloud :storedFilms="storedFilms" />
+        <wordCloud :storedFilms="storedFilms" /> <br />
+
         <div class="expl">
             <p>
                 *Taglines are catchy, enticing short phrases used by marketers and film studios to advertise and sell a
@@ -77,6 +78,14 @@
                 "For three men the Civil War wasn't hell. It was practice." - The Good, the Bad and the Ugly (1966)
             </p>
         </div>
+
+        <hr />
+
+        <h2 class="sectitle">Production countries</h2>
+
+        <br />
+
+        <mapChart :filmdata="storedFilms" />
 
         <collections :collections="collections" />
     </div>
@@ -94,13 +103,14 @@ import collections from '../components/collections'
 import wordCloud from '../components/wordCloud'
 import genresPieChart from '../components/genresPieChart'
 import barChart3 from '../components/barChart3'
+import mapChart from '../components/mapChart'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { barChart, barChart1, decades, people, collections, wordCloud, genresPieChart, barChart3 },
+    components: { barChart, barChart1, decades, people, collections, wordCloud, genresPieChart, barChart3, mapChart },
     data() {
         return {
             decade: null,

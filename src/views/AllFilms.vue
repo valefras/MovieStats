@@ -68,6 +68,7 @@ export default {
             param: null,
             regexYear: /(^[0-9]+$)/,
             regexDecade: /(?<!\d)(?!0000)\d{4}(?!\d)(\D$)/,
+            regexCountry: /^[A-Z]{2}$/,
             data_to_display: [],
             leone: false,
             kubrick: false,
@@ -110,6 +111,20 @@ export default {
         } else if (this.param == 'all') {
             this.data_to_display = this.filmdata
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
+        } else if (this.regexCountry.test(this.param)) {
+            //console.log(this.$route.params.mode)
+            for (let i = 0; i < this.filmdata.length; i++) {
+                for (let y = 0; y < this.filmdata[i].countries.length; y++) {
+                    if (this.filmdata[i].countries[y].iso_3166_1 == this.param) {
+                        this.data_to_display.push(this.filmdata[i])
+                        var title = this.filmdata[i].countries[y].name
+                    }
+                }
+            }
+            this.param = title
+            this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
+            // var country = this.param.split(/[()]+/)
+            // let name = person[0].trim()
         } else {
             var mode
             var person = this.param.split(/[()]+/)

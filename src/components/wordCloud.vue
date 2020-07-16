@@ -42,10 +42,10 @@ export default {
 
             series.text = this.words
 
-            series.maxCount = 200
+            series.maxCount = 150
             series.minWordLength = 3
             series.angles = [0]
-            series.randomness = 0.4
+            series.randomness = 0.2
             series.excludeWords = [
                 'the',
                 'of',
@@ -143,6 +143,7 @@ export default {
                 'some',
                 'only',
                 'just',
+                'man',
                 'doesn',
             ]
             series.labelsContainer.rotation = 0
@@ -162,6 +163,6 @@ export default {
 
 <style>
 .hello {
-    height: 600px;
+    height: 550px;
 }
 </style>

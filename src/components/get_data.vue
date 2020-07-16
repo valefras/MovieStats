@@ -145,6 +145,7 @@ export default {
                                                     this.data[x].collection = response.data.belongs_to_collection
                                                     this.data[x].runtime = response.data.runtime
                                                     this.data[x].tagline = response.data.tagline
+                                                    this.data[x].countries = response.data.production_countries
                                                     break
                                                 }
                                             }
