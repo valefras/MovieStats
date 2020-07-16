@@ -26,7 +26,9 @@ export default {
         map.series.push(polygonSeries)
 
         var polygonTemplate = polygonSeries.mapPolygons.template
+
         polygonTemplate.tooltipText = '{name}: {value} films'
+
         polygonSeries.tooltip.autoTextColor = false
         polygonSeries.tooltip.label.fill = am4core.color('#f0f5f9')
         polygonSeries.tooltip.getFillFromObject = false
@@ -61,22 +63,32 @@ export default {
             max: am4core.color('#f08a5d'),
             logarithmic: true,
         })
+
         polygonSeries.mapPolygons.template.events.on(
             'hit',
             function(ev) {
-                //console.log(ev.target.dataItem.dataContext.id)
-                this.$router.replace({
-                    name: 'All',
-                    params: {
-                        mode: ev.target.dataItem.dataContext.id,
-                        page: 1,
-                    },
-                })
+                //console.log(ev.target.dataItem.value)
+                if (ev.target.dataItem.value > 0) {
+                    this.$router.replace({
+                        name: 'All',
+                        params: {
+                            mode: ev.target.dataItem.dataContext.id,
+                            page: 1,
+                        },
+                    })
+                }
             },
             this
         )
 
         polygonSeries.exclude = ['AQ']
+
+        this.chart = map
+    },
+    beforeDestroy() {
+        if (this.chart) {
+            this.chart.dispose()
+        }
     },
 }
 </script>
