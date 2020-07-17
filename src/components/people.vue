@@ -347,7 +347,7 @@ export default {
     margin: auto;
     display: grid;
     align-items: left;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     text-align: left;
 }
 .peopleContainer a p,

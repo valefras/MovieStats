@@ -23,25 +23,17 @@
                     Average rating (by release year)
                 </p>
             </div>
-            <!-- <bar :filmdata="storedFilms" v-show="!tabs" class="chart" /> -->
             <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
             <barChart1 :filmdata="storedFilms" v-else class="chart" />
         </div>
 
         <hr />
 
-        <!-- <h2 class="sectitle">Ratings</h2>
-        <br />
-        <bar2 :filmdata="storedFilms" />
-
-        <hr /> -->
-
         <h2 class="sectitle">Genres</h2>
         <br />
         <div class="genresCharts">
             <div>
                 <h4>Average rating</h4>
-                <!-- <bar3 :filmdata="storedFilms" :genres="storedGenres" /> -->
                 <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
             </div>
             <div>
@@ -66,7 +58,6 @@
 
         <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
 
-        <br />
         <wordCloud :storedFilms="storedFilms" /> <br />
 
         <div class="expl">
@@ -93,11 +84,8 @@
 
 <script>
 import decades from '../components/decades.vue'
-//import bar from '../components/bar'
 import barChart from '../components/barChart'
 import barChart1 from '../components/barChart1'
-//import bar2 from '../components/bar2'
-//import bar3 from '../components/bar3'
 import people from '../components/people'
 import collections from '../components/collections'
 import wordCloud from '../components/wordCloud'

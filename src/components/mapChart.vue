@@ -1,5 +1,5 @@
 <template>
-    <div ref="chartdiv"></div>
+    <div ref="chartdiv" style="height: 500px"></div>
 </template>
 
 <script>
@@ -21,6 +21,7 @@ export default {
         var map = am4core.create(this.$refs.chartdiv, am4maps.MapChart)
         map.geodata = am4geodata_worldLow
         map.projection = new am4maps.projections.Miller()
+        //map.projection = new am4maps.projections.Orthographic()
         var polygonSeries = new am4maps.MapPolygonSeries()
         polygonSeries.useGeodata = true
         map.series.push(polygonSeries)

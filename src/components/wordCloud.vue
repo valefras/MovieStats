@@ -42,7 +42,7 @@ export default {
 
             series.text = this.words
 
-            series.maxCount = 150
+            series.maxCount = 145
             series.minWordLength = 3
             series.angles = [0]
             series.randomness = 0.2

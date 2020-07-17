@@ -4,6 +4,10 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import StarRating from 'vue-star-rating'
+import VueGitHubButtons from 'vue-github-buttons'
+import 'vue-github-buttons/dist/vue-github-buttons.css'
+
+Vue.use(VueGitHubButtons, { useCache: true })
 
 Vue.use(StarRating)
 
