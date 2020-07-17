@@ -1,10 +1,12 @@
 <template>
     <div class="cnt">
-        <router-link to="/stats">
-            <button class="btn">
-                Home
-            </button>
-        </router-link>
+        <div style="width: 100%; height: 49px">
+            <router-link to="/stats">
+                <button class="btn" style="float:left">
+                    Home
+                </button>
+            </router-link>
+        </div>
         <h1 :class="{ leone: leone, kubrick: kubrick }">{{ param }}</h1>
         <cardGrid :current="current" />
         <div v-if="data_to_display.length > numPerPage" class="pagination-nav">
@@ -111,6 +113,7 @@ export default {
         } else if (this.param == 'all') {
             this.data_to_display = this.filmdata
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
+            this.param = 'All films'
         } else if (this.regexCountry.test(this.param)) {
             //console.log(this.$route.params.mode)
             for (let i = 0; i < this.filmdata.length; i++) {
@@ -121,7 +124,7 @@ export default {
                     }
                 }
             }
-            this.param = title
+            this.param = 'Films produced in ' + title
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
             // var country = this.param.split(/[()]+/)
             // let name = person[0].trim()

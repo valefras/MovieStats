@@ -163,6 +163,6 @@ export default {
 
 <style>
 .hello {
-    height: 550px;
+    height: 500px;
 }
 </style>

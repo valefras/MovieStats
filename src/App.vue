@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div id="app">
+    <div id="page-container">
+        <div id="app" class="content-wrap">
             <router-view
                 :id="id"
                 :api_key="api_key"
@@ -10,8 +10,11 @@
                 :genres="genres"
             /><br /><br />
         </div>
-        <div style="height: 50px; width: 100%; background-color: #3F4045; bottom: 0">
-            <div style="float: right; ">
+        <div id="footer">
+            <p style="display: inline;  margin-left: 12px; font-size: 90%">Made with Vue.js, amCharts and TMDB API.</p>
+            <span style="flex-grow: 4"></span>
+            <p style="display: inline;  font-size: 90%">Like what you see?</p>
+            <div>
                 <gh-btns-star slug="valefras/moviestats"></gh-btns-star>
                 <gh-btns-follow user="valefras" />
             </div>
@@ -107,5 +110,25 @@ hr {
     border-top: 1px solid #ccc;
     margin: 1em auto;
     padding: 0;
+}
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    padding-bottom: 3rem; /* Footer height */
+}
+
+#footer {
+    font-family: 'Jost', sans-serif;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    background-color: #2d3234;
+    color: #999;
+    display: flex;
+    align-items: center;
 }
 </style>
