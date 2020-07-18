@@ -61,4 +61,54 @@ export default {
     grid-row-start: 1;
     grid-row-end: span 2;
 }
+@media screen and (max-width: 700px) {
+    .container {
+        margin: auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+    /* .bigcontainer {
+        margin: 25px 0 0 0;
+    } */
+
+    .title {
+        grid-column-start: 1;
+        grid-column-end: span 2;
+    }
+}
+@media (min-width: 700px) and (max-width: 991px) {
+    .container {
+        margin: auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+    /* .bigcontainer {
+        margin: 25px 0 0 0;
+    } */
+
+    .title {
+        grid-column-start: 1;
+        grid-column-end: span 2;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        margin: auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 17% 17% 17% 17% 17% 17%;
+    }
+    /* .bigcontainer {
+        margin: 25px 0 0 0;
+    } */
+
+    .title {
+        grid-column-start: 1;
+        /* grid-column-end: span 2; */
+    }
+}
+@media screen and (min-width: 1200px) {
+}
 </style>

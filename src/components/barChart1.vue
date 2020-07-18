@@ -1,5 +1,5 @@
 <template>
-    <div ref="chartdiv" style="height:350px;width:1100px"></div>
+    <div ref="chartdiv" class="barFilms"></div>
 </template>
 
 <script>
@@ -126,6 +126,27 @@ export default {
                 this
             )
 
+            chart.responsive.enabled = true
+            chart.responsive.useDefault = false
+            chart.responsive.rules.push({
+                relevant: function(target) {
+                    if (target.pixelWidth <= 900) {
+                        return true
+                    }
+                    return false
+                },
+                state: function(target, stateId) {
+                    if (target instanceof am4charts.Chart) {
+                        var state = target.states.create(stateId)
+
+                        state.properties.fontSize = '50%'
+
+                        return state
+                    }
+                    return null
+                },
+            })
+
             //series.labels.template.disabled = true
             // series.ticks.template.disabled = true
 
@@ -140,4 +161,27 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.barFilms {
+    height: 350px;
+    width: 1100px;
+}
+@media screen and (max-width: 800px) {
+    .barFilms {
+        height: 350px;
+        width: 100%;
+    }
+}
+@media (min-width: 800px) and (max-width: 1000px) {
+    .barFilms {
+        height: 350px;
+        width: 800px;
+    }
+}
+@media (min-width: 1001px) and (max-width: 1200px) {
+    .barFilms {
+        height: 350px;
+        width: 1000px;
+    }
+}
+</style>

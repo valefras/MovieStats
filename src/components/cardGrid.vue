@@ -60,4 +60,30 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
 }
+@media screen and (max-width: 800px) {
+    .box {
+        margin: auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+}
+@media (min-width: 800px) and (max-width: 1000px) {
+    .box {
+        margin: auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+}
+/* @media (min-width: 1001px) and (max-width: 1300px) {
+    .box {
+        margin: auto;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+}
+@media screen and (min-width: 1200px) {
+} */
 </style>

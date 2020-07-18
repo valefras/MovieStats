@@ -357,4 +357,26 @@ export default {
 .peopleContainer a p:hover {
     text-decoration: underline;
 }
+@media screen and (max-width: 800px) {
+    .peopleContainer {
+        margin: auto;
+        display: grid;
+        align-items: left;
+        grid-template-columns: auto auto auto;
+        text-align: left;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+    .peopleContainer {
+        margin: auto;
+        display: grid;
+        align-items: left;
+        grid-template-columns: auto auto auto auto;
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+}
 </style>

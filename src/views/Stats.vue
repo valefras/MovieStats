@@ -31,6 +31,8 @@
 
         <h2 class="sectitle">Genres</h2>
         <br />
+        <br />
+
         <div class="genresCharts">
             <div>
                 <h4>Average rating</h4>
