@@ -1,13 +1,35 @@
 <template>
     <div class="home">
-        <h1>My Film Stats</h1>
-        <session v-on:call="call" />
-        <getdata :id="id" :api_key="api_key" v-if="show" v-on:data="data" v-on:genres="genres" />
+        <h1
+            class="cnt"
+            style=" background-color: #f9ed69;
+  background-image: linear-gradient(45deg, #f08a5d, #f9ed69);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent; font-size: 72px"
+        >
+            MovieStats
+        </h1>
+        <session v-on:call="call" class="cnt" />
+        <getdata :id="id" :api_key="api_key" v-if="show" v-on:data="data" v-on:genres="genres" class="cnt" />
+        <div style="margin-top: 24px">
+            <p>
+                MovieStats allows you to have an always up-to-date data visualization of the movies<br />
+                you watched and rated and discover what (statistically) your taste in cinema is like.
+            </p>
+            <p>In order to use this app all you need is:</p>
+            <ul>
+                <li>a <a href="https://www.themoviedb.org/" style="text-decoration: underline">TMDB</a> account</li>
+                <li>having all the movies you watched rated on TMDB</li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import session from '@/components/create_session.vue'
 import getdata from '../components/get_data.vue'
 

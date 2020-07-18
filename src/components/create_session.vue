@@ -1,12 +1,12 @@
 <template>
     <div>
-        <button type="button" class="btn cnt" @click="createToken" v-if="!authorized">
-            Authorize on TMDB
+        <button type="button" class="btn" @click="createToken" v-if="!authorized">
+            Authorize on your TMDB account
         </button>
         <!-- <button type="button" @click="redirect">redirect</button> -->
         <!-- <button type="button" @click="createSession">create session</button> -->
         <button type="button" class="btn cnt" @click="createSession" v-if="!updated">
-            Update films
+            Fetch your movies from TMDB
         </button>
     </div>
 </template>
@@ -46,7 +46,7 @@ export default {
                     console.log(error)
                 })
         },
-        async createSession() {
+        createSession() {
             axios
                 .post(
                     'https://api.themoviedb.org/3/authentication/session/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&request_token=' +

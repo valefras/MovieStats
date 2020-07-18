@@ -12,6 +12,10 @@
         >
             <button class="btn">See all</button>
         </router-link>
+        <hr />
+        <h2 class="sectitle">General</h2>
+        <br />
+        <br />
 
         <div class="bars">
             <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">

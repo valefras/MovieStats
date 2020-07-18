@@ -1,9 +1,12 @@
 <template>
     <div>
-        <div class="loader cnt" v-if="success == ''"></div>
+        <div v-if="success == ''" class="cnt">
+            <div class="loader"></div>
+            <p>Fetching data...</p>
+        </div>
         <div v-else>
             <router-link to="Stats">
-                <button type="button" class="btn ctn">Take a look at your very personal film stats!</button>
+                <button type="button" class="btn ctn">Take a look at your very personal stats!</button>
             </router-link>
         </div>
     </div>
@@ -188,14 +191,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 8px solid #f08a5d; /* Light grey */
+    border-top: 8px solid #f9ed69; /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 50px;
+    height: 50px;
     animation: spin 2s linear infinite;
+    margin: 0 auto;
 }
 
 @keyframes spin {
