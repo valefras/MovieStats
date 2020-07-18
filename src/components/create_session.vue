@@ -34,10 +34,13 @@ export default {
             axios
                 .get('https://api.themoviedb.org/3/authentication/token/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf')
                 .then(response => {
-                    //console.log(response.data)
+                    console.log(response.data)
                     this.requestToken = response.data.request_token
                     sessionStorage.setItem('token', this.requestToken)
-                    window.location.href = 'https://www.themoviedb.org/authenticate/' + this.requestToken
+                    window.location.href =
+                        'https://www.themoviedb.org/authenticate/' +
+                        this.requestToken +
+                        '?redirect_to=https://moviestats-2ad27.web.app'
                 })
                 .catch(function(error) {
                     console.log(error)
@@ -47,8 +50,7 @@ export default {
             axios
                 .post(
                     'https://api.themoviedb.org/3/authentication/session/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&request_token=' +
-                        sessionStorage.getItem('token') +
-                        '?redirect_to=https://moviestats-2ad27.web.app'
+                        sessionStorage.getItem('token')
                 )
                 .then(response => {
                     console.log(response)
