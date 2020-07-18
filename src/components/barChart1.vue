@@ -20,25 +20,37 @@ export default {
     methods: {
         async compute() {
             var values = []
-            for (var i = 1940; i <= 2020; i++) {
+            for (var i = 1900; i <= 2020; i++) {
                 var data = {
                     value: 0,
                     count: 0,
+                    year: i.toString(),
                 }
                 values.push(data)
-                this.data.push({ average: 0, year: i.toString() })
+                //this.data.push({ average: 0, year: i.toString() })
             }
 
             for (var x = 0; x < this.filmdata.length; x++) {
-                for (var y = 0; y < this.data.length; y++) {
-                    if (this.filmdata[x].date == this.data[y].year) {
+                for (var y = 0; y < values.length; y++) {
+                    if (this.filmdata[x].date == values[y].year) {
                         values[y].count++
                         values[y].value += this.filmdata[x].rating
                     }
                 }
             }
 
+            let p = 0
+            while (p < values.length) {
+                if (values[p].count != 0) {
+                    values = values.splice(values[p].year - 1900)
+
+                    break
+                }
+                p++
+            }
+
             for (var z = 0; z < values.length; z++) {
+                this.data.push({ average: 0, year: values[z].year })
                 if (values[z].count != 0) {
                     this.data[z].average = parseFloat((values[z].value / values[z].count).toFixed(2))
                 }

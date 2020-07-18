@@ -20,16 +20,27 @@ export default {
     },
 
     created() {
-        for (var i = 1940; i <= 2020; i++) {
-            this.data.push({ number: 0, year: i.toString() })
+        var arr = []
+        for (let i = 1900; i <= 2020; i++) {
+            arr.push({ number: 0, year: i.toString() })
         }
         for (var x = 0; x < this.filmdata.length; x++) {
-            for (var y = 0; y < this.data.length; y++) {
-                if (this.filmdata[x].date == this.data[y].year) {
-                    this.data[y].number++
+            for (var y = 0; y < arr.length; y++) {
+                if (this.filmdata[x].date == arr[y].year) {
+                    arr[y].number++
                 }
             }
         }
+        let i = 0
+        while (i < arr.length) {
+            if (arr[i].number != 0) {
+                arr = arr.splice(arr[i].year - 1900)
+                break
+            }
+            i++
+        }
+
+        this.data = arr
     },
     mounted() {
         let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)

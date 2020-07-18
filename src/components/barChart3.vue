@@ -73,10 +73,8 @@ export default {
             valueAxis.renderer.grid.template.disabled = true
             valueAxis.renderer.labels.template.disabled = true
 
-            valueAxis.min = this.data[0].rating - 1
-            valueAxis.max = this.data[this.data.length - 1].rating
-
-            //console.log(this.data[this.data.length - 1].rating)
+            valueAxis.min = parseInt(this.data[0].rating - 0.5)
+            valueAxis.max = parseInt(this.data[this.data.length - 1].rating)
 
             var series = chart.series.push(new am4charts.ColumnSeries())
             series.columns.template.tooltipText = '{categoryY}\nAverage: {valueX}'
