@@ -68,13 +68,14 @@ export default {
             pageNum: 1,
             numPerPage: 40,
             param: null,
-            regexYear: /(^[0-9]+$)/,
+            regexYear: /^\d{4}$/,
             regexDecade: /(?<!\d)(?!0000)\d{4}(?!\d)(\D$)/,
             regexCountry: /^[A-Z]{2}$/,
             data_to_display: [],
             leone: false,
             kubrick: false,
             //regexPeople: /\(([^)]+)\)/,
+            regexRating: /^\d?\.?\d?$/,
         }
     },
     created() {
@@ -128,6 +129,15 @@ export default {
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
             // var country = this.param.split(/[()]+/)
             // let name = person[0].trim()
+        } else if (this.regexRating.test(this.param)) {
+            for (let i = 0; i < this.filmdata.length; i++) {
+                if (this.filmdata[i].rating == this.param) {
+                    this.data_to_display.push(this.filmdata[i])
+                    var title1 = this.filmdata[i].rating
+                }
+            }
+            this.param = 'Films rated ' + title1 + ' stars'
+            this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
         } else {
             var mode
             var person = this.param.split(/[()]+/)

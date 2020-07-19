@@ -86,7 +86,7 @@ h2 {
     margin-top: 2px;
 }
 .sectitle {
-    float: left;
+    text-align: left;
 }
 p {
     margin-bottom: 0;
@@ -110,7 +110,10 @@ a {
     color: #f0f5f9;
     font-family: 'Jost', sans-serif;
 }
-
+h4 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 .btn:hover {
     background: #444;
 }
@@ -148,6 +151,9 @@ hr {
     display: flex;
     align-items: center;
 }
+#sep {
+    display: none;
+}
 @media screen and (max-width: 700px) {
     #app {
         font-family: 'Jost', sans-serif;
@@ -155,9 +161,11 @@ hr {
         padding-left: 0;
         padding-right: 0;
     }
-    h1,
-    h2 {
-        width: 100%;
+    .sectitle {
+        text-align: center;
+    }
+    #sep {
+        display: block;
     }
 }
 @media (min-width: 700px) and (max-width: 991px) {
@@ -167,13 +175,19 @@ hr {
         padding-left: 0;
         padding-right: 0;
     }
+    .sectitle {
+        text-align: center;
+    }
+    #sep {
+        display: block;
+    }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
     #app {
         font-family: 'Jost', sans-serif;
         color: #f0f5f9;
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 }
 @media (min-width: 1200px) and (max-width: 1300px) {
@@ -184,7 +198,6 @@ hr {
         padding-right: 5%;
     }
 }
-/* for all screens */
 #rotate {
     display: none;
 }

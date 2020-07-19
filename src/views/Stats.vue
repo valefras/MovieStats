@@ -13,8 +13,6 @@
             <button class="btn">See all</button>
         </router-link>
         <h2 class="sectitle">General</h2>
-        <br />
-        <br />
 
         <div class="bars">
             <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
@@ -32,9 +30,21 @@
 
         <hr />
 
+        <h2 class="sectitle">Ratings</h2>
+        <div class="ratingCharts">
+            <div>
+                <h4>Rating distribution</h4>
+                <barChart2 :filmdata="storedFilms" />
+            </div>
+            <div>
+                <h4>Total average rating</h4>
+                <gaugeChart :filmdata="storedFilms" />
+            </div>
+        </div>
+
+        <hr />
+
         <h2 class="sectitle">Genres</h2>
-        <br />
-        <br />
 
         <div class="genresCharts">
             <div>
@@ -49,21 +59,19 @@
         <hr />
 
         <h2 class="sectitle">Decades</h2>
-        <br />
 
         <decades :filmdata="storedFilms" />
 
         <hr />
 
         <h2 class="sectitle">People</h2>
-        <br />
         <people :storedFilms="storedFilms" />
 
         <hr />
 
         <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
 
-        <wordCloud :storedFilms="storedFilms" /> <br />
+        <wordCloud :storedFilms="storedFilms" />
 
         <div class="expl">
             <p>
@@ -78,8 +86,6 @@
         <hr />
 
         <h2 class="sectitle">Production countries</h2>
-
-        <br />
 
         <mapChart :filmdata="storedFilms" />
 
@@ -97,13 +103,27 @@ import wordCloud from '../components/wordCloud'
 import genresPieChart from '../components/genresPieChart'
 import barChart3 from '../components/barChart3'
 import mapChart from '../components/mapChart'
+import barChart2 from '../components/barChart2'
+import gaugeChart from '../components/gaugeChart'
 export default {
     name: 'Stats',
     props: {
         filmdata: Array,
         genres: Array,
     },
-    components: { barChart, barChart1, decades, people, collections, wordCloud, genresPieChart, barChart3, mapChart },
+    components: {
+        barChart,
+        barChart1,
+        barChart2,
+        gaugeChart,
+        decades,
+        people,
+        collections,
+        wordCloud,
+        genresPieChart,
+        barChart3,
+        mapChart,
+    },
     data() {
         return {
             decade: null,
@@ -179,6 +199,12 @@ export default {
     margin: auto;
     display: grid;
     grid-template-columns: 50% 50%;
+}
+.ratingCharts {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
 }
 .expl {
     text-align: right;

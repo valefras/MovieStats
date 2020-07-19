@@ -2,15 +2,17 @@
     <div>
         <div v-for="decade in 3" :key="top[decade].decade">
             <container :decade="top[decade - 1]" v-on:decade="decade_data" />
+            <hr id="decsep" />
         </div>
         <div v-if="show">
             <div v-for="decade in sorted.length - 3" :key="top[decade].decade">
                 <container :decade="top[decade + 2]" v-on:decade="decade_data" />
+                <hr id="decsep" />
             </div>
         </div>
 
         <button class="btn" @click="seeMore()" v-if="!show && sorted.length > 3">
-            Show more
+            Show more decades
         </button>
         <button @click="seeLess()" v-if="show" class="btn">
             Hide

@@ -108,5 +108,6 @@ export default {
 <style scoped>
 .hello {
     height: 500px;
+    width: 100%;
 }
 </style>
