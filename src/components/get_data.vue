@@ -152,17 +152,13 @@ export default {
                                                     break
                                                 }
                                             }
+                                        })
+                                        .then(() => {
                                             this.success = 'data succesfully retrieved'
                                         })
                                 }
                             })
 
-                        // .then(() => {
-                        //     this.getDetails().then(() => {
-                        //
-                        //     })
-                        //
-                        // })
                         this.page_num = response.data.total_pages
                         for (var y = 0; y <= 20; y++) {
                             this.data.push({
@@ -183,18 +179,14 @@ export default {
                     console.log(error)
                 })
         },
-        // getRest() {
-        //     console.log('1')
-        // },
-        // async getDetails() {},
     },
 }
 </script>
 
 <style scoped>
 .loader {
-    border: 8px solid #f08a5d; /* Light grey */
-    border-top: 8px solid #f9ed69; /* Blue */
+    border: 8px solid #f08a5d;
+    border-top: 8px solid #f9ed69;
     border-radius: 50%;
     width: 50px;
     height: 50px;
