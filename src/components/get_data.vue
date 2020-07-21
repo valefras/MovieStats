@@ -45,7 +45,11 @@ export default {
             () => {
                 this.$emit('data', this.data)
                 this.$emit('genres', this.genres)
+                setTimeout(() => {
+                    this.success = 'data succesfully retrieved'
+                }, 1500)
             }
+
             //.then(() => {
             //         this.getDetails().then(() => {
             //             this.success = 'bruhhh'
@@ -152,11 +156,6 @@ export default {
                                                     break
                                                 }
                                             }
-                                        })
-                                        .then(() => {
-                                            setTimeout(function() {
-                                                this.success = 'data succesfully retrieved'
-                                            }, 2000)
                                         })
                                 }
                             })

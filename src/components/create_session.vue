@@ -41,6 +41,7 @@ export default {
                         'https://www.themoviedb.org/authenticate/' +
                         this.requestToken +
                         '?redirect_to=https://moviestats-2ad27.web.app'
+                    //http://localhost:8080/#/
                 })
                 .catch(function(error) {
                     console.log(error)
