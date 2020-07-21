@@ -1,7 +1,33 @@
 <template>
-    <div class="cnt">
+    <div v-if="storedFilms.length <= 50">
+        <div class="image-blurred-edge">
+            <p style=" font-size: 80%; color: #9999;">
+                The Assassination of Jesse James by the Coward Robert Ford (2007)
+            </p>
+            <p style="color: #f0f5f9; font-size: 130%; padding-top: 20px; text-align: end">
+                "You ever count the stars? I can't ever get the same number, they keep changin' on me."
+            </p>
+        </div>
+
+        <p style="color: #999; font-size: 110%;  position: relative; bottom: 0;   left:0;">
+            Ops... Not enough movies in your account's rated section. For a good experience you will need at least 50!
+        </p>
+    </div>
+
+    <div class="cnt" v-else>
+        <!-- <div>
+            <img
+                src="../assets/jesse-james.jpg"
+                style=" display: block;
+  max-width:1000px;
+  width: auto;
+  height: auto;
+  "
+            />
+        </div> -->
+
         <h1>Your Stats</h1>
-        <p>{{ storedFilms.length }} films</p>
+        <p>{{ storedFilms.length }} movies</p>
         <p>{{ timeConvert(hours) }}</p>
         <router-link
             :to="{
@@ -16,7 +42,7 @@
 
         <div class="bars">
             <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
-                <p :class="{ active: !tabs }">Number of films (by release year)</p>
+                <p :class="{ active: !tabs }">Number of movies (by release year)</p>
             </div>
             <div class="vl"></div>
             <div @click="tabs = true" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start">
@@ -52,7 +78,7 @@
                 <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
             </div>
             <div>
-                <h4>Number of films</h4>
+                <h4>Number of movies</h4>
                 <genresPieChart :filmdata="storedFilms" :genres="storedGenres" />
             </div>
         </div>
@@ -176,6 +202,20 @@ export default {
 </script>
 
 <style>
+.image-blurred-edge {
+    background-image: url('../assets/jesse-james.jpg');
+    width: auto;
+    height: calc(100vh - 170px);
+    box-shadow: 0 0 100px 100px #2d3234 inset;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+    position: relative;
+
+    /* background-size: 100% 100%; */
+    /* border-radius: 15%;
+    border: transparent; */
+    /* background-blend-mode: screen; */
+}
 .active {
     color: #f9ed69;
 }
@@ -209,5 +249,20 @@ export default {
 .expl {
     text-align: right;
     font-size: 70%;
+}
+@media (max-width: 991px) {
+    .image-blurred-edge {
+        background-image: url('../assets/jesse-james.jpg');
+        width: auto;
+        height: calc(100vh - 170px);
+        box-shadow: 0 0 100px 100px #2d3234 inset;
+        background-position: 50% 30%;
+        position: relative;
+
+        /* background-repeat: no-repeat; */
+        /* border-radius: 15%;
+    border: transparent; */
+        /* background-blend-mode: screen; */
+    }
 }
 </style>

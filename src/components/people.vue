@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="rating = true" v-if="!rating" class="btn">Sort by number of films</button>
+        <button @click="rating = true" v-if="!rating" class="btn">Sort by number of movies</button>
         <button @click="rating = false" v-if="rating" class="btn">Sort by your average rating</button>
 
         <div class="peopleContainer" v-if="!rating">

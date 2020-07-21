@@ -3,7 +3,7 @@
         <div class="container">
             <div class="title">
                 <h2>{{ decade.decade }}s</h2>
-                <p>{{ decade.films.length }} films</p>
+                <p>{{ decade.films.length }} movies</p>
                 <p>Average: {{ decade.average }}/5</p>
                 <router-link
                     :to="{

@@ -28,7 +28,7 @@ export default {
 
         var polygonTemplate = polygonSeries.mapPolygons.template
 
-        polygonTemplate.tooltipText = '{name}: {value} films'
+        polygonTemplate.tooltipText = '{name}: {value} movies'
 
         polygonSeries.tooltip.autoTextColor = false
         polygonSeries.tooltip.label.fill = am4core.color('#f0f5f9')

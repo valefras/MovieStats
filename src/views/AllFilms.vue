@@ -114,7 +114,7 @@ export default {
         } else if (this.param == 'all') {
             this.data_to_display = this.filmdata
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
-            this.param = 'All films'
+            this.param = 'All movies'
         } else if (this.regexCountry.test(this.param)) {
             //console.log(this.$route.params.mode)
             for (let i = 0; i < this.filmdata.length; i++) {
@@ -125,7 +125,7 @@ export default {
                     }
                 }
             }
-            this.param = 'Films produced in ' + title
+            this.param = 'Movies produced in ' + title
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
             // var country = this.param.split(/[()]+/)
             // let name = person[0].trim()
@@ -136,7 +136,7 @@ export default {
                     var title1 = this.filmdata[i].rating
                 }
             }
-            this.param = 'Films rated ' + title1 + ' stars'
+            this.param = 'Movies rated ' + title1 + ' stars'
             this.data_to_display.sort((a, b) => (a.date > b.date ? -1 : 1))
         } else {
             var mode

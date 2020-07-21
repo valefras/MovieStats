@@ -62,7 +62,7 @@ export default {
         // valueAxis.max = this.data[0].rating + 0.3
 
         var series = chart.series.push(new am4charts.ColumnSeries())
-        series.columns.template.tooltipText = '{categoryX}: {valueY} films'
+        series.columns.template.tooltipText = '{categoryX}: {valueY} movies'
         series.tooltip.autoTextColor = false
         series.tooltip.label.fill = am4core.color('#f0f5f9')
         series.tooltip.getFillFromObject = false

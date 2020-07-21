@@ -17,13 +17,13 @@
         <getdata :id="id" :api_key="api_key" v-if="show" v-on:data="data" v-on:genres="genres" class="cnt" />
         <div style="margin-top: 24px">
             <p>
-                MovieStats allows you to have an always up-to-date data visualization of the movies<br />
-                you watched and rated and discover what (statistically) your taste in cinema is like.
+                MovieStats allows you to have an always up-to-date stats and data visualization of the movies you <br />
+                watched and rated and discover what (statistically) your taste in cinema is like.
             </p>
             <p>In order to use this app all you need is:</p>
             <ul>
                 <li>a <a href="https://www.themoviedb.org/" style="text-decoration: underline">TMDB</a> account</li>
-                <li>having all the movies you watched rated on TMDB</li>
+                <li>having all the movies you want to generate the stats for (at least 50 movies) rated on TMDB</li>
             </ul>
         </div>
     </div>

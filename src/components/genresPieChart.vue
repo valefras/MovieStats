@@ -77,7 +77,7 @@ export default {
 
             pieSeries.labels.template.disabled = true
             pieSeries.ticks.template.disabled = true
-            pieSeries.slices.template.tooltipText = '{category}: {value.value} films'
+            pieSeries.slices.template.tooltipText = '{category}: {value.value} movies'
             pieSeries.slices.template.propertyFields.fill = 'color'
 
             pieSeries.dataFields.value = 'number'
