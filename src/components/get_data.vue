@@ -154,7 +154,9 @@ export default {
                                             }
                                         })
                                         .then(() => {
-                                            this.success = 'data succesfully retrieved'
+                                            setTimeout(function() {
+                                                this.success = 'data succesfully retrieved'
+                                            }, 2000)
                                         })
                                 }
                             })
