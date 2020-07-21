@@ -1,4 +1,4 @@
-# moviestats
+# MovieStats
 
 A responsive Vue single-page application for data visualization of rated movies on TMDB.
 
