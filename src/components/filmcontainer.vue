@@ -12,7 +12,7 @@
                         params: { mode: decade.decade + 's', page: 1 },
                     }"
                 >
-                    <button class="btn" @click="$emit('decade', decade.decade)">See all</button>
+                    <button class="btn">See all</button>
                 </router-link>
             </div>
             <div v-for="index in 16" :key="index">

@@ -17,6 +17,25 @@ export default {
             data: [],
         }
     },
+    created() {
+        var arr = []
+
+        for (let i = 0; i < this.filmdata.length; i++) {
+            for (let x = 0; x < this.filmdata[i].countries.length; x++) {
+                arr.push([this.filmdata[i].countries[x].name, this.filmdata[i].countries[x].iso_3166_1])
+            }
+        }
+        var counts = {}
+        arr.forEach(function(x) {
+            counts[x] = (counts[x] || 0) + 1
+        })
+        var new_arr = Object.entries(counts)
+
+        for (let i = 0; i < new_arr.length; i++) {
+            var cou = new_arr[i][0].split(',')
+            this.data.push({ name: cou[0], id: cou[1], value: new_arr[i][1] })
+        }
+    },
     mounted() {
         var map = am4core.create(this.$refs.chartdiv, am4maps.MapChart)
         map.geodata = am4geodata_worldLow
@@ -37,23 +56,6 @@ export default {
         polygonSeries.tooltip.background.stroke = am4core.color('#2d3234')
         polygonSeries.tooltip.label.fontSize = '90%'
 
-        var arr = []
-
-        for (let i = 0; i < this.filmdata.length; i++) {
-            for (let x = 0; x < this.filmdata[i].countries.length; x++) {
-                arr.push([this.filmdata[i].countries[x].name, this.filmdata[i].countries[x].iso_3166_1])
-            }
-        }
-        var counts = {}
-        arr.forEach(function(x) {
-            counts[x] = (counts[x] || 0) + 1
-        })
-        var new_arr = Object.entries(counts)
-
-        for (let i = 0; i < new_arr.length; i++) {
-            var cou = new_arr[i][0].split(',')
-            this.data.push({ name: cou[0], id: cou[1], value: new_arr[i][1] })
-        }
         //console.log(this.data)
         polygonSeries.data = this.data
 

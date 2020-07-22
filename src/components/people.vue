@@ -278,7 +278,7 @@ export default {
                     z = 3
                     break
                 case 'composers':
-                    z = 2
+                    z = 3
                     break
                 case 'photography':
                     z = 2

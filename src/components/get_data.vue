@@ -47,7 +47,7 @@ export default {
                 this.$emit('genres', this.genres)
                 setTimeout(() => {
                     this.success = 'data succesfully retrieved'
-                }, 1500)
+                }, 3000)
             }
 
             //.then(() => {

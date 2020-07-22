@@ -1,31 +1,20 @@
 <template>
-    <div v-if="storedFilms.length <= 50">
+    <div v-if="!storedFilms">
         <div class="image-blurred-edge">
             <p style=" font-size: 80%; color: #9999;">
                 The Assassination of Jesse James by the Coward Robert Ford (2007)
             </p>
-            <p style="color: #f0f5f9; font-size: 130%; padding-top: 20px; text-align: end">
+            <p style="color: #f0f5f9; font-size: 150%; padding-top: 20px; text-align: end">
                 "You ever count the stars? I can't ever get the same number, they keep changin' on me."
             </p>
         </div>
 
         <p style="color: #999; font-size: 110%;  position: relative; bottom: 0;   left:0;">
-            Ops... Not enough movies in your account's rated section. For a good experience you will need at least 50!
+            Ops... There has been an error. No films were found. <router-link to="/">Try again!</router-link>
         </p>
     </div>
 
     <div class="cnt" v-else>
-        <!-- <div>
-            <img
-                src="../assets/jesse-james.jpg"
-                style=" display: block;
-  max-width:1000px;
-  width: auto;
-  height: auto;
-  "
-            />
-        </div> -->
-
         <h1>Your Stats</h1>
         <p>{{ storedFilms.length }} movies</p>
         <p>{{ timeConvert(hours) }}</p>
