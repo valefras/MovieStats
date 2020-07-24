@@ -86,7 +86,7 @@
 
         <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
 
-        <wordCloud :storedFilms="storedFilms" />
+        <wordCloud :filmdata="storedFilms" />
 
         <div class="expl">
             <p>
@@ -150,23 +150,25 @@ export default {
         }
     },
     methods: {
-        save() {
-            if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {
-                if (JSON.parse(localStorage.getItem('filmdata')).length != this.filmdata.length) {
-                    localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
-                    localStorage.setItem('genres', JSON.stringify(this.genres))
-                }
-                this.storedFilms = this.filmdata
-                this.storedGenres = this.genres
-            } else if (this.filmdata && !localStorage.getItem('filmdata')) {
-                this.storedFilms = this.filmdata
-                this.storedGenres = this.genres
+        async save() {
+            if (this.filmdata) {
                 localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
                 localStorage.setItem('genres', JSON.stringify(this.genres))
-            } else {
-                this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
-                this.storedGenres = JSON.parse(localStorage.getItem('genres'))
             }
+            this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
+            this.storedGenres = JSON.parse(localStorage.getItem('genres'))
+            // if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {
+            //     if (JSON.parse(localStorage.getItem('filmdata')).length != this.filmdata.length) {
+            //     }
+            //     this.storedFilms = this.filmdata
+            //     this.storedGenres = this.genres
+            // } else if (this.filmdata && !localStorage.getItem('filmdata')) {
+            //     this.storedFilms = this.filmdata
+            //     this.storedGenres = this.genres
+            //     localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
+            //     localStorage.setItem('genres', JSON.stringify(this.genres))
+            // } else {
+            // }
         },
         timeConvert(n) {
             var num = n
@@ -178,14 +180,14 @@ export default {
         },
     },
     created() {
-        this.save()
-
-        for (let i = 0; i < this.storedFilms.length; i++) {
-            this.hours += this.storedFilms[i].runtime
-            if (this.storedFilms[i].collection) {
-                this.collections.push(this.storedFilms[i])
+        this.save().then(() => {
+            for (let i = 0; i < this.storedFilms.length; i++) {
+                this.hours += this.storedFilms[i].runtime
+                if (this.storedFilms[i].collection) {
+                    this.collections.push(this.storedFilms[i])
+                }
             }
-        }
+        })
     },
 }
 </script>

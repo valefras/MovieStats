@@ -12,17 +12,20 @@ am4core.useTheme(am4themes_animated)
 
 export default {
     name: 'HelloWorld',
+    props: {
+        filmdata: Array,
+    },
     data() {
         return {
-            storedFilms: JSON.parse(localStorage.getItem('filmdata')),
+            // storedFilms: JSON.parse(localStorage.getItem('filmdata')),
             words: '',
             count: 0,
         }
     },
     created() {
-        for (let i = 0; i < this.storedFilms.length; i++) {
-            if (this.storedFilms[i].tagline) {
-                this.words += this.storedFilms[i].tagline + ' '
+        for (let i = 0; i < this.filmdata.length; i++) {
+            if (this.filmdata[i].tagline) {
+                this.words += this.filmdata[i].tagline + ' '
 
                 this.count++
             }
