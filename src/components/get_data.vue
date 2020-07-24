@@ -96,7 +96,7 @@ export default {
                                                 title: responses[x].data.results[i].title,
                                                 date: responses[x].data.results[i].release_date.substr(0, 4),
                                                 poster:
-                                                    'https://image.tmdb.org/t/p/w500' +
+                                                    'https://image.tmdb.org/t/p/w200' +
                                                     responses[x].data.results[i].poster_path,
                                                 rating: responses[x].data.results[i].rating / 2,
                                                 language: responses[x].data.results[i].original_language,

@@ -23,7 +23,7 @@
             <p>In order to use this app all you need is:</p>
             <ul>
                 <li>a <a href="https://www.themoviedb.org/" style="text-decoration: underline">TMDB</a> account</li>
-                <li>having all the movies you want to generate the stats for (at least 50 movies) rated on TMDB</li>
+                <li>having all the movies you want to generate the stats for rated on TMDB</li>
             </ul>
         </div>
     </div>
