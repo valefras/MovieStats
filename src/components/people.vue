@@ -50,7 +50,7 @@
                     <router-link
                         :to="{
                             name: 'All',
-                            params: { mode: crew.composers[com - 1][0] + ' (Composer)', page: 1 },
+                            params: { mode: crew.composers[com - 1][0] + ' (Original Music Composer)', page: 1 },
                         }"
                     >
                         <p>{{ crew.composers[com - 1][0] }}: {{ crew.composers[com - 1][2] }}</p>
@@ -63,7 +63,7 @@
                     <router-link
                         :to="{
                             name: 'All',
-                            params: { mode: crew.photography[pho - 1][0] + ' (Director of photography)', page: 1 },
+                            params: { mode: crew.photography[pho - 1][0] + ' (Director of Photography)', page: 1 },
                         }"
                     >
                         <p>{{ crew.photography[pho - 1][0] }}: {{ crew.photography[pho - 1][2] }}</p>
@@ -117,7 +117,7 @@
                     <router-link
                         :to="{
                             name: 'All',
-                            params: { mode: crewNum.composers[com - 1][0] + ' (Composer)', page: 1 },
+                            params: { mode: crewNum.composers[com - 1][0] + ' (Original Music Composer)', page: 1 },
                         }"
                     >
                         <p>{{ crewNum.composers[com - 1][0] }}: {{ crewNum.composers[com - 1][1] }}</p>
@@ -130,7 +130,7 @@
                     <router-link
                         :to="{
                             name: 'All',
-                            params: { mode: crewNum.photography[pho - 1][0] + ' (Director of photography)', page: 1 },
+                            params: { mode: crewNum.photography[pho - 1][0] + ' (Director of Photography)', page: 1 },
                         }"
                     >
                         <p>{{ crewNum.photography[pho - 1][0] }}: {{ crewNum.photography[pho - 1][1] }}</p>

@@ -150,10 +150,13 @@ export default {
                 case 'Writer':
                     mode = 'Writing'
                     break
-                case 'Composer':
+                case 'Screenplay':
+                    mode = 'Writing'
+                    break
+                case 'Original Music Composer':
                     mode = 'Sound'
                     break
-                case 'Director of photography':
+                case 'Director of Photography':
                     mode = 'Camera'
                     break
                 case 'Cast':

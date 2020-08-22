@@ -1,15 +1,22 @@
 <template>
-    <div @mouseover="hover = true" @mouseleave="hover = false">
-        <div class="wrap" :class="{ hover: hover }">
-            <img :src="film.poster" class="poster" />
-            <transition name="fade">
-                <p class="caption" v-if="hover">
-                    {{ film.title }}<br />
-                    ({{ film.date }})
-                </p>
-            </transition>
+    <router-link
+        :to="{
+            name: 'Film',
+            params: { id: film.id },
+        }"
+    >
+        <div @mouseover="hover = true" @mouseleave="hover = false">
+            <div class="wrap" :class="{ hover: hover }">
+                <img :src="film.poster" class="poster" />
+                <transition name="fade">
+                    <p class="caption" v-if="hover">
+                        {{ film.title }}<br />
+                        ({{ film.date }})
+                    </p>
+                </transition>
+            </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>
