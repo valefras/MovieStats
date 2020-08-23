@@ -101,9 +101,11 @@ export default {
                                                 rating: responses[x].data.results[i].rating / 2,
                                                 language: responses[x].data.results[i].original_language,
                                                 genre_id: responses[x].data.results[i].genre_ids,
-                                                vote_average: responses[x].data.results[i].vote_average,
-                                                popularity: responses[x].data.results[i].popularity,
+
                                                 id: responses[x].data.results[i].id,
+                                                backdrop:
+                                                    'https://image.tmdb.org/t/p/original' +
+                                                    response.data.results[i].backdrop_path,
                                             })
                                         }
                                     }
@@ -169,9 +171,9 @@ export default {
                                 rating: response.data.results[y].rating / 2,
                                 language: response.data.results[y].original_language,
                                 genre_id: response.data.results[y].genre_ids,
-                                vote_average: response.data.results[y].vote_average,
-                                popularity: response.data.results[y].popularity,
                                 id: response.data.results[y].id,
+                                backdrop:
+                                    'https://image.tmdb.org/t/p/original' + response.data.results[y].backdrop_path,
                             })
                         }
                     })

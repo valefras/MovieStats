@@ -40,8 +40,8 @@ export default {
                     window.location.href =
                         'https://www.themoviedb.org/authenticate/' +
                         this.requestToken +
-                        '?redirect_to=https://moviestats-2ad27.web.app'
-                    //http://localhost:8080/#/
+                        '?redirect_to=http://localhost:8080/#/'
+                    //https://moviestats-2ad27.web.app
                 })
                 .catch(function(error) {
                     console.log(error)
