@@ -1,12 +1,13 @@
 <template>
     <div>
-        <div style="width: 100%; height: 49px">
+        <div style="height: 49px; position: absolute; z-index: 1">
             <router-link to="/stats">
                 <button class="btn" style="float:left">
                     Home
                 </button>
             </router-link>
         </div>
+        <div :style="{ 'background-image': 'url(' + data.backdrop + ')' }" id="backdrop"></div>
         <div id="grid">
             <div>
                 <h1 style="font-size: 3em; display: inline ">{{ data.title }}&nbsp;</h1>
@@ -19,15 +20,15 @@
                     <p style="font-size: 1.3em;  display: inline">{{ data.date }}</p>
                 </router-link>
                 <p style="font-weight: lighter;  display: inline">&nbsp;directed by&nbsp;</p>
-                <div v-for="n in data.crew.length" :key="data.crew[n - 1].credit_id" style="display: inline">
+                <div v-for="n in dir.length" :key="dir[n - 1].credit_id" style="display: inline">
                     <router-link
-                        v-if="data.crew[n - 1].job == 'Director'"
                         :to="{
                             name: 'All',
-                            params: { mode: data.crew[n - 1].name + ' (Director)', page: 1 },
+                            params: { mode: dir[n - 1].name + ' (Director)', page: 1 },
                         }"
                     >
-                        <p style="font-size: 1.3em; display: inline">{{ data.crew[n - 1].name }}&nbsp;</p>
+                        <p style="font-size: 1.3em; display: inline">{{ dir[n - 1].name }}</p>
+                        <span v-if="n < dir.length">,&nbsp;</span>
                     </router-link>
                 </div>
             </div>
@@ -60,7 +61,7 @@
                                 params: { mode: data.cast[n - 1].name + ' (Cast)', page: 1 },
                             }"
                         >
-                            <p>{{ data.cast[n - 1].name }}</p>
+                            <p style="display: inline">{{ data.cast[n - 1].name }}</p>
                         </router-link>
                     </div>
                 </div>
@@ -73,7 +74,7 @@
                                 params: { mode: n, page: 1 },
                             }"
                         >
-                            <p>{{ n }}</p>
+                            <p style="display: inline">{{ n }}</p>
                         </router-link>
                     </div>
                     <h4 style="margin-top: 32px">Runtime</h4>
@@ -117,6 +118,7 @@ export default {
             genres: JSON.parse(localStorage.getItem('genres')),
             data: null,
             gn: [],
+            dir: [],
         }
     },
     created() {
@@ -134,6 +136,12 @@ export default {
                 }
             }
         }
+
+        for (let i = 0; i < this.data.crew.length; i++) {
+            if (this.data.crew[i].job == 'Director') {
+                this.dir.push(this.data.crew[i])
+            }
+        }
     },
 }
 </script>
@@ -144,6 +152,9 @@ export default {
     grid-template-columns: 70% 20%;
     grid-template-rows: 22% 15% auto;
     align-items: center;
+    z-index: 1;
+    position: relative;
+    margin-bottom: 50px;
 }
 #info {
     display: grid;
@@ -151,5 +162,16 @@ export default {
 }
 a p:hover {
     text-decoration: underline;
+}
+#backdrop {
+    height: 450px;
+    background-repeat: no-repeat;
+    background-position: 50% 0%;
+    box-shadow: 0 0 50px 50px #2d3234 inset;
+    background-size: 100%;
+    opacity: 40%;
+    margin-bottom: -150px;
+    position: relative;
+    z-index: 0;
 }
 </style>

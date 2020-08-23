@@ -105,7 +105,7 @@ export default {
                                                 id: responses[x].data.results[i].id,
                                                 backdrop:
                                                     'https://image.tmdb.org/t/p/original' +
-                                                    response.data.results[i].backdrop_path,
+                                                    responses[x].data.results[i].backdrop_path,
                                             })
                                         }
                                     }

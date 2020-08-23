@@ -155,6 +155,7 @@ hr {
     color: #999;
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 #sep {
     display: none;
