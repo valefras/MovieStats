@@ -103,8 +103,9 @@
         <h2 class="sectitle">Production countries</h2>
 
         <mapChart :filmdata="storedFilms" />
+        <h2 class="sectitle">Completed collections</h2>
 
-        <collections :collections="collections" />
+        <collections :filmdata="storedFilms" />
     </div>
 </template>
 
@@ -183,9 +184,9 @@ export default {
         this.save().then(() => {
             for (let i = 0; i < this.storedFilms.length; i++) {
                 this.hours += this.storedFilms[i].runtime
-                if (this.storedFilms[i].collection) {
-                    this.collections.push(this.storedFilms[i])
-                }
+                // if (this.storedFilms[i].collection) {
+                //     this.collections.push(this.storedFilms[i])
+                // }
             }
         })
     },
