@@ -14,7 +14,7 @@
         </p>
     </div>
 
-    <div class="cnt" v-else>
+    <div id="top" class="cnt" v-else>
         <h1>Your Stats</h1>
         <p>{{ storedFilms.length }} movies</p>
         <p>{{ timeConvert(hours) }}</p>
@@ -113,6 +113,13 @@
 </template>
 
 <script>
+var curr = 1
+var isAnimating = false
+// var stopAnimation = function() {
+//     setTimeout(function() {
+//         isAnimating = false
+//     }, 300)
+// }
 import decades from '../components/decades.vue'
 import barChart from '../components/barChart'
 import barChart1 from '../components/barChart1'
@@ -151,8 +158,10 @@ export default {
             storedGenres: null,
             collections: [],
             hours: 0,
-            slide: 1,
-            scrollPosition: 0,
+            //scrollPosition: 0,
+            scroll: 0,
+            isAnimating: false,
+            //chi: document.getElementById('top').childElementCount,
         }
     },
     methods: {
@@ -172,35 +181,80 @@ export default {
             var rminutes = Math.round(minutes)
             return rhours + ' hours and ' + rminutes + ' minutes'
         },
-        handleScroll() {
-            var currentScrollPosition = document.documentElement.scrollTop || document.body.scrollTop
-            console.log(document.documentElement.scrollTop || document.body.scrollTop)
-            if (currentScrollPosition > this.scrollPosition) {
-                console.log('Scrolling down')
-                this.slide--
-            } else {
-                this.slide++
-                console.log('Scrolling up')
-            }
-            this.scrollPosition = currentScrollPosition
-        },
+    },
+    mounted() {
+        window.addEventListener(
+            'wheel',
+            function(e) {
+                console.log(e.deltaY)
+
+                //console.log(curr)
+                var dir = e.deltaY
+
+                //console.log(toplevel)
+
+                if (isAnimating) {
+                    e.preventDefault()
+                    return
+                }
+
+                if (dir < 0) {
+                    if (curr == 1) {
+                        return
+                    }
+                    e.preventDefault()
+                    curr--
+                    isAnimating = true
+                    var slide = document.getElementById('sec' + curr)
+                    slide.scrollIntoView({ block: 'start', behavior: 'smooth' })
+                    console.log(curr)
+                    setTimeout(() => {
+                        isAnimating = false
+                    }, 1000)
+                    // isAnimating = false
+                } else {
+                    // if (curr <= len) {
+                    //     return
+                    // }
+                    e.preventDefault()
+                    curr++
+                    isAnimating = true
+                    var slidenext = document.getElementById('sec' + curr)
+                    slidenext.scrollIntoView({ block: 'start', behavior: 'smooth' })
+                    console.log(curr)
+                    setTimeout(() => {
+                        isAnimating = false
+                    }, 1000)
+                }
+            },
+            { passive: false }
+        )
     },
     created() {
+        console.log(this.chi)
         this.save().then(() => {
             for (let i = 0; i < this.storedFilms.length; i++) {
                 this.hours += this.storedFilms[i].runtime
             }
         })
-        window.addEventListener('scroll', this.handleScroll)
     },
     destroyed() {
-        window.removeEventListener('scroll', this.handleScroll)
+        //window.removeEventListener('scroll', this.handleScroll)
     },
-    watch: {
-        slide: function() {
-            //document.getElementById('sec' + this.slide).scrollIntoView()
-        },
-    },
+    // watch: {
+    //     scroll: function() {
+    //         //document.getElementById('sec' + this.slide).scrollIntoView()
+    //         if (this.scroll < 0) {
+    //             //this.scroll--
+    //             this.slide--
+    //         } else {
+    //             this.slide++
+    //             //this.scroll++
+    //         }
+    //         console.log(this.slide)
+    //         //document.getElementById('sec' + this.slide).scrollIntoView()
+    //     },
+    // },
 }
 </script>
 
