@@ -27,84 +27,86 @@
         >
             <button class="btn">See all</button>
         </router-link>
-        <!-- <div id="sec1" class="section"> -->
-        <h2 class="sectitle">General</h2>
-        <div class="bars">
-            <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
-                <p :class="{ active: !tabs }">Number of movies (by release year)</p>
+        <div id="sec1" class="section">
+            <h1 class="sectitle">General</h1>
+            <div class="bars">
+                <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
+                    <p :class="{ active: !tabs }">Number of movies (by release year)</p>
+                </div>
+                <div class="vl"></div>
+                <div @click="tabs = true" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start">
+                    <p :class="{ active: tabs }">
+                        Average rating (by release year)
+                    </p>
+                </div>
+                <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
+                <barChart1 :filmdata="storedFilms" v-else class="chart" />
             </div>
-            <div class="vl"></div>
-            <div @click="tabs = true" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: start">
-                <p :class="{ active: tabs }">
-                    Average rating (by release year)
+        </div>
+
+        <!-- <hr /> -->
+        <div id="sec2" class="section">
+            <h1 class="sectitle">Ratings</h1>
+            <div class="ratingCharts">
+                <div>
+                    <h4>Rating distribution</h4>
+                    <barChart2 :filmdata="storedFilms" />
+                </div>
+                <div>
+                    <h4>Total average rating</h4>
+                    <gaugeChart :filmdata="storedFilms" />
+                </div>
+            </div>
+        </div>
+
+        <div id="sec3" class="section">
+            <h1 class="sectitle">Genres</h1>
+
+            <div class="genresCharts">
+                <div>
+                    <h4>Average rating</h4>
+                    <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
+                </div>
+                <div>
+                    <h4>Number of movies</h4>
+                    <genresPieChart :filmdata="storedFilms" :genres="storedGenres" />
+                </div>
+            </div>
+        </div>
+        <div id="sec4">
+            <h1 class="sectitle">Decades</h1>
+
+            <decades :filmdata="storedFilms" />
+        </div>
+
+        <div id="sec5" class="section">
+            <h1 class="sectitle">People</h1>
+            <people :storedFilms="storedFilms" />
+        </div>
+
+        <div id="sec6" class="section">
+            <h1 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h1>
+
+            <wordCloud :filmdata="storedFilms" />
+
+            <div class="expl">
+                <p>
+                    *Taglines are catchy, enticing short phrases used by marketers and film studios to advertise and
+                    sell a movie, and to sum up the plot, tone or themes of a film.
+                </p>
+                <p>
+                    "For three men the Civil War wasn't hell. It was practice." - The Good, the Bad and the Ugly (1966)
                 </p>
             </div>
-            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
-            <barChart1 :filmdata="storedFilms" v-else class="chart" />
-        </div>
-        <!-- </div> -->
-
-        <hr />
-
-        <h2 class="sectitle">Ratings</h2>
-        <div class="ratingCharts">
-            <div>
-                <h4>Rating distribution</h4>
-                <barChart2 :filmdata="storedFilms" />
-            </div>
-            <div>
-                <h4>Total average rating</h4>
-                <gaugeChart :filmdata="storedFilms" />
-            </div>
         </div>
 
-        <hr />
+        <div id="sec7" class="section">
+            <h1 class="sectitle">Production countries</h1>
 
-        <h2 class="sectitle">Genres</h2>
-
-        <div class="genresCharts">
-            <div>
-                <h4>Average rating</h4>
-                <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
-            </div>
-            <div>
-                <h4>Number of movies</h4>
-                <genresPieChart :filmdata="storedFilms" :genres="storedGenres" />
-            </div>
-        </div>
-        <hr />
-
-        <h2 class="sectitle">Decades</h2>
-
-        <decades :filmdata="storedFilms" />
-
-        <hr />
-
-        <h2 class="sectitle">People</h2>
-        <people :storedFilms="storedFilms" />
-
-        <hr />
-
-        <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
-
-        <wordCloud :filmdata="storedFilms" />
-
-        <div class="expl">
-            <p>
-                *Taglines are catchy, enticing short phrases used by marketers and film studios to advertise and sell a
-                movie, and to sum up the plot, tone or themes of a film.
-            </p>
-            <p>
-                "For three men the Civil War wasn't hell. It was practice." - The Good, the Bad and the Ugly (1966)
-            </p>
+            <mapChart :filmdata="storedFilms" />
         </div>
 
-        <hr />
-
-        <h2 class="sectitle">Production countries</h2>
-
-        <mapChart :filmdata="storedFilms" />
-        <!-- <h2 class="sectitle">Completed collections</h2> -->
+        <!-- <h1 class="sectitle">Completed collections</h1> -->
 
         <!-- <collections :filmdata="storedFilms" /> -->
     </div>
@@ -149,6 +151,8 @@ export default {
             storedGenres: null,
             collections: [],
             hours: 0,
+            slide: 1,
+            scrollPosition: 0,
         }
     },
     methods: {
@@ -168,6 +172,18 @@ export default {
             var rminutes = Math.round(minutes)
             return rhours + ' hours and ' + rminutes + ' minutes'
         },
+        handleScroll() {
+            var currentScrollPosition = document.documentElement.scrollTop || document.body.scrollTop
+            console.log(document.documentElement.scrollTop || document.body.scrollTop)
+            if (currentScrollPosition > this.scrollPosition) {
+                console.log('Scrolling down')
+                this.slide--
+            } else {
+                this.slide++
+                console.log('Scrolling up')
+            }
+            this.scrollPosition = currentScrollPosition
+        },
     },
     created() {
         this.save().then(() => {
@@ -175,6 +191,15 @@ export default {
                 this.hours += this.storedFilms[i].runtime
             }
         })
+        window.addEventListener('scroll', this.handleScroll)
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll)
+    },
+    watch: {
+        slide: function() {
+            //document.getElementById('sec' + this.slide).scrollIntoView()
+        },
     },
 }
 </script>
@@ -193,6 +218,10 @@ export default {
     /* border-radius: 15%;
     border: transparent; */
     /* background-blend-mode: screen; */
+}
+.sectitle {
+    font-weight: lighter;
+    font-size: 40px;
 }
 .active {
     color: #f9ed69;
@@ -228,9 +257,9 @@ export default {
     text-align: right;
     font-size: 70%;
 }
-/* .section {
-    height: 100%;
-} */
+.section {
+    height: 100vh;
+}
 @media (max-width: 991px) {
     .image-blurred-edge {
         background-image: url('../assets/jesse-james.jpg');

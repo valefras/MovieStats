@@ -159,8 +159,8 @@ export default {
 
 <style>
 .barFilms {
-    height: 350px;
-    width: 1100px;
+    height: 450px;
+    width: 1200px;
 }
 @media screen and (max-width: 800px) {
     .barFilms {
@@ -176,7 +176,7 @@ export default {
 }
 @media (min-width: 1001px) and (max-width: 1200px) {
     .barFilms {
-        height: 350px;
+        height: 400px;
         width: 1000px;
     }
 }

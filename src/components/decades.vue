@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div v-for="decade in n" :key="top[decade].decade">
+        <div v-for="decade in sorted.length" :key="top[decade - 1].decade">
             <container :decade="top[decade - 1]" />
             <hr id="decsep" />
         </div>
-        <div v-if="show">
+        <!-- <div v-if="show">
             <div v-for="decade in sorted.length - 3" :key="top[decade].decade">
                 <container :decade="top[decade + 2]" />
                 <hr id="decsep" />
@@ -16,7 +16,7 @@
         </button>
         <button @click="seeLess()" v-if="show" class="btn">
             Hide
-        </button>
+        </button> -->
     </div>
 </template>
 <script>
@@ -103,21 +103,21 @@ export default {
                 }
             }
         }
-        if (this.sorted.length < 3) {
-            this.n = this.sorted.length
-        } else {
-            this.n = 3
-        }
+        // if (this.sorted.length < 3) {
+        //     this.n = this.sorted.length
+        // } else {
+        //     this.n = 3
+        // }
         //}
     },
-    methods: {
-        seeMore() {
-            this.show = true
-        },
-        seeLess() {
-            this.show = false
-        },
-    },
+    // methods: {
+    //     seeMore() {
+    //         this.show = true
+    //     },
+    //     seeLess() {
+    //         this.show = false
+    //     },
+    // },
 }
 </script>
 

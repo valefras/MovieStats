@@ -343,6 +343,9 @@ export default {
 </script>
 
 <style>
+h3 {
+    font-weight: lighter;
+}
 .peopleContainer {
     margin: auto;
     display: grid;
