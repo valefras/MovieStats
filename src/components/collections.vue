@@ -4,18 +4,24 @@
             <p style="text-align: center">{{ completed[n - 1].name }}</p>
             <div v-if="completed[n - 1].parts.length < 4">
                 <img
+                    @mouseover="hover = true"
+                    @mouseleave="hover = false"
+                    :class="{ hover: hover }"
                     v-for="i in completed[n - 1].parts.length"
                     :key="completed[n - 1].parts[i - 1].id"
-                    :src="'https://image.tmdb.org/t/p/w300' + completed[n - 1].parts[i - 1].poster_path"
-                    style="height: 75%; margin-right: -20%"
+                    :src="completed[n - 1].parts[i - 1].poster"
+                    id="part"
                 />
             </div>
             <div v-else>
                 <img
+                    @mouseover="hover = true"
+                    @mouseleave="hover = false"
+                    :class="{ hover: hover }"
                     v-for="i in 3"
                     :key="completed[n - 1].parts[i - 1].id"
-                    :src="'https://image.tmdb.org/t/p/w300' + completed[n - 1].parts[i - 1].poster_path"
-                    style="height: 75%; margin-right: -20%"
+                    :src="completed[n - 1].parts[i - 1].poster"
+                    id="part"
                 />
             </div>
         </div>
@@ -30,10 +36,11 @@ export default {
     props: {
         filmdata: Array,
     },
+
     data() {
         return {
             seen: null,
-
+            hover: false,
             completed: [],
             collections: [],
         }
@@ -76,6 +83,17 @@ export default {
                     if (response.data.parts.length == this.seen[i][1]) {
                         console.log(response.data)
                         this.completed.push(response.data)
+                        for (let i = 0; i < response.data.parts.length; i++) {
+                            this.completed[this.completed.length - 1].parts[i] = {
+                                title: response.data.parts[i].title,
+                                date: response.data.parts[i].release_date.substr(0, 4),
+                                poster: 'https://image.tmdb.org/t/p/w300' + response.data.parts[i].poster_path,
+                                language: response.data.parts[i].original_language,
+                                genre_id: response.data.parts[i].genre_ids,
+                                id: response.data.parts[i].id,
+                                backdrop: 'https://image.tmdb.org/t/p/original' + response.data.parts[i].backdrop_path,
+                            }
+                        }
                     }
                 })
         }
@@ -87,9 +105,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #collections {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
+}
+#part {
+    height: 75%;
+    margin-right: -20%;
+    /* transition: margin-right 0.5s; */
+    transition: margin-right 0.5s, height 0.5s;
+}
+#part.hover {
+    margin-right: 0;
+    height: 80%;
 }
 </style>

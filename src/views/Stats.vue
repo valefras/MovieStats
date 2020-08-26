@@ -27,8 +27,8 @@
         >
             <button class="btn">See all</button>
         </router-link>
+        <!-- <div id="sec1" class="section"> -->
         <h2 class="sectitle">General</h2>
-
         <div class="bars">
             <div @click="tabs = false" style="display:inline; margin-bottom: 0; margin-top: 0; justify-self: end">
                 <p :class="{ active: !tabs }">Number of movies (by release year)</p>
@@ -42,6 +42,7 @@
             <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
             <barChart1 :filmdata="storedFilms" v-else class="chart" />
         </div>
+        <!-- </div> -->
 
         <hr />
 
@@ -103,9 +104,9 @@
         <h2 class="sectitle">Production countries</h2>
 
         <mapChart :filmdata="storedFilms" />
-        <h2 class="sectitle">Completed collections</h2>
+        <!-- <h2 class="sectitle">Completed collections</h2> -->
 
-        <collections :filmdata="storedFilms" />
+        <!-- <collections :filmdata="storedFilms" /> -->
     </div>
 </template>
 
@@ -114,7 +115,7 @@ import decades from '../components/decades.vue'
 import barChart from '../components/barChart'
 import barChart1 from '../components/barChart1'
 import people from '../components/people'
-import collections from '../components/collections'
+// import collections from '../components/collections'
 import wordCloud from '../components/wordCloud'
 import genresPieChart from '../components/genresPieChart'
 import barChart3 from '../components/barChart3'
@@ -134,7 +135,7 @@ export default {
         gaugeChart,
         decades,
         people,
-        collections,
+        // collections,
         wordCloud,
         genresPieChart,
         barChart3,
@@ -158,18 +159,6 @@ export default {
             }
             this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
             this.storedGenres = JSON.parse(localStorage.getItem('genres'))
-            // if (this.filmdata && localStorage.getItem('filmdata') && this.filmdata.length != 0) {
-            //     if (JSON.parse(localStorage.getItem('filmdata')).length != this.filmdata.length) {
-            //     }
-            //     this.storedFilms = this.filmdata
-            //     this.storedGenres = this.genres
-            // } else if (this.filmdata && !localStorage.getItem('filmdata')) {
-            //     this.storedFilms = this.filmdata
-            //     this.storedGenres = this.genres
-            //     localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
-            //     localStorage.setItem('genres', JSON.stringify(this.genres))
-            // } else {
-            // }
         },
         timeConvert(n) {
             var num = n
@@ -184,9 +173,6 @@ export default {
         this.save().then(() => {
             for (let i = 0; i < this.storedFilms.length; i++) {
                 this.hours += this.storedFilms[i].runtime
-                // if (this.storedFilms[i].collection) {
-                //     this.collections.push(this.storedFilms[i])
-                // }
             }
         })
     },
@@ -242,6 +228,9 @@ export default {
     text-align: right;
     font-size: 70%;
 }
+/* .section {
+    height: 100%;
+} */
 @media (max-width: 991px) {
     .image-blurred-edge {
         background-image: url('../assets/jesse-james.jpg');
