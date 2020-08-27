@@ -81,8 +81,8 @@ export default {
 
 <style>
 .gauge {
-    height: 300px;
-    width: 500px;
+    height: 450px;
+    width: 600px;
 }
 @media screen and (max-width: 800px) {
     .gauge {

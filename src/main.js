@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios'
 import StarRating from 'vue-star-rating'
 import VueGitHubButtons from 'vue-github-buttons'
 import 'vue-github-buttons/dist/vue-github-buttons.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 Vue.use(VueGitHubButtons, { useCache: true })
 
@@ -16,6 +18,9 @@ Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 new Vue({
+    created() {
+        AOS.init()
+    },
     router,
     render: h => h(App),
 }).$mount('#app')

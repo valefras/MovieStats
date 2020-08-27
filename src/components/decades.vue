@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="decade in sorted.length" :key="top[decade - 1].decade">
+        <div v-for="decade in sorted.length" :key="top[decade - 1].decade" data-aos="fade-right">
             <container :decade="top[decade - 1]" />
             <hr id="decsep" />
         </div>

@@ -56,8 +56,8 @@ export default {
         series.tooltip.label.fontSize = '90%'
 
         //series.columns.template.width = am4core.percent(50)
-        categoryAxis.renderer.cellStartLocation = 0.2
-        categoryAxis.renderer.cellEndLocation = 0.8
+        categoryAxis.renderer.cellStartLocation = 0.1
+        categoryAxis.renderer.cellEndLocation = 0.9
         chart.fontSize = '80%'
         series.dataFields.valueY = 'number'
         series.dataFields.categoryX = 'rating'
@@ -109,8 +109,8 @@ export default {
 
 <style>
 .barRating {
-    height: 300px;
-    width: 500px;
+    height: 450px;
+    width: 600px;
 }
 @media screen and (max-width: 800px) {
     .barRating {

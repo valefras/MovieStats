@@ -39,8 +39,14 @@
                         Average rating (by release year)
                     </p>
                 </div>
-                <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
-                <barChart1 :filmdata="storedFilms" v-else class="chart" />
+                <barChart
+                    :filmdata="storedFilms"
+                    v-if="!tabs"
+                    class="chart"
+                    data-aos="fade-right"
+                    data-aos-duration="1500"
+                />
+                <barChart1 :filmdata="storedFilms" v-else class="chart" data-aos="fade-left" data-aos-duration="1500" />
             </div>
         </div>
 
@@ -48,11 +54,11 @@
         <div id="sec2" class="section">
             <h1 class="sectitle">Ratings</h1>
             <div class="ratingCharts">
-                <div>
+                <div data-aos="fade-right" data-aos-duration="1000">
                     <h4>Rating distribution</h4>
                     <barChart2 :filmdata="storedFilms" />
                 </div>
-                <div>
+                <div data-aos="fade-left" data-aos-duration="1000">
                     <h4>Total average rating</h4>
                     <gaugeChart :filmdata="storedFilms" />
                 </div>
@@ -63,11 +69,11 @@
             <h1 class="sectitle">Genres</h1>
 
             <div class="genresCharts">
-                <div>
+                <div data-aos="fade-right" data-aos-duration="1000">
                     <h4>Average rating</h4>
                     <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
                 </div>
-                <div>
+                <div data-aos="fade-left" data-aos-duration="1000">
                     <h4>Number of movies</h4>
                     <genresPieChart :filmdata="storedFilms" :genres="storedGenres" />
                 </div>
@@ -75,7 +81,6 @@
         </div>
         <div id="sec4">
             <h1 class="sectitle">Decades</h1>
-
             <decades :filmdata="storedFilms" />
         </div>
 
@@ -103,7 +108,7 @@
         <div id="sec7" class="section">
             <h1 class="sectitle">Production countries</h1>
 
-            <mapChart :filmdata="storedFilms" />
+            <mapChart :filmdata="storedFilms" class="content" />
         </div>
 
         <!-- <h1 class="sectitle">Completed collections</h1> -->
@@ -113,8 +118,10 @@
 </template>
 
 <script>
-var curr = 1
-var isAnimating = false
+//var curr = 1
+//var isAnimating = false
+//var handler = e => {}
+
 // var stopAnimation = function() {
 //     setTimeout(function() {
 //         isAnimating = false
@@ -161,6 +168,7 @@ export default {
             //scrollPosition: 0,
             scroll: 0,
             isAnimating: false,
+            current: 1,
             //chi: document.getElementById('top').childElementCount,
         }
     },
@@ -181,57 +189,92 @@ export default {
             var rminutes = Math.round(minutes)
             return rhours + ' hours and ' + rminutes + ' minutes'
         },
-    },
-    mounted() {
-        window.addEventListener(
-            'wheel',
-            function(e) {
-                console.log(e.deltaY)
+        handler(e) {
+            //sconsole.log(e.deltaY)
 
-                //console.log(curr)
-                var dir = e.deltaY
+            //console.log(curr)
+            var dir = e.deltaY
+            console.log(dir)
+            //console.log(toplevel)
 
-                //console.log(toplevel)
+            if (this.isAnimating) {
+                e.preventDefault()
+                return
+            }
 
-                if (isAnimating) {
+            var bottomIsReached = function(slidenext) {
+                var rect = slidenext.getBoundingClientRect()
+                return rect.bottom <= window.height
+            }
+
+            if (dir < 0) {
+                if (this.current > 1) {
                     e.preventDefault()
-                    return
-                }
+                    this.current--
+                    this.isAnimating = true
+                    var slide = document.getElementById('sec' + this.current)
+                    console.log(this.current)
+                    // var pos = window.innerHeight // - document.body.scrollTop
+                    // console.log(pos)
 
-                if (dir < 0) {
-                    if (curr == 1) {
-                        return
-                    }
-                    e.preventDefault()
-                    curr--
-                    isAnimating = true
-                    var slide = document.getElementById('sec' + curr)
                     slide.scrollIntoView({ block: 'start', behavior: 'smooth' })
-                    console.log(curr)
+
+                    //console.log(curr)
                     setTimeout(() => {
-                        isAnimating = false
-                    }, 1000)
-                    // isAnimating = false
-                } else {
-                    // if (curr <= len) {
+                        this.isAnimating = false
+                    }, 700)
+                }
+                // isAnimating = false
+            } else {
+                // if (curr <= len) {
+                //     return
+                // }
+                if (this.current <= 6) {
+                    // if (!bottomIsReached(slidenext)) return
+                    var slidenext = document.getElementById('sec' + this.current)
+                    if (!bottomIsReached(slidenext)) return
+                    e.preventDefault()
+                    this.current++
+
+                    this.isAnimating = true
+
+                    // var pos = window.innerHeight //- document.body.scrollTop
+                    // console.log(pos)
+                    // var scrollpos = slidenext.getBoundingClientRect()
+                    // var pos = scrollpos.bottom
+                    // console.log(pos)
+                    // var h = window.innerHeight
+                    // console.log(h)
+                    // console.log(scrollpos)
+
+                    // if (pos < scrollpos) {
                     //     return
                     // }
-                    e.preventDefault()
-                    curr++
-                    isAnimating = true
-                    var slidenext = document.getElementById('sec' + curr)
+                    // var pos1 = window.innerHeight //- document.body.scrollTop
+                    // //console.log(pos1)
+                    // var scrollpos1 = slidenext.offsetTop - window.scrollY
+                    // //console.log(scrollpos1)
+
+                    // if (pos1 < scrollpos1) {
+                    //     return
+                    // }
+
                     slidenext.scrollIntoView({ block: 'start', behavior: 'smooth' })
-                    console.log(curr)
+
+                    //console.log(curr)
                     setTimeout(() => {
-                        isAnimating = false
-                    }, 1000)
+                        this.isAnimating = false
+                    }, 700)
                 }
-            },
-            { passive: false }
-        )
+            }
+            //console.log(this.current)
+        },
+    },
+    mounted() {
+        window.addEventListener('wheel', this.handler)
     },
     created() {
-        console.log(this.chi)
+        //console.log(this.chi)
         this.save().then(() => {
             for (let i = 0; i < this.storedFilms.length; i++) {
                 this.hours += this.storedFilms[i].runtime
@@ -239,7 +282,7 @@ export default {
         })
     },
     destroyed() {
-        //window.removeEventListener('scroll', this.handleScroll)
+        window.removeEventListener('wheel', this.handler)
     },
     // watch: {
     //     scroll: function() {
@@ -313,6 +356,17 @@ export default {
 }
 .section {
     height: 100vh;
+}
+/* .section .content {
+    display: table-cell;
+    vertical-align: middle;
+} */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 @media (max-width: 991px) {
     .image-blurred-edge {
