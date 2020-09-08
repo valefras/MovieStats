@@ -195,17 +195,18 @@ export default {
             //console.log(curr)
             var dir = e.deltaY
             console.log(dir)
-            //console.log(toplevel)
 
             if (this.isAnimating) {
                 e.preventDefault()
                 return
             }
 
-            var bottomIsReached = function(slidenext) {
-                var rect = slidenext.getBoundingClientRect()
-                return rect.bottom <= window.height
-            }
+            // var bottomIsReached = function(slidenext) {
+            //     var rect = slidenext.getBoundingClientRect()
+            //     return rect.bottom <= window.height
+            // }
+            // console.log(document.getElementById('top'))
+            //console.log(!bottomIsReached(document.getElementById('sec' + this.current)))
 
             if (dir < 0) {
                 if (this.current > 1) {
@@ -214,50 +215,24 @@ export default {
                     this.isAnimating = true
                     var slide = document.getElementById('sec' + this.current)
                     console.log(this.current)
-                    // var pos = window.innerHeight // - document.body.scrollTop
-                    // console.log(pos)
+                    console.log(document.getElementById('sec' + this.current).clientHeight)
 
                     slide.scrollIntoView({ block: 'start', behavior: 'smooth' })
 
-                    //console.log(curr)
                     setTimeout(() => {
                         this.isAnimating = false
                     }, 700)
                 }
-                // isAnimating = false
             } else {
-                // if (curr <= len) {
-                //     return
-                // }
                 if (this.current <= 6) {
-                    // if (!bottomIsReached(slidenext)) return
                     var slidenext = document.getElementById('sec' + this.current)
-                    if (!bottomIsReached(slidenext)) return
+                    //if (!bottomIsReached(slidenext)) return
                     e.preventDefault()
                     this.current++
+                    console.log(this.current)
+                    console.log(document.getElementById('sec' + this.current).clientHeight)
 
                     this.isAnimating = true
-
-                    // var pos = window.innerHeight //- document.body.scrollTop
-                    // console.log(pos)
-                    // var scrollpos = slidenext.getBoundingClientRect()
-                    // var pos = scrollpos.bottom
-                    // console.log(pos)
-                    // var h = window.innerHeight
-                    // console.log(h)
-                    // console.log(scrollpos)
-
-                    // if (pos < scrollpos) {
-                    //     return
-                    // }
-                    // var pos1 = window.innerHeight //- document.body.scrollTop
-                    // //console.log(pos1)
-                    // var scrollpos1 = slidenext.offsetTop - window.scrollY
-                    // //console.log(scrollpos1)
-
-                    // if (pos1 < scrollpos1) {
-                    //     return
-                    // }
 
                     slidenext.scrollIntoView({ block: 'start', behavior: 'smooth' })
 
@@ -271,7 +246,7 @@ export default {
         },
     },
     mounted() {
-        window.addEventListener('wheel', this.handler)
+        window.addEventListener('wheel', this.handler, { passive: false })
     },
     created() {
         //console.log(this.chi)
