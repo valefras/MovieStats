@@ -169,7 +169,7 @@ a p:hover {
     background-position: 50% 0%;
     box-shadow: 0 0 50px 50px #2d3234 inset;
     background-size: 100%;
-    opacity: 40%;
+    opacity: 0.4;
     margin-bottom: -150px;
     position: relative;
     z-index: 0;
