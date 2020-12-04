@@ -5,9 +5,9 @@
         </button>
         <!-- <button type="button" @click="redirect">redirect</button> -->
         <!-- <button type="button" @click="createSession">create session</button> -->
-        <button type="button" class="btn cnt" @click="createSession" v-if="!updated">
+        <!-- <button type="button" class="btn cnt" @click="createSession" v-if="!updated">
             Fetch your movies from TMDB
-        </button>
+        </button> -->
     </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
         if (sessionStorage.getItem('token')) {
             this.authorized = true
             this.updated = false
+            this.createSession()
         }
     },
     methods: {
@@ -47,8 +48,8 @@ export default {
                     console.log(error)
                 })
         },
-        createSession() {
-            axios
+        async createSession() {
+            await axios
                 .post(
                     'https://api.themoviedb.org/3/authentication/session/new?api_key=1de39ba8ae7e4330c0da7c4c9cb0adbf&request_token=' +
                         sessionStorage.getItem('token')
@@ -61,10 +62,8 @@ export default {
                 .catch(function(error) {
                     console.log(error)
                 })
-                .then(() => {
-                    this.$emit('call')
-                    this.updated = true
-                })
+            this.$emit('call')
+            this.updated = true
         },
         // redirect() {
 

@@ -58,10 +58,14 @@ export default {
     components: {
         cardGrid,
     },
+    props: {
+        filmdata: Array,
+        genres: Array,
+    },
     data() {
         return {
-            filmdata: JSON.parse(localStorage.getItem('filmdata')),
-            genres: JSON.parse(localStorage.getItem('genres')),
+            // filmdata: JSON.parse(localStorage.getItem('filmdata')),
+            // genres: JSON.parse(localStorage.getItem('genres')),
             selected: '',
             current: [],
             page: 0,

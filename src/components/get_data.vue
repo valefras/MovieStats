@@ -18,7 +18,7 @@ export default {
     name: 'getdata',
     data() {
         return {
-            data: [],
+            filmData: [],
             genres: [],
             page_num: null,
             calls: [],
@@ -40,27 +40,41 @@ export default {
         id: Number,
         api_key: String,
     },
-    created() {
-        this.getInitial().then(
-            () => {
-                this.$emit('data', this.data)
-                this.$emit('genres', this.genres)
-                setTimeout(() => {
-                    this.success = 'data succesfully retrieved'
-                }, 3000)
-            }
+    async created() {
+        // then(
+        //     () => {
+        //
+        //         setTimeout(() => {
+        //             this.success = 'data succesfully retrieved'
+        //         }, 3000)
+        //     }
 
-            //.then(() => {
-            //         this.getDetails().then(() => {
-            //             this.success = 'bruhhh'
-            //         })
-            //     })
-            //
-        )
+        //.then(() => {
+        //         this.getDetails().then(() => {
+        //             this.success = 'bruhhh'
+        //         })
+        //     })
+        //
+        //)
+        await this.getFirst().then(async () => {
+            console.log('1')
+            await this.callRemaining().then(async () => {
+                console.log('2')
+
+                await this.getOtherInfo().then(async () => {
+                    console.log(this.filmData)
+                    this.success = 'bruh'
+
+                    this.$emit('data', this.filmData)
+                    this.$emit('genres', this.genres)
+                    this.$router.push({ name: 'Stats' })
+                })
+            })
+        })
     },
     methods: {
-        async getInitial() {
-            axios
+        async getFirst() {
+            await axios
                 .all([this.callMovies, this.callGenres])
                 .then(
                     axios.spread((...responses) => {
@@ -86,85 +100,10 @@ export default {
                             )
                             this.calls.push(call)
                         }
-                        axios
-                            .all(this.calls)
-                            .then(
-                                axios.spread((...responses) => {
-                                    for (var x = 0; x < responses.length; x++) {
-                                        for (var i = 0; i < responses[x].data.results.length; i++) {
-                                            this.data.push({
-                                                title: responses[x].data.results[i].title,
-                                                date: responses[x].data.results[i].release_date.substr(0, 4),
-                                                poster:
-                                                    'https://image.tmdb.org/t/p/w300' +
-                                                    responses[x].data.results[i].poster_path,
-                                                rating: responses[x].data.results[i].rating / 2,
-                                                language: responses[x].data.results[i].original_language,
-                                                genre_id: responses[x].data.results[i].genre_ids,
-
-                                                id: responses[x].data.results[i].id,
-                                                backdrop:
-                                                    'https://image.tmdb.org/t/p/original' +
-                                                    responses[x].data.results[i].backdrop_path,
-                                            })
-                                        }
-                                    }
-                                })
-                            )
-                            .catch(function(error) {
-                                console.log(error)
-                            })
-                            .then(() => {
-                                for (let i = 0; i < this.data.length; i++) {
-                                    // var data = this.data[i]
-                                    axios
-                                        .get(
-                                            'https://api.themoviedb.org/3/movie/' +
-                                                this.data[i].id +
-                                                '?api_key=' +
-                                                this.api_key +
-                                                '&append_to_response=credits'
-                                        )
-                                        .then(response => {
-                                            for (let x = 0; x < this.data.length; x++) {
-                                                if (this.data[x].id == response.data.id) {
-                                                    let cast = []
-                                                    for (let i = 0; i < 15; i++) {
-                                                        if (response.data.credits.cast[i]) {
-                                                            cast.push(response.data.credits.cast[i])
-                                                        }
-                                                    }
-                                                    this.data[x].cast = cast
-                                                    let crew = []
-                                                    for (let i = 0; i < response.data.credits.crew.length; i++) {
-                                                        if (
-                                                            response.data.credits.crew[i].job ==
-                                                                'Original Music Composer' ||
-                                                            response.data.credits.crew[i].job == 'Director' ||
-                                                            response.data.credits.crew[i].job ==
-                                                                'Director of Photography' ||
-                                                            response.data.credits.crew[i].job == 'Screenplay' ||
-                                                            response.data.credits.crew[i].job == 'Writer'
-                                                        ) {
-                                                            crew.push(response.data.credits.crew[i])
-                                                        }
-                                                    }
-
-                                                    this.data[x].crew = crew
-                                                    this.data[x].collection = response.data.belongs_to_collection
-                                                    this.data[x].runtime = response.data.runtime
-                                                    this.data[x].tagline = response.data.tagline
-                                                    this.data[x].countries = response.data.production_countries
-                                                    break
-                                                }
-                                            }
-                                        })
-                                }
-                            })
 
                         this.page_num = response.data.total_pages
-                        for (var y = 0; y <= 20; y++) {
-                            this.data.push({
+                        for (var y = 0; y <= response.data.results.length; y++) {
+                            this.filmData.push({
                                 title: response.data.results[y].title,
                                 date: response.data.results[y].release_date.substr(0, 4),
                                 poster: 'https://image.tmdb.org/t/p/w300' + response.data.results[y].poster_path,
@@ -181,6 +120,80 @@ export default {
                 .catch(function(error) {
                     console.log(error)
                 })
+        },
+        async callRemaining() {
+            await axios
+                .all(this.calls)
+                .then(
+                    axios.spread((...responses) => {
+                        for (var x = 0; x < responses.length; x++) {
+                            for (var i = 0; i < responses[x].data.results.length; i++) {
+                                this.filmData.push({
+                                    title: responses[x].data.results[i].title,
+                                    date: responses[x].data.results[i].release_date.substr(0, 4),
+                                    poster:
+                                        'https://image.tmdb.org/t/p/w300' + responses[x].data.results[i].poster_path,
+                                    rating: responses[x].data.results[i].rating / 2,
+                                    language: responses[x].data.results[i].original_language,
+                                    genre_id: responses[x].data.results[i].genre_ids,
+
+                                    id: responses[x].data.results[i].id,
+                                    backdrop:
+                                        'https://image.tmdb.org/t/p/original' +
+                                        responses[x].data.results[i].backdrop_path,
+                                })
+                            }
+                        }
+                    })
+                )
+                .catch(function(error) {
+                    console.log(error)
+                })
+        },
+        async getOtherInfo() {
+            for (let i = 0; i < this.filmData.length; i++) {
+                // var data = this.filmData[i]
+                await axios
+                    .get(
+                        'https://api.themoviedb.org/3/movie/' +
+                            this.filmData[i].id +
+                            '?api_key=' +
+                            this.api_key +
+                            '&append_to_response=credits'
+                    )
+                    .then(response => {
+                        for (let x = 0; x < this.filmData.length; x++) {
+                            if (this.filmData[x].id == response.data.id) {
+                                // let cast = []
+                                // for (let i = 0; i < response.data.credits.cast.length; i++) {
+                                //     if (response.data.credits.cast[i]) {
+                                //         cast.push(response.data.credits.cast[i])
+                                //     }
+                                // }
+                                this.filmData[x].cast = response.data.credits.cast
+                                let crew = []
+                                for (let i = 0; i < response.data.credits.crew.length; i++) {
+                                    if (
+                                        response.data.credits.crew[i].job == 'Original Music Composer' ||
+                                        response.data.credits.crew[i].job == 'Director' ||
+                                        response.data.credits.crew[i].job == 'Director of Photography' ||
+                                        response.data.credits.crew[i].job == 'Screenplay' ||
+                                        response.data.credits.crew[i].job == 'Writer'
+                                    ) {
+                                        crew.push(response.data.credits.crew[i])
+                                    }
+                                }
+
+                                this.filmData[x].crew = crew
+                                this.filmData[x].collection = response.data.belongs_to_collection
+                                this.filmData[x].runtime = response.data.runtime
+                                this.filmData[x].tagline = response.data.tagline
+                                this.filmData[x].countries = response.data.production_countries
+                                break
+                            }
+                        }
+                    })
+            }
         },
     },
 }

@@ -61,6 +61,11 @@ export default {
             this.genres = data
         },
     },
+
+    destroyed() {
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('session_id')
+    },
 }
 </script>
 <style>

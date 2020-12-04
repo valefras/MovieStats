@@ -145,7 +145,7 @@
 export default {
     name: 'people',
     props: {
-        storedFilms: Array,
+        filmdata: Array,
     },
     data() {
         return {
@@ -168,11 +168,11 @@ export default {
     methods: {
         organizeCast() {
             var arr = []
-            for (let i = 0; i < this.storedFilms.length; i++) {
-                for (let x = 0; x < this.storedFilms[i].cast.length; x++) {
+            for (let i = 0; i < this.filmdata.length; i++) {
+                for (let x = 0; x < this.filmdata[i].cast.length; x++) {
                     arr.push({
-                        name: this.storedFilms[i].cast[x].name,
-                        total: this.storedFilms[i].rating,
+                        name: this.filmdata[i].cast[x].name,
+                        total: this.filmdata[i].rating,
                     })
                 }
             }
@@ -231,37 +231,37 @@ export default {
         },
         organizeCrew() {
             this.crew = { directors: [], composers: [], screenwriters: [], photography: [] }
-            for (let i = 0; i < this.storedFilms.length; i++) {
-                for (let x = 0; x < this.storedFilms[i].crew.length; x++) {
-                    switch (this.storedFilms[i].crew[x].job) {
+            for (let i = 0; i < this.filmdata.length; i++) {
+                for (let x = 0; x < this.filmdata[i].crew.length; x++) {
+                    switch (this.filmdata[i].crew[x].job) {
                         case 'Director':
                             this.crew.directors.push({
-                                name: this.storedFilms[i].crew[x].name,
-                                total: this.storedFilms[i].rating,
+                                name: this.filmdata[i].crew[x].name,
+                                total: this.filmdata[i].rating,
                             })
                             break
                         case 'Original Music Composer':
                             this.crew.composers.push({
-                                name: this.storedFilms[i].crew[x].name,
-                                total: this.storedFilms[i].rating,
+                                name: this.filmdata[i].crew[x].name,
+                                total: this.filmdata[i].rating,
                             })
                             break
                         case 'Director of Photography':
                             this.crew.photography.push({
-                                name: this.storedFilms[i].crew[x].name,
-                                total: this.storedFilms[i].rating,
+                                name: this.filmdata[i].crew[x].name,
+                                total: this.filmdata[i].rating,
                             })
                             break
                         case 'Screenplay':
                             this.crew.screenwriters.push({
-                                name: this.storedFilms[i].crew[x].name,
-                                total: this.storedFilms[i].rating,
+                                name: this.filmdata[i].crew[x].name,
+                                total: this.filmdata[i].rating,
                             })
                             break
                         case 'Writer':
                             this.crew.screenwriters.push({
-                                name: this.storedFilms[i].crew[x].name,
-                                total: this.storedFilms[i].rating,
+                                name: this.filmdata[i].crew[x].name,
+                                total: this.filmdata[i].rating,
                             })
                             break
                     }

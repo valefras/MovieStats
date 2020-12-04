@@ -111,11 +111,15 @@ export default {
     components: {
         StarRating,
     },
+    props: {
+        filmdata: Array,
+        genres: Array,
+    },
     data() {
         return {
             id: this.$route.params.id,
-            filmdata: JSON.parse(localStorage.getItem('filmdata')),
-            genres: JSON.parse(localStorage.getItem('genres')),
+            //filmdata: JSON.parse(localStorage.getItem('filmdata')),
+            //genres: JSON.parse(localStorage.getItem('genres')),
             data: null,
             gn: [],
             dir: [],

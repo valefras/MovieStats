@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!storedFilms">
+    <div v-if="!filmdata">
         <div class="image-blurred-edge">
             <p style=" font-size: 80%; color: #9999;">
                 The Assassination of Jesse James by the Coward Robert Ford (2007)
@@ -16,7 +16,7 @@
 
     <div class="cnt" v-else>
         <h1>Your Stats</h1>
-        <p>{{ storedFilms.length }} movies</p>
+        <p>{{ filmdata.length }} movies</p>
         <p>{{ timeConvert(hours) }}</p>
         <router-link
             :to="{
@@ -39,8 +39,8 @@
                     Average rating (by release year)
                 </p>
             </div>
-            <barChart :filmdata="storedFilms" v-if="!tabs" class="chart" />
-            <barChart1 :filmdata="storedFilms" v-else class="chart" />
+            <barChart :filmdata="filmdata" v-if="!tabs" class="chart" />
+            <barChart1 :filmdata="filmdata" v-else class="chart" />
         </div>
         <!-- </div> -->
 
@@ -50,11 +50,11 @@
         <div class="ratingCharts">
             <div>
                 <h4>Rating distribution</h4>
-                <barChart2 :filmdata="storedFilms" />
+                <barChart2 :filmdata="filmdata" />
             </div>
             <div>
                 <h4>Total average rating</h4>
-                <gaugeChart :filmdata="storedFilms" />
+                <gaugeChart :filmdata="filmdata" />
             </div>
         </div>
 
@@ -65,29 +65,29 @@
         <div class="genresCharts">
             <div>
                 <h4>Average rating</h4>
-                <barChart3 :filmdata="storedFilms" :genres="storedGenres" />
+                <barChart3 :filmdata="filmdata" :genres="genres" />
             </div>
             <div>
                 <h4>Number of movies</h4>
-                <genresPieChart :filmdata="storedFilms" :genres="storedGenres" />
+                <genresPieChart :filmdata="filmdata" :genres="genres" />
             </div>
         </div>
         <hr />
 
         <h2 class="sectitle">Decades</h2>
 
-        <decades :filmdata="storedFilms" />
+        <decades :filmdata="filmdata" />
 
         <hr />
 
         <h2 class="sectitle">People</h2>
-        <people :storedFilms="storedFilms" />
+        <people :filmdata="filmdata" />
 
         <hr />
 
         <h2 class="sectitle">Words in taglines<span style="font-size: 70%">*</span></h2>
 
-        <wordCloud :filmdata="storedFilms" />
+        <wordCloud :filmdata="filmdata" />
 
         <div class="expl">
             <p>
@@ -103,10 +103,10 @@
 
         <h2 class="sectitle">Production countries</h2>
 
-        <mapChart :filmdata="storedFilms" />
+        <mapChart :filmdata="filmdata" />
         <!-- <h2 class="sectitle">Completed collections</h2> -->
 
-        <!-- <collections :filmdata="storedFilms" /> -->
+        <!-- <collections :filmdata="filmdata" /> -->
     </div>
 </template>
 
@@ -152,14 +152,14 @@ export default {
         }
     },
     methods: {
-        async save() {
-            if (this.filmdata) {
-                localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
-                localStorage.setItem('genres', JSON.stringify(this.genres))
-            }
-            this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
-            this.storedGenres = JSON.parse(localStorage.getItem('genres'))
-        },
+        // async save() {
+        //     if (this.filmdata) {
+        //         localStorage.setItem('filmdata', JSON.stringify(this.filmdata))
+        //         localStorage.setItem('genres', JSON.stringify(this.genres))
+        //     }
+        //     this.storedFilms = JSON.parse(localStorage.getItem('filmdata'))
+        //     this.storedGenres = JSON.parse(localStorage.getItem('genres'))
+        // },
         timeConvert(n) {
             var num = n
             var hours = num / 60
@@ -170,11 +170,11 @@ export default {
         },
     },
     created() {
-        this.save().then(() => {
-            for (let i = 0; i < this.storedFilms.length; i++) {
-                this.hours += this.storedFilms[i].runtime
-            }
-        })
+        //this.save().then(() => {
+        for (let i = 0; i < this.filmdata.length; i++) {
+            this.hours += this.filmdata[i].runtime
+        }
+        //})
     },
 }
 </script>
